@@ -60,7 +60,7 @@ function panorama() {
           ? `<div class="renombrada">pasa a llamarse ${esc(l.nombre_propuesto)}</div>` : ""}
         </div></div></td>
       <td class="num">${num(cv.general)}</td>
-      <td class="num"><strong style="color:var(--rojo)">${num(cp.general)}</strong></td>
+      <td class="num"><strong class="realce">${num(cp.general)}</strong></td>
       <td class="num">${num(cv.total)}</td>
       <td class="num">${num(cp.total)}</td>
       <td class="num">${dTot === null ? "—" : (dTot > 0 ? "+" : "") + dTot}</td>
@@ -70,7 +70,7 @@ function panorama() {
       <td class="num">${l.conteo.renumeradas}</td>
       <td class="num">${l.conteo.salen}</td>
       <td class="num">${l.seriacion?.vigente?.profundidad_max ?? "—"} →
-        <strong style="color:var(--rojo)">${l.seriacion?.propuesto?.sin_columna
+        <strong class="realce">${l.seriacion?.propuesto?.sin_columna
           ? "?" : l.seriacion?.propuesto?.profundidad_max ?? "—"}</strong></td>
       <td class="num">${l.conteo.con_programa}</td>
     </tr>`;
@@ -80,6 +80,7 @@ function panorama() {
   const tgUnico = [...new Set(tg)];
 
   vista.innerHTML = `
+    <div class="plano plano-cabecera plano-rojo">
     <p class="kicker">Modificación a los planes de estudio · julio 2026</p>
     <h1>Las diez licenciaturas de la División</h1>
     <p class="sub">Comparación del plan vigente 2020 contra el plan modificado, y
@@ -88,12 +89,13 @@ function panorama() {
 
     <div class="datos">
       <div class="dato"><div class="n">10</div><div class="r">licenciaturas</div></div>
-      <div class="dato"><div class="n acento">${tgUnico.length === 1 ? tgUnico[0] : "57"}</div>
+      <div class="dato acentuada"><div class="n acento">${tgUnico.length === 1 ? tgUnico[0] : "57"}</div>
         <div class="r">créditos del nuevo Tronco General</div></div>
       <div class="dato"><div class="n">${DATOS.licenciaturas.reduce((a, l) => a + l.conteo.plan, 0)}</div>
         <div class="r">UEA en los diez planes</div></div>
       <div class="dato"><div class="n">${DATOS.licenciaturas.reduce((a, l) => a + l.conteo.con_programa, 0)}</div>
         <div class="r">programas consultables</div></div>
+    </div>
     </div>
 
     <table>
@@ -133,8 +135,8 @@ function licenciatura(clave, q = "") {
     const o = Math.max((c.total || 0) - g - p - (c.nivelacion || 0), 0);
     const w = (x) => (100 * x) / tot;
     return `<div style="margin:10px 0 18px">
-      <div style="font-size:12px;color:var(--gris);margin-bottom:3px">${titulo}
-        <strong style="color:var(--tinta)">${num(c.total)} créditos</strong></div>
+      <div class="tenue" style="font-size:12px;margin-bottom:3px">${titulo}
+        <strong class="fuerte">${num(c.total)} créditos</strong></div>
       <div class="barra-cmp" style="width:${Math.min(100, w(c.total || 0))}%">
         <span class="seg-tg" style="flex:${g}">TG ${g}</span>
         <span class="seg-pro" style="flex:${p}">Profesional ${p}</span>
@@ -174,6 +176,7 @@ function licenciatura(clave, q = "") {
   }).join("");
 
   vista.innerHTML = `
+    <div class="plano plano-cabecera plano-tinta">
     <div class="migaja"><a href="#/">Panorama</a> › ${esc(l.nombre)}</div>
     <p class="kicker">Licenciatura en</p>
     <h1>${esc(l.nombre_propuesto || l.nombre)}</h1>
@@ -185,10 +188,11 @@ function licenciatura(clave, q = "") {
 
     <div class="datos">
       <div class="dato"><div class="n">${l.conteo.plan}</div><div class="r">UEA en el plan propuesto</div></div>
-      <div class="dato"><div class="n acento">${l.conteo.nuevas}</div><div class="r">UEA nuevas</div></div>
+      <div class="dato acentuada"><div class="n acento">${l.conteo.nuevas}</div><div class="r">UEA nuevas</div></div>
       <div class="dato"><div class="n">${l.conteo.renumeradas}</div><div class="r">continúan con clave nueva</div></div>
       <div class="dato"><div class="n">${l.conteo.salen}</div><div class="r">sin correspondencia</div></div>
       <div class="dato"><div class="n">${l.conteo.con_programa}</div><div class="r">programas consultables</div></div>
+    </div>
     </div>
 
     <h2>Distribución de créditos</h2>
@@ -275,11 +279,11 @@ function seriacion(l) {
   if (!v || !p) return "";
   const fila = (t, m, acento) => `<tr>
     <td><strong>${t}</strong></td>
-    <td class="num">${m.con_prerrequisito} <span style="color:var(--gris)">de ${m.ueas}</span></td>
+    <td class="num">${m.con_prerrequisito} <span class="tenue">de ${m.ueas}</span></td>
     <td class="num">${m.pct_con_prerrequisito} %</td>
     <td class="num">${m.aristas}</td>
-    <td class="num"><strong${acento ? ' style="color:var(--rojo)"' : ""}>${m.profundidad_max}</strong></td>
-    <td class="num"><strong${acento ? ' style="color:var(--rojo)"' : ""}>${m.profundidad_media}</strong></td></tr>`;
+    <td class="num"><strong${acento ? ' class="realce"' : ""}>${m.profundidad_max}</strong></td>
+    <td class="num"><strong${acento ? ' class="realce"' : ""}>${m.profundidad_media}</strong></td></tr>`;
   return `<h2>Cadenas de seriación</h2>
     ${p.sin_columna ? `<div class="aviso"><strong>Dato incompleto.</strong>
       La tabla del plan propuesto de esta licenciatura no dejó legible la columna de
@@ -381,7 +385,7 @@ function detalleUEA2020(claveLic, claveUEA) {
     <h1>${esc(u.nombre)}</h1>
     <p class="sub"><span class="clave">Clave ${esc(u.clave)}</span></p>
     <div class="datos">
-      <div class="dato"><div class="n acento">${num(u.creditos)}</div><div class="r">créditos</div></div>
+      <div class="dato acentuada"><div class="n acento">${num(u.creditos)}</div><div class="r">créditos</div></div>
       <div class="dato"><div class="n">${u.aprobacion ? (100 * u.aprobacion).toFixed(1) + " %" : "—"}</div>
         <div class="r">aprobación histórica 16I–25O</div></div>
       <div class="dato"><div class="n">${u.intentos ?? "—"}</div>
@@ -414,7 +418,7 @@ function detalleUEA(claveLic, claveUEA) {
         <span class="clave">${esc(u.clave_2020)}</span></a>` : ""}</p>
 
     <div class="datos">
-      <div class="dato"><div class="n acento">${num(u.creditos)}</div><div class="r">créditos</div></div>
+      <div class="dato acentuada"><div class="n acento">${num(u.creditos)}</div><div class="r">créditos</div></div>
       <div class="dato"><div class="n">${num(u.teoria)}</div><div class="r">horas de teoría</div></div>
       <div class="dato"><div class="n">${num(u.practica)}</div><div class="r">horas de práctica</div></div>
       <div class="dato"><div class="n">${num(u.horas)}</div><div class="r">horas totales</div></div>
@@ -480,21 +484,106 @@ function buscar(q) {
     ${res.length > 300 ? '<p class="sub">Se muestran los primeros 300 resultados.</p>' : ""}`;
 }
 
-/* ------------------------------------------------------------- ruteo */
-/* ------------------------------------------------------------ portada */
+/* ═══════════════════════════════════════════════════════════════════
+   Niveles, campo cromático y cortina
+   ═══════════════════════════════════════════════════════════════════
+   El tablero tiene cuatro niveles de profundidad y a cada uno le toca un
+   campo de color, declarado en estilo.css. Aquí sólo se decide en qué
+   nivel está el usuario y se orquesta el paso de un campo a otro.
+
+     0 portada      tinta   umbral
+     1 panorama     rojo    índice de las diez licenciaturas
+     2 licenciatura tinta   comparación plan contra plan
+     3 UEA          papel   programa completo, prosa larga
+       búsqueda     papel   atajo al nivel 3, comparte su campo
+
+   El paso de un campo a otro lo hace un plano del color que llega, que
+   entra por la derecha al bajar de nivel y por la izquierda al subir. La
+   vista nueva se pinta mientras el plano tapa, de modo que al retirarse
+   descubre una página ya hecha. Si el campo no cambia —de una UEA a otra,
+   de una búsqueda a su resultado— no hay plano: sólo un asentamiento de
+   180 ms, para no cobrarle espera a quien navega rápido. */
+
+const CAMPO = { panorama: "papel", lic: "papel", uea: "papel", buscar: "papel" };
+const HONDURA = { panorama: 1, lic: 2, uea: 3, buscar: 3 };
+// Color del plano que barre al llegar a cada nivel. El panorama trae el suyo
+// en rojo —el mismo plano que se queda de encabezado— y la licenciatura en
+// tinta, de modo que bajar del índice al plan se ve aunque los dos campos
+// sean oscuros: el barrido se lleva el plano rojo y no lo devuelve.
+const CORTINA = { panorama: "#CD032E", lic: "#1C1C1C", uea: "#FFFFFF", buscar: "#FFFFFF" };
+
 const reducido = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
-function cerrarPortada(animar) {
-  const p = $("#portada");
-  if (!p || p.dataset.cerrada) return;
-  p.dataset.cerrada = "1";
-  document.body.classList.remove("con-portada");
-  if (animar && !reducido) {
-    p.classList.add("saliendo");
-    p.addEventListener("animationend", () => p.remove(), { once: true });
-  } else {
-    p.remove();
+/* Reproduce exactamente las mismas salvaguardas que los pintores: si la
+   clave no existe, la vista que se dibuja es la de su nivel superior, y el
+   campo tiene que corresponder a lo que se ve, no a lo que pedía la ruta. */
+function nivelDe(p) {
+  if (p[0] === "buscar") return "buscar";
+  if ((p[0] === "uea" || p[0] === "uea2020") && p[1] && p[2]) {
+    const l = lic(p[1]);
+    if (!l) return "panorama";
+    const hay = p[0] === "uea"
+      ? l.ueas?.some((x) => x.clave === p[2])
+      : l.vigentes?.some((x) => x.clave === p[2]);
+    return hay ? "uea" : "lic";   // una clave que no existe cae a su licenciatura
   }
+  if (p[0] === "lic") return lic(p[1]) ? "lic" : "panorama";
+  return "panorama";
+}
+
+let nivelActual = null, rutaActual = null, animCortina = null;
+
+function aplicarCampo(nivel) {
+  document.body.dataset.campo = CAMPO[nivel];
+  document.body.dataset.nivel = nivel;
+}
+
+const TAPA = 230, DESCUBRE = 300;   // ms; el viaje completo del plano
+let generacion = 0;
+
+function barrido(nivel, haciaDentro, alCubrir) {
+  const c = $("#cortina");
+  const desde = haciaDentro ? "translateX(100%)" : "translateX(-100%)";
+  const hasta = haciaDentro ? "translateX(-100%)" : "translateX(100%)";
+  const mia = ++generacion;   // una navegación nueva invalida la anterior
+  c.style.background = CORTINA[nivel];
+  c.style.display = "block";
+  if (animCortina) animCortina.cancel();
+  const tapa = c.animate([{ transform: desde }, { transform: "translateX(0)" }],
+    { duration: TAPA, easing: "cubic-bezier(.66,0,.34,1)", fill: "forwards" });
+  animCortina = tapa;
+
+  // El relevo va atado al reloj de la animación, pero con red: si el motor
+  // no la corre —pestaña en segundo plano, contexto sin composición— un
+  // temporizador hace el relevo igual, para que el plano no se quede
+  // tapando la página. La vista se pinta una sola vez, pase lo que pase.
+  let relevado = false, cerrado = false;
+  const seguir = () => {
+    if (relevado || mia !== generacion) return;
+    relevado = true;
+    clearTimeout(redTapa);
+    alCubrir();
+    const descubre = c.animate([{ transform: "translateX(0)" }, { transform: hasta }],
+      { duration: DESCUBRE, easing: "cubic-bezier(.32,0,.18,1)", fill: "forwards" });
+    animCortina = descubre;
+    const cerrar = () => {
+      if (cerrado || mia !== generacion) return;
+      cerrado = true;
+      clearTimeout(redFin);
+      c.style.display = "none";
+      animCortina = null;
+    };
+    const redFin = setTimeout(cerrar, DESCUBRE + 400);
+    descubre.finished.then(cerrar).catch(() => {});
+  };
+  const redTapa = setTimeout(seguir, TAPA + 400);
+  tapa.finished.then(seguir).catch(() => {});
+}
+
+function quitarPortada() {
+  const p = $("#portada");
+  if (p) p.remove();
+  document.body.classList.remove("con-portada");
 }
 
 function contadores() {
@@ -514,11 +603,8 @@ function contadores() {
   });
 }
 
-function render() {
-  const h = location.hash.replace(/^#\/?/, "");
-  const p = h.split("/").filter(Boolean);
-  const q = $("#buscador").value.trim();
-
+/* ------------------------------------------------------------- ruteo */
+function pintar(p, q) {
   if (p[0] === "buscar") { buscar(decodeURIComponent(p[1] || "")); }
   else if (p[0] === "uea2020" && p[1] && p[2]) { detalleUEA2020(p[1], p[2]); }
   else if (p[0] === "uea" && p[1] && p[2]) { detalleUEA(p[1], p[2]); }
@@ -528,25 +614,63 @@ function render() {
   document.querySelectorAll("header nav a").forEach((a) =>
     a.classList.toggle("activo", a.getAttribute("href") === "#/" + (p[0] || "")));
   window.scrollTo(0, 0);
-
-  if (!reducido) {                 // reinicia la animación de entrada
-    vista.classList.remove("entrando");
-    void vista.offsetWidth;
-    vista.classList.add("entrando");
-  }
 }
 
-window.addEventListener("hashchange", () => { cerrarPortada(true); render(); });
+function anima(clase) {
+  if (reducido) return;
+  vista.classList.remove("entrando", "rapido");
+  void vista.offsetWidth;
+  vista.classList.add(clase);
+}
+
+function render(opts = {}) {
+  const h = location.hash.replace(/^#\/?/, "");
+  const p = h.split("/").filter(Boolean);
+  const q = $("#buscador").value.trim();
+  const nivel = nivelDe(p);
+  const clave = p.join("/");
+  const previo = nivelActual;
+  // Un filtro o una tecla dentro de la misma vista repinta sin animar: la
+  // animación es para el cambio de vista, no para el cambio de contenido.
+  // Teclear en el buscador reescribe la ruta con cada letra, así que se
+  // cuenta como la misma vista mientras se siga buscando.
+  const mismaVista = !opts.forzar &&
+    (clave === rutaActual || (nivel === "buscar" && previo === "buscar"));
+  rutaActual = clave;
+  nivelActual = nivel;
+
+  const cortina = !reducido && previo !== null &&
+    (opts.cortina || !!$("#portada") || CORTINA[nivel] !== CORTINA[previo]);
+
+  if (!cortina) {
+    if (previo !== null) quitarPortada();
+    aplicarCampo(nivel);
+    pintar(p, q);
+    if (!mismaVista) anima(nivel === previo ? "rapido" : "entrando");
+    return;
+  }
+  barrido(nivel, HONDURA[nivel] >= HONDURA[previo], () => {
+    quitarPortada();
+    aplicarCampo(nivel);
+    pintar(p, q);
+    anima("entrando");
+  });
+}
+
+window.addEventListener("hashchange", () => render());
 window.addEventListener("DOMContentLoaded", () => {
   // La portada sólo recibe a quien llega sin destino. Un enlace profundo
   // —#/lic/civ, #/uea/…— entra directo a lo que pidió.
   if (location.hash.replace(/^#\/?/, "")) {
-    cerrarPortada(false);
+    quitarPortada();
   } else {
     document.body.classList.add("con-portada");
     contadores();
     $("#portada").addEventListener("click", (e) => {
-      if (e.target.closest(".p-entrar")) { e.preventDefault(); cerrarPortada(true); }
+      if (e.target.closest(".p-entrar")) {
+        e.preventDefault();
+        render({ cortina: true, forzar: true });
+      }
     });
   }
   const b = $("#buscador");

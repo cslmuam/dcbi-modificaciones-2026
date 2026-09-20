@@ -8,7 +8,11 @@
 </head>
 <body>
 
-<!-- Portada. Modo oscuro sobre #1C1C1C; el negro puro se reserva al emblema
+<!-- Plano que barre el cambio de nivel. Lleva el color del nivel que llega,
+     así que la transición es el cambio de campo, no un fundido encima. -->
+<div id="cortina" aria-hidden="true"></div>
+
+<!-- Portada. Nivel 0, campo tinta #1C1C1C; el negro puro se reserva al emblema
      (Acuerdo 06/2012, numeral 2.3). Se oculta al entrar al tablero. -->
 <section id="portada">
   <div class="p-fondo"><span class="p-punto"></span></div>
@@ -32,7 +36,11 @@
 
 <header>
   <div class="barra">
-    <img src="assets/logo_footer_web.png" alt="Universidad Autónoma Metropolitana">
+    <!-- El emblema no se recolorea: van los dos archivos y el campo del nivel
+         decide cuál se muestra. Sobre rojo y sobre tinta, el blanco. -->
+    <img class="logo-tinta" src="assets/logo_footer_web.png"
+         alt="Universidad Autónoma Metropolitana">
+    <img class="logo-blanco" src="assets/logo_blanco_transparente.png" alt="">
     <div class="marca">División de Ciencias<br>Básicas e <b>Ingeniería</b></div>
     <nav>
       <a href="#/">Panorama</a>

@@ -17,10 +17,17 @@ por la esquina. Un enlace profundo —`#/lic/civ`, `#/uea/…`— la salta y ent
 directo a lo que pidió, de modo que un enlace compartido sigue llevando a su
 destino.
 
-Las transiciones son discretas: la portada se va hacia arriba al entrar, cada
-vista aparece con un desplazamiento corto, y los eslabones de las cadenas
-responden al cursor. Todo se desactiva con `prefers-reduced-motion`, incluidos
-los contadores, que en ese caso muestran su cifra final de inmediato.
+El paso de un nivel a otro lo hace un plano que barre la pantalla —entra por la
+derecha al bajar de nivel, por la izquierda al subir— y descubre la vista nueva
+ya pintada debajo. Lleva el color del bloque de encabezado del nivel que llega —rojo
+el del panorama, tinta el de la licenciatura, papel la ficha, que no tiene
+bloque—, de modo que el barrido deposita la firma del nivel al retirarse y el
+escalón se ve aunque dos niveles compartan campo. Dentro de un mismo nivel
+—de una UEA a otra, de una búsqueda a su siguiente letra— el plano no aparece:
+sólo un asentamiento de 180 ms, para no cobrarle espera a quien navega rápido.
+Las cédulas de dato entran escalonadas y los eslabones de las cadenas responden
+al cursor. Todo se desactiva con `prefers-reduced-motion`, incluidos los
+contadores, que en ese caso muestran su cifra final de inmediato.
 
 **Panorama.** Las diez licenciaturas en una tabla, con los créditos del Tronco
 General y del plan completo antes y después, el número de UEA de cada plan, y
@@ -94,10 +101,10 @@ que un hallazgo concreto se puede enviar por correo como enlace.
 |---|---|
 | `index.html` | La página. Único punto de entrada. |
 | `estilo.css` | Identidad institucional. Los valores citan su numeral del manual. |
-| `app.js` | Ruteo por hash, filtros, búsqueda y las tres vistas. |
+| `app.js` | Ruteo por hash, campo de color por nivel, filtros, búsqueda y las vistas. |
 | `datos.js` | Datos ya procesados, ~3.2 MB. **Generado, no se edita a mano.** |
 | `construir_datos.py` | Genera `datos.js` desde las fuentes. |
-| `assets/` | Emblema institucional. |
+| `assets/` | Emblema institucional, en positivo y en negativo. |
 
 Para regenerar los datos, por ejemplo tras una entrega nueva de las
 coordinaciones:
@@ -196,6 +203,40 @@ conviven bien con esa sobriedad: el **chip circular rojo** que numera las diez
 licenciaturas en el panorama, y la **caja de aviso** con marco firme y etiqueta
 de masa sólida, que separa la advertencia metodológica del cuerpo de la tabla
 sin competir con ella.
+
+**Cada nivel es un campo con un bloque de encabezado de otro color**, y ese
+bloque es la firma del nivel. Es lo primero que se ve al llegar, porque sangra
+de borde a borde y arranca pegado al encabezado fijo.
+
+| Nivel | Campo | Bloque de encabezado |
+|---|---|---|
+| Portada | tinta `#1C1C1C` | el Punto, círculo sangrando por la esquina |
+| Panorama | papel `#FFFFFF` | **Plano rojo** con kicker, título, bajada y cédulas |
+| Licenciatura | papel `#FFFFFF` | **bloque de tinta** con migaja, título y cédulas |
+| UEA y búsqueda | papel `#FFFFFF` | ninguno; el rojo vuelve a ser color de texto |
+
+El acento aparece con el área que cada nivel puede sostener: el círculo y el
+plano donde casi no hay texto, la cédula y los chips donde se trabaja, y nada
+más que el rótulo donde se lee prosa larga. Dentro de un bloque oscuro el rojo
+deja de ser color de texto —`#CD032E` sobre tinta da 2.96:1— y pasa a ser
+exclusivamente masa sólida; dentro del Plano rojo la masa se invierte a blanco
+pleno con el número en rojo, porque un rojo sobre rojo es nada. Todas las
+combinaciones de texto y fondo cumplen WCAG AA, con 5.76:1 en el caso más
+ajustado.
+
+Dentro del tablero el campo es siempre papel y lo único que cambia entre las
+tres vistas es el bloque —rojo, tinta, ninguno—; la portada queda como el único
+campo oscuro. La cortina de transición refuerza el escalón sin añadir
+vocabulario, porque llega con el color del bloque del nivel que entra y al
+retirarse parece depositarlo. Fuera del bloque todo es papel corriente: la
+tabla de las diez licenciaturas y el panel de UEA comparten factura —filete
+fino, Punto rojo numerando, chips de masa roja sobre la cifra que sostiene la
+comparación— y las barras de crédito llevan sus segmentos canónicos —Tronco
+General en rojo, Profesional en la masa oscura, resto en gris—, iguales a los
+del carrusel y el deck del mismo proyecto.
+
+El emblema cambia con el campo: sobre papel va el positivo, sobre tinta el
+negativo en blanco. Ninguno se recolorea por CSS (numeral 3.2).
 
 Los valores son los del Acuerdo 06/2012, verificados con `/identidad-uam`.
 

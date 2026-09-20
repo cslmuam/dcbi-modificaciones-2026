@@ -4,7 +4,50 @@
    · Tipografía web obligatoria Verdana, con Arial y Tahoma como alternativas
      (numeral 4.1). Helvetica Neue queda reservada a material primario impreso.
    · Negro puro #000000 se reserva al emblema (numeral 2.3), así que la tinta
-     de cuerpo es #1C1C1C. */
+     de cuerpo es #1C1C1C.
+
+   CAMPO Y MASA POR NIVEL DE PROFUNDIDAD
+   ─────────────────────────────────────
+   El fondo no decora: dice en qué nivel del expediente está el usuario. Cada
+   nivel pierde una masa respecto del anterior, y esa pérdida es la escalera.
+
+   Cada nivel es un campo con un bloque de encabezado de otro color, y ese
+   bloque es la firma del nivel.
+
+     Nivel          Campo            Bloque de encabezado
+     0 portada      tinta  #1C1C1C   el PUNTO, círculo sangrando por la esquina
+     1 panorama     papel  #FFFFFF   PLANO rojo: kicker, título, bajada y cédulas
+     2 licenciatura papel  #FFFFFF   BLOQUE de tinta: migaja, título y cédulas
+     3 UEA          papel  #FFFFFF   ninguno; el rojo vuelve a ser color de texto
+       búsqueda     papel  #FFFFFF   atajo al nivel 3, se resuelve como él
+
+   Los bloques sangran de borde a borde y arrancan pegados al encabezado fijo,
+   así que la firma del nivel es lo primero que se ve al llegar y no hace falta
+   ningún otro recurso para distinguirlos: dentro del tablero el campo es
+   siempre papel y lo único que cambia es el bloque —rojo, tinta, ninguno—. La
+   portada queda como el único campo oscuro del sistema.
+
+   La cortina de transición refuerza el escalón sin añadir vocabulario: llega
+   con el color del bloque del nivel que entra, de modo que al retirarse parece
+   depositarlo. Lo que distingue a las tres vistas de papel es, entonces, la
+   misma cosa quieta y en movimiento.
+
+   El acento aparece con el área que cada nivel puede sostener: el círculo y
+   el plano donde casi no hay texto, el chip donde se trabaja, y nada más que
+   el rótulo donde se lee prosa larga. El papel se reserva a los dos niveles
+   que se leen palabra por palabra, que es donde la legibilidad manda sobre la
+   simetría del sistema.
+
+   Cada campo se declara como un juego de papeles —fondo, texto, filete, masa—
+   y todos los componentes se escriben contra esos papeles, nunca contra un
+   color literal. El mismo juego sirve para una página entera o para un plano
+   dentro de ella, así que un bloque de otro color es una clase, jamás una
+   excepción escrita a mano.
+
+   Regla de masa (Bauhaus/Neobrutalista): el acento es siempre área sólida,
+   nunca borde ni tinte. Dentro del plano rojo la masa se invierte —blanco
+   pleno con el número en rojo—, porque un rojo sobre rojo no es masa, es
+   nada. */
 
 :root {
   --rojo: #CD032E;
@@ -17,44 +60,154 @@
   --max: 1280px;
 }
 
+/* Los juegos de papeles valen igual para una página entera —`body[data-campo]`—
+   que para un plano dentro de ella —`.plano-rojo`, `.plano-tinta`—, de modo que un
+   bloque puede llevar su propio color sin ninguna excepción escrita a mano: dentro
+   del plano rojo, «masa» ya significa blanco. */
+:root {
+  --fondo: var(--papel);
+  --texto: var(--tinta);
+  --texto-2: var(--gris);
+  --linea: var(--filete);
+  --linea-fuerte: var(--tinta);
+  --hover: var(--gris-claro);
+  --caja: var(--gris-claro);
+  --caja-texto: var(--tinta);
+  --caja-borde: var(--tinta);
+  --chip-caja: var(--rojo);
+  --sobre-chip-caja: #FFFFFF;
+  --masa: var(--rojo);
+  --sobre-masa: #FFFFFF;
+  --masa-neutra: var(--tinta);
+  --sobre-masa-neutra: #FFFFFF;
+  --masa-verde: var(--verde);
+  --sobre-masa-verde: #FFFFFF;
+  --acento-txt: var(--rojo);
+  --enlace: var(--rojo);
+}
+
+/* TINTA — campo del panorama y de la licenciatura. Blanco sobre #1C1C1C da
+   17.0:1; el gris secundario se sube a #A8A8A8 (7.2:1) porque el #646464 de
+   papel caería a 2.3:1. El rojo deja de ser color de texto (sólo 2.96:1 sobre tinta) y pasa
+   a ser exclusivamente masa, que es su papel correcto en este sistema. */
+body[data-campo="tinta"], .plano-tinta {
+  --fondo: var(--tinta);
+  --texto: #FFFFFF;
+  --texto-2: #A8A8A8;
+  --linea: #454545;
+  --linea-fuerte: #FFFFFF;
+  --hover: #2C2C2C;
+  --caja: #2A2A2A;
+  --caja-texto: #FFFFFF;
+  --caja-borde: #5A5A5A;
+  --chip-caja: var(--rojo);
+  --sobre-chip-caja: #FFFFFF;
+  --masa: var(--rojo);
+  --sobre-masa: #FFFFFF;
+  --masa-neutra: #FFFFFF;
+  --sobre-masa-neutra: var(--tinta);
+  --acento-txt: #FFFFFF;
+  --enlace: #FFFFFF;
+}
+
+/* ROJO — ya no es campo de página sino plano: el encabezado del panorama.
+   Blanco sobre #CD032E da 5.76:1, suficiente para texto normal. Ningún otro
+   color de la paleta alcanza AA sobre este fondo, así que dentro del plano la
+   jerarquía se hace con tamaño y peso, nunca con un segundo color, y las
+   masas se invierten a blanco. */
+.plano-rojo {
+  --fondo: var(--rojo);
+  --texto: #FFFFFF;
+  --texto-2: #FFFFFF;
+  --linea: rgba(255, 255, 255, .45);
+  --linea-fuerte: #FFFFFF;
+  --hover: rgba(255, 255, 255, .15);
+  --caja: #FFFFFF;
+  --caja-texto: var(--tinta);
+  --caja-borde: var(--tinta);
+  --chip-caja: var(--tinta);
+  --sobre-chip-caja: #FFFFFF;
+  --masa: #FFFFFF;
+  --sobre-masa: var(--rojo);
+  --masa-neutra: var(--tinta);
+  --sobre-masa-neutra: #FFFFFF;
+  --acento-txt: #FFFFFF;
+  --enlace: #FFFFFF;
+}
+
+/* ---------------------------------------------------- planos
+   Un plano es una masa de área genuina y borde recto —el PLANO de Kandinsky,
+   el mismo de la portada v4—, con su propio juego de papeles dentro. Sangra
+   de un borde a otro de la ventana para que sea un plano y no una tarjeta:
+   la sombra de 100vmax pinta la banda y el recorte la limita en vertical. */
+.plano {
+  background: var(--fondo); color: var(--texto);
+  box-shadow: 0 0 0 100vmax var(--fondo);
+  clip-path: inset(0 -100vmax);
+}
+/* Plano de encabezado: arranca pegado al encabezado fijo, comiéndose el aire
+   superior de main, y cierra antes de la tabla. */
+.plano-cabecera { margin: -28px 0 26px; padding: 34px 0 20px; }
+.plano-cabecera .datos { border-bottom: none; margin-bottom: 0; }
+.plano-cabecera .sub { margin-bottom: 4px; }
+
 * { box-sizing: border-box; margin: 0; padding: 0; }
 
 body {
   font-family: Verdana, Arial, Tahoma, sans-serif;
-  color: var(--tinta);
-  background: var(--papel);
+  color: var(--texto);
+  background: var(--fondo);
   font-size: 14px;
   line-height: 1.55;
 }
 
-a { color: var(--rojo); text-decoration: none; }
+a { color: var(--enlace); text-decoration: none; }
 a:hover { text-decoration: underline; }
+/* Sobre campo pleno el color ya no distingue el enlace del texto: lo hace
+   el subrayado, que es el único eje disponible sin romper el contraste. */
+.plano-rojo a, .plano-tinta a {
+  text-decoration: underline; text-underline-offset: 2px;
+}
+/* La portada compone con masas, no con texto enlazado: su botón es un
+   plano rojo y no lleva subrayado. */
+#portada a, .barra nav a, .eti, .punto { text-decoration: none; }
 
 /* ---------------------------------------------------- encabezado fijo */
 header {
   position: sticky; top: 0; z-index: 20;
-  background: var(--papel);
-  border-bottom: 1px solid var(--filete);
+  background: var(--fondo);
+  border-bottom: 1px solid var(--linea);
 }
 .barra {
   max-width: var(--max); margin: 0 auto; padding: 14px 24px;
   display: flex; align-items: center; gap: 20px; flex-wrap: wrap;
 }
-/* Variación 2 del manual, el emblema sin lema ni denominación */
+/* Variación 2 del manual, el emblema sin lema ni denominación. Van los dos
+   archivos y el campo decide cuál se ve: sobre rojo y sobre tinta, el
+   blanco. El emblema no se recolorea por CSS (numeral 3.2). */
 .barra img { height: 34px; }
-.marca { font-size: 11px; letter-spacing: .12em; text-transform: uppercase; color: var(--gris); }
-.marca b { color: var(--rojo); }
+.barra .logo-blanco { display: none; }
+body[data-campo="tinta"] .logo-tinta { display: none; }
+body[data-campo="tinta"] .logo-blanco { display: block; }
+
+.marca { font-size: 11px; letter-spacing: .12em; text-transform: uppercase; color: var(--texto-2); }
+.marca b { color: var(--acento-txt); }
 .barra nav { margin-left: auto; display: flex; gap: 6px; align-items: center; }
 .barra nav a {
-  font-size: 12px; padding: 7px 12px; color: var(--tinta);
-  border: 1px solid var(--filete);
+  font-size: 12px; padding: 7px 12px; color: var(--texto);
+  border: 1px solid var(--linea); text-decoration: none;
 }
-.barra nav a.activo { background: var(--tinta); color: #fff; border-color: var(--tinta); }
+.barra nav a.activo {
+  background: var(--masa-neutra); color: var(--sobre-masa-neutra);
+  border-color: var(--masa-neutra);
+}
 #buscador {
   font-family: inherit; font-size: 13px; padding: 8px 11px;
-  border: 1px solid var(--filete); width: 260px;
+  border: 1px solid var(--linea); width: 260px;
+  background: transparent; color: var(--texto);
 }
-#buscador:focus { outline: 2px solid var(--rojo); outline-offset: -1px; }
+#buscador::placeholder { color: var(--texto-2); opacity: 1; }
+#buscador:focus { outline: 2px solid var(--acento-txt); outline-offset: -1px; }
 
 main { max-width: var(--max); margin: 0 auto; padding: 28px 24px 80px; }
 
@@ -64,97 +217,130 @@ h2 { font-size: 19px; margin: 34px 0 12px; }
 h3 { font-size: 15px; margin: 22px 0 8px; }
 .kicker {
   font-size: 11px; letter-spacing: .14em; text-transform: uppercase;
-  color: var(--rojo); font-weight: bold; margin-bottom: 8px;
+  color: var(--acento-txt); font-weight: bold; margin-bottom: 8px;
 }
-.sub { color: var(--gris); font-size: 13px; max-width: 78ch; }
-.migaja { font-size: 12px; color: var(--gris); margin-bottom: 14px; }
+/* Sobre campo pleno el rótulo no puede ser texto rojo: se vuelve masa. */
+.plano-rojo .kicker, .plano-tinta .kicker {
+  display: inline-block; background: var(--masa); color: var(--sobre-masa);
+  padding: 4px 9px; margin-bottom: 10px;
+}
+.sub { color: var(--texto-2); font-size: 13px; max-width: 78ch; }
+.migaja { font-size: 12px; color: var(--texto-2); margin-bottom: 14px; }
+.tenue { color: var(--texto-2); }
+.fuerte { color: var(--texto); }
 
 /* ---------------------------------------------------- cédulas de dato */
-.datos { display: flex; flex-wrap: wrap; gap: 0; border-top: 1px solid var(--filete);
-         border-bottom: 1px solid var(--filete); margin: 20px 0; }
-.dato { flex: 1 1 130px; padding: 16px 18px; border-left: 1px solid var(--filete); }
+.datos { display: flex; flex-wrap: wrap; gap: 0; border-top: 1px solid var(--linea);
+         border-bottom: 1px solid var(--linea); margin: 20px 0; }
+.dato { flex: 1 1 130px; padding: 16px 18px; border-left: 1px solid var(--linea); }
 .dato:first-child { border-left: none; }
 .dato .n { font-size: 30px; font-weight: bold; line-height: 1.1; }
 .dato .n.acento { color: var(--rojo); }
 .dato .r { font-size: 10px; letter-spacing: .1em; text-transform: uppercase;
-           color: var(--gris); margin-top: 5px; }
+           color: var(--texto-2); margin-top: 5px; }
+/* La cédula que sostiene el hallazgo es una masa, no una cifra teñida,
+   en cuanto el campo deja de ser papel. */
+.plano-rojo .dato.acentuada,
+.plano-tinta .dato.acentuada {
+  background: var(--masa); border-left-color: var(--masa);
+}
+.plano-rojo .dato.acentuada .n,
+.plano-rojo .dato.acentuada .r,
+.plano-tinta .dato.acentuada .n,
+.plano-tinta .dato.acentuada .r { color: var(--sobre-masa); }
 
 /* ---------------------------------------------------- tabla */
 table { width: 100%; border-collapse: collapse; margin: 14px 0; }
 th {
   text-align: left; font-size: 11px; letter-spacing: .06em; text-transform: uppercase;
-  padding: 9px 10px; border-bottom: 1px solid var(--tinta); white-space: nowrap;
+  padding: 9px 10px; border-bottom: 1px solid var(--linea-fuerte); white-space: nowrap;
 }
-td { padding: 9px 10px; border-bottom: 1px solid var(--filete); vertical-align: top; }
-tbody tr:hover { background: var(--gris-claro); cursor: pointer; }
+td { padding: 9px 10px; border-bottom: 1px solid var(--linea); vertical-align: top; }
+tbody tr:hover { background: var(--hover); cursor: pointer; }
 td.num, th.num { text-align: right; font-variant-numeric: tabular-nums; }
-.clave { font-family: "Courier New", monospace; font-size: 12px; color: var(--gris); }
+.clave { font-family: "Courier New", monospace; font-size: 12px; color: var(--texto-2); }
+/* Cifra que sostiene la comparación. En el índice es masa roja sobre papel,
+   porque diez filas se leen en diagonal y la comparación tiene que saltar;
+   más abajo, donde se lee renglón por renglón, basta el color de texto
+   —#CD032E sobre blanco da 5.76:1—. Dentro de un bloque oscuro vuelve a ser
+   masa por contraste, y dentro del Plano rojo la masa se invierte a blanco. */
+.realce { color: var(--acento-txt); }
+body[data-nivel="panorama"] .realce, .plano-rojo .realce, .plano-tinta .realce {
+  display: inline-block; background: var(--masa); color: var(--sobre-masa);
+  padding: 1px 6px; line-height: 1.3;
+}
 
 /* ------------------------------------------------- chip circular (Punto)
    Numera las licenciaturas en el panorama. Junto con la caja de aviso de
    abajo, es lo único que se conserva del ensayo neobrutalista. */
 .punto {
   display: inline-flex; align-items: center; justify-content: center;
-  width: 26px; height: 26px; border-radius: 50%; background: var(--rojo);
-  color: #fff; font-size: 11px; font-weight: bold; flex: none;
+  width: 26px; height: 26px; border-radius: 50%; background: var(--masa);
+  color: var(--sobre-masa); font-size: 11px; font-weight: bold; flex: none;
   font-family: "Courier New", monospace;
 }
 
 /* ---------------------------------------------------- etiquetas */
 .eti {
   display: inline-block; font-size: 10px; letter-spacing: .08em; text-transform: uppercase;
-  padding: 3px 7px; border: 1px solid var(--filete); color: var(--gris); white-space: nowrap;
+  padding: 3px 7px; border: 1px solid var(--linea); color: var(--texto-2); white-space: nowrap;
 }
-.eti.roja { background: var(--rojo); color: #fff; border-color: var(--rojo); }
-.eti.tinta { background: var(--tinta); color: #fff; border-color: var(--tinta); }
-.eti.verde { background: var(--verde); color: #fff; border-color: var(--verde); }
+.eti.roja { background: var(--masa); color: var(--sobre-masa); border-color: var(--masa); }
+.eti.tinta { background: var(--masa-neutra); color: var(--sobre-masa-neutra);
+             border-color: var(--masa-neutra); }
+.eti.verde { background: var(--masa-verde); color: var(--sobre-masa-verde);
+             border-color: var(--masa-verde); }
 .eti.hueca { background: transparent; }
 
 /* ---------------------------------------------------- barras comparativas */
-.barra-cmp { display: flex; height: 26px; margin: 4px 0 2px; background: var(--gris-claro); }
+.barra-cmp { display: flex; height: 26px; margin: 4px 0 2px; background: var(--hover); }
 .barra-cmp span { display: flex; align-items: center; padding: 0 7px;
-                  font-size: 10px; color: #fff; overflow: hidden; white-space: nowrap; }
-.seg-tg { background: var(--rojo); }
-.seg-pro { background: var(--tinta); }
-.seg-otro { background: #BDBDBD; color: var(--tinta) !important; }
+                  font-size: 10px; overflow: hidden; white-space: nowrap; }
+.seg-tg { background: var(--masa); color: var(--sobre-masa); }
+.seg-pro { background: var(--masa-neutra); color: var(--sobre-masa-neutra); }
+.seg-otro { background: #BDBDBD; color: var(--tinta); }
 
 /* ---------------------------------------------------- rejilla de tarjetas */
 .rejilla { display: grid; grid-template-columns: repeat(auto-fill, minmax(290px, 1fr)); gap: 16px; }
-.tarjeta { border: 1px solid var(--filete); padding: 18px; display: block; color: inherit; }
-.tarjeta:hover { border-color: var(--tinta); text-decoration: none; }
+.tarjeta { border: 1px solid var(--linea); padding: 18px; display: block; color: inherit; }
+.tarjeta:hover { border-color: var(--linea-fuerte); text-decoration: none; }
 .tarjeta h3 { margin: 0 0 4px; font-size: 16px; }
-.tarjeta .pie { display: flex; gap: 14px; margin-top: 12px; font-size: 12px; color: var(--gris); }
+.tarjeta .pie { display: flex; gap: 14px; margin-top: 12px; font-size: 12px; color: var(--texto-2); }
 
 /* ---------------------------------------------------- filtros */
 .filtros { display: flex; gap: 8px; flex-wrap: wrap; align-items: center; margin: 16px 0; }
 .filtros select, .filtros input {
-  font-family: inherit; font-size: 12px; padding: 7px 9px; border: 1px solid var(--filete);
+  font-family: inherit; font-size: 12px; padding: 7px 9px; border: 1px solid var(--linea);
+  background: var(--fondo); color: var(--texto);
 }
-.conteo { font-size: 12px; color: var(--gris); margin-left: auto; }
+.conteo { font-size: 12px; color: var(--texto-2); margin-left: auto; }
 
 /* ---------------------------------------------------- detalle de UEA */
-.campo { border-top: 1px solid var(--filete); padding: 16px 0; }
+.campo { border-top: 1px solid var(--linea); padding: 16px 0; }
 .campo h3 { margin: 0 0 8px; font-size: 12px; letter-spacing: .1em;
-            text-transform: uppercase; color: var(--rojo); }
+            text-transform: uppercase; color: var(--acento-txt); }
 .campo pre {
   font-family: inherit; font-size: 13.5px; line-height: 1.6;
   white-space: pre-wrap; word-wrap: break-word; max-width: 90ch;
 }
 .aviso {
-  background: var(--gris-claro); border: 2px solid var(--tinta);
+  background: var(--caja); color: var(--caja-texto);
+  border: 2px solid var(--caja-borde);
   padding: 15px 18px; margin: 20px 0; font-size: 13px; max-width: 90ch;
 }
+.aviso a { color: inherit; }
+.aviso .clave { color: var(--caja-texto); opacity: .7; }
 .aviso strong:first-child {
-  display: inline-block; background: var(--rojo); color: #fff;
+  display: inline-block; background: var(--chip-caja); color: var(--sobre-chip-caja);
   font-size: 10px; letter-spacing: .12em; text-transform: uppercase;
   padding: 4px 8px; margin-right: 9px; vertical-align: 1px;
 }
-.ruta { font-family: "Courier New", monospace; font-size: 11px; color: var(--gris);
+.ruta { font-family: "Courier New", monospace; font-size: 11px; color: var(--texto-2);
         word-break: break-all; }
 
 footer {
-  border-top: 1px solid var(--filete); margin-top: 50px; padding: 20px 24px 40px;
-  font-size: 11.5px; color: var(--gris); max-width: var(--max); margin-left: auto;
+  border-top: 1px solid var(--linea); margin-top: 50px; padding: 20px 24px 40px;
+  font-size: 11.5px; color: var(--texto-2); max-width: var(--max); margin-left: auto;
   margin-right: auto;
 }
 
@@ -169,10 +355,10 @@ footer {
 .cadena { display: flex; flex-wrap: wrap; align-items: center; gap: 7px; margin: 10px 0 20px; }
 .eslabon {
   display: inline-flex; align-items: center; gap: 8px;
-  border: 1px solid var(--filete); padding: 7px 11px; font-size: 13px; background: var(--papel);
+  border: 1px solid var(--linea); padding: 7px 11px; font-size: 13px; background: var(--fondo);
 }
 .punto.pq { width: 20px; height: 20px; font-size: 10px; }
-.flecha { color: var(--rojo); font-weight: bold; }
+.flecha { color: var(--acento-txt); font-weight: bold; }
 
 /* ------------------------------------------ árbol de dependencias */
 .dos-arboles { display: flex; gap: 34px; flex-wrap: wrap; }
@@ -180,22 +366,22 @@ footer {
 .mitad h4 { font-size: 13px; margin: 0 0 10px; display: flex; align-items: center; gap: 9px; }
 .conteo-arbol {
   display: inline-flex; align-items: center; justify-content: center;
-  min-width: 22px; height: 22px; padding: 0 6px; background: var(--rojo);
-  color: #fff; font-size: 11px; font-family: "Courier New", monospace;
+  min-width: 22px; height: 22px; padding: 0 6px; background: var(--masa);
+  color: var(--sobre-masa); font-size: 11px; font-family: "Courier New", monospace;
 }
 ul.arbol { list-style: none; margin: 0 0 0 9px; padding-left: 15px;
-           border-left: 1px solid var(--filete); }
+           border-left: 1px solid var(--linea); }
 ul.arbol li { position: relative; padding: 5px 0 5px 13px; font-size: 13px; }
 ul.arbol li::before {
   content: ""; position: absolute; left: 0; top: 16px;
-  width: 9px; height: 1px; background: var(--filete);
+  width: 9px; height: 1px; background: var(--linea);
 }
 ul.arbol .clave { margin-left: 7px; font-size: 11px; }
 
-.renombrada { font-size: 11.5px; color: var(--rojo); margin-top: 2px; font-weight: normal; }
+.renombrada { font-size: 11.5px; color: var(--acento-txt); margin-top: 2px; font-weight: normal; }
 
 /* ═══════════════════════════════════════════════════════════════════
-   Portada — modo oscuro. El fondo es la tinta #1C1C1C, nunca negro
+   Portada — nivel 0, campo tinta. El fondo es #1C1C1C, nunca negro
    puro, que el manual reserva al emblema (numeral 2.3). Un solo acento.
    Toda la animación se desactiva con prefers-reduced-motion.
    ═══════════════════════════════════════════════════════════════════ */
@@ -205,7 +391,6 @@ ul.arbol .clave { margin-left: 7px; font-size: 11px; }
   color: #fff; display: flex; align-items: center; justify-content: center;
   padding: 48px 24px; overflow: hidden;
 }
-#portada.saliendo { animation: portada-sale .55s cubic-bezier(.4,0,.2,1) forwards; }
 body.con-portada { overflow: hidden; }
 
 .p-fondo { position: absolute; inset: 0; pointer-events: none; }
@@ -252,24 +437,69 @@ body.con-portada { overflow: hidden; }
   transition: transform .18s ease, background .18s ease;
 }
 .p-entrar:hover { text-decoration: none; background: #e0143d; transform: translateX(5px); }
-.p-pie { font-size: 11px; color: rgba(255,255,255,.45); margin-top: 26px; animation-delay: .6s; }
+/* .52 y no .45: a 11 px el blanco al 45 % sobre la tinta da 4.43:1 y se
+   queda corto de AA; al 52 % da 5.48:1 sin cambiarle el peso a la línea. */
+.p-pie { font-size: 11px; color: rgba(255,255,255,.52); margin-top: 26px; animation-delay: .6s; }
 
 @keyframes sube { from { opacity: 0; transform: translateY(18px); } to { opacity: 1; transform: none; } }
 @keyframes punto-entra { from { opacity: 0; transform: scale(.55); } to { opacity: 1; transform: none; } }
-@keyframes portada-sale { to { opacity: 0; transform: translateY(-26px); visibility: hidden; } }
 
-/* ------------------------------------- transición entre vistas */
-#vista.entrando { animation: vista-entra .34s cubic-bezier(.22,1,.36,1) both; }
-@keyframes vista-entra { from { opacity: 0; transform: translateY(12px); } to { opacity: 1; transform: none; } }
+/* ═══════════════════════════════════════════════════════════════════
+   Transición entre niveles — la cortina
+   ═══════════════════════════════════════════════════════════════════
+   El cambio de nivel no se funde: lo barre un plano del color del nivel
+   que llega. El plano entra por la derecha cuando se baja de nivel y por
+   la izquierda cuando se sube, de modo que el movimiento dice la
+   dirección del viaje; la vista nueva se pinta debajo mientras está
+   tapada, así que el plano no oculta un fundido, descubre una página ya
+   hecha. Sólo corre cuando el campo cambia de color: navegar de una UEA a
+   otra —el recorrido más frecuente— no paga ninguna cortina, sólo un
+   asentamiento de 180 ms.
+   Geometría del barrido en app.js; aquí sólo vive el plano. */
+
+#cortina {
+  position: fixed; inset: 0; z-index: 80; pointer-events: none;
+  display: none; transform: translateX(100%); will-change: transform;
+}
+
+/* Entrada de contenido tras la cortina: el bloque se asienta y las cédulas
+   de dato entran escalonadas, que es lo que hace que la página se lea como
+   una composición y no como un volcado. */
+#vista.entrando { animation: vista-entra .38s cubic-bezier(.22,1,.36,1) both; }
+/* Descendientes, no hijos directos: en el panorama y en la licenciatura el
+   título va dentro del plano de encabezado. */
+#vista.entrando h1, #vista.entrando .kicker {
+  animation: sube-corto .44s cubic-bezier(.22,1,.36,1) both .04s;
+}
+#vista.entrando .datos > .dato { animation: sube-corto .42s cubic-bezier(.22,1,.36,1) both; }
+#vista.entrando .datos > .dato:nth-child(1) { animation-delay: .06s; }
+#vista.entrando .datos > .dato:nth-child(2) { animation-delay: .10s; }
+#vista.entrando .datos > .dato:nth-child(3) { animation-delay: .14s; }
+#vista.entrando .datos > .dato:nth-child(4) { animation-delay: .18s; }
+#vista.entrando .datos > .dato:nth-child(5) { animation-delay: .22s; }
+
+/* Navegación dentro del mismo campo: lo mínimo para que se note el cambio
+   sin cobrar espera a quien va de una UEA a la siguiente. */
+#vista.rapido { animation: vista-rapida .18s ease-out both; }
+
+@keyframes vista-entra { from { opacity: 0; } to { opacity: 1; } }
+@keyframes vista-rapida { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: none; } }
+@keyframes sube-corto { from { opacity: 0; transform: translateY(14px); } to { opacity: 1; transform: none; } }
+
 header { transition: transform .4s cubic-bezier(.22,1,.36,1), opacity .4s ease; }
 body.con-portada header { transform: translateY(-100%); opacity: 0; }
 
-tbody tr { transition: background .14s ease, box-shadow .14s ease; }
+tbody tr { transition: background .14s ease; }
 .tarjeta, .eslabon { transition: border-color .18s ease, transform .18s ease; }
-.eslabon:hover { border-color: var(--rojo); transform: translateY(-2px); }
+.eslabon:hover { border-color: var(--acento-txt); transform: translateY(-2px); }
+.punto { transition: transform .18s cubic-bezier(.22,1,.36,1); }
+tbody tr:hover .punto { transform: scale(1.12); }
 
 @media (prefers-reduced-motion: reduce) {
-  #portada.saliendo, .p-contenido > *, .p-punto, #vista.entrando { animation: none; }
-  #portada.saliendo { display: none; }
-  header, tbody tr, .tarjeta, .eslabon { transition: none; }
+  .p-contenido > *, .p-punto,
+  #vista.entrando, #vista.rapido,
+  #vista.entrando h1, #vista.entrando .kicker,
+  #vista.entrando .datos > .dato { animation: none; }
+  #cortina { display: none !important; }
+  header, tbody tr, .tarjeta, .eslabon, .punto { transition: none; }
 }
