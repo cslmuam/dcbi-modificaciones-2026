@@ -342,6 +342,9 @@ def texto_del_plan(corpus, lic):
 
 def main():
     corpus = json.loads(F_2026.read_text())
+    # PDF de cada plan, preparados por preparar_planes.py
+    f_idx = AQUI / "planes/indice.json"
+    pdfs = json.loads(f_idx.read_text()) if f_idx.exists() else {}
     grafo = json.loads(F_GRAFO.read_text())
     planes20 = json.loads(F_PLAN20.read_text())
 
@@ -650,6 +653,7 @@ def main():
                      "siguen": siguen, "renumeradas": renumeradas,
                      "provisionales": sorted(provisional)},
             "plan_texto": texto_del_plan(corpus, lic),
+            "plan_pdf": pdfs.get(lic),
             "seriacion": {"vigente": m_v, "propuesto": m_p},
             # aristas antecedente → consecuente, para armar el árbol de
             # dependencias de cualquier UEA en una y otra versión del plan

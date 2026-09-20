@@ -78,13 +78,20 @@ programa queda como respaldo. Al principio se leía sólo de la ficha, y por eso
 Electrónica y Física aparecían sin seriación: ambas la declaran únicamente en
 la tabla.
 
-**Texto del plan de estudios.** Cada licenciatura tiene un botón que abre el
-contenido de su plan propuesto, tal como se extrajo del archivo que entregó la
-coordinación, con sus tablas y su orden. No está editado ni reordenado, así que
-la extracción puede arrastrar saltos de línea o columnas desalineadas; la vista
-lo advierte y da la ruta del documento original para verificar antes de citar.
+**Plan de estudios.** Cada licenciatura tiene un botón que abre su plan
+propuesto en PDF, con sus tablas y su jerarquía, dentro del propio tablero y
+con enlaces para abrirlo aparte o descargarlo. Siete coordinaciones entregaron
+PDF y se sirve el suyo tal cual; Eléctrica, Metalúrgica y Química entregaron
+sólo Word, así que su PDF se generó a partir de ese archivo con `textutil` y
+Chrome —lo que conserva las tablas— y la vista advierte que esa conversión no
+es el documento que obra en el expediente. Debajo queda plegado el texto
+extraído, sin formato, que sirve para buscar dentro o copiar un párrafo.
 
-**Árbol de dependencias.** La ficha de cada UEA muestra dos árboles
+Los PDF se preparan con `python3 preparar_planes.py`, que también genera la
+imagen de la primera página, la que ve quien abre desde un navegador que no
+incrusta PDF.
+
+**Árbol de dependencias.****Árbol de dependencias.** La ficha de cada UEA muestra dos árboles
 navegables: lo que hay que aprobar antes de llegar a ella y lo que se abre
 después, con el total de UEA implicadas en cada dirección y hasta tres niveles
 desplegados. Cuando la UEA continúa del plan vigente, se muestra también el

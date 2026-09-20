@@ -193,7 +193,7 @@ function licenciatura(clave, q = "") {
     </div>
     </div>
 
-    ${l.plan_texto ? `<p class="acciones"><a class="boton" href="#/plan/${l.clave}">
+    ${(l.plan_texto || l.plan_pdf) ? `<p class="acciones"><a class="boton" href="#/plan/${l.clave}">
       Ver el texto del plan de estudios</a></p>` : ""}
 
     <h2>Distribución de créditos</h2>
@@ -400,24 +400,40 @@ function detalleUEA2020(claveLic, claveUEA) {
 /* --------------------------------------------- texto del plan de estudios */
 function planDeEstudios(claveLic) {
   const l = lic(claveLic);
-  if (!l?.plan_texto) return licenciatura(claveLic);
-  const t = l.plan_texto;
+  if (!l?.plan_texto && !l?.plan_pdf) return licenciatura(claveLic);
+  const t = l.plan_texto, pdf = l.plan_pdf;
+  const nombre = esc(l.nombre_propuesto || l.nombre);
   vista.innerHTML = `
     <div class="migaja"><a href="#/">Panorama</a> ›
-      <a href="#/lic/${claveLic}">${esc(l.nombre_propuesto || l.nombre)}</a> ›
-      plan de estudios</div>
+      <a href="#/lic/${claveLic}">${nombre}</a> › plan de estudios</div>
     <p class="kicker">Plan de estudios propuesto</p>
-    <h1>${esc(l.nombre_propuesto || l.nombre)}</h1>
-    <div class="aviso"><strong>Texto del documento.</strong>
-      Es el contenido del plan de estudios tal como se extrajo del archivo que entregó
-      la coordinación, con sus tablas y su orden. No está editado ni reordenado, así que
-      la extracción puede arrastrar saltos de línea o columnas desalineadas. Para citar
-      ante un órgano colegiado, verifica contra el documento original.</div>
+    <h1>${nombre}</h1>
+
+    ${pdf ? `<p class="acciones">
+      <a class="boton" href="${pdf.archivo}" target="_blank" rel="noopener">Abrir el PDF</a>
+      <a class="boton hueco" href="${pdf.archivo}" download="plan-${claveLic}.pdf">Descargar</a>
+      </p>
+      <div class="visor"><object data="${pdf.archivo}#view=FitH" type="application/pdf">
+        <a class="portada-plan" href="${pdf.archivo}" target="_blank" rel="noopener">
+          <img src="${pdf.portada}" alt="Primera página del plan de estudios">
+          <span>Tu navegador no incrusta el PDF. Toca para abrirlo.</span></a>
+      </object></div>
+      ${pdf.convertido ? `<div class="aviso"><strong>Conversión, no el archivo entregado.</strong>
+        Esta coordinación entregó su plan en Word. El PDF de arriba se generó a partir de
+        ese archivo para poder leerlo con su formato; el documento que obra en el
+        expediente es <span class="ruta">${esc(pdf.original)}</span>.</div>` : ""}` : ""}
+
+    ${t ? `<details class="plegable"${pdf ? "" : " open"}>
+      <summary>Texto extraído, para buscar y copiar</summary>
+      <div class="aviso"><strong>Sin formato.</strong>
+        Es el mismo plan en texto plano, útil para buscar dentro o copiar un párrafo.
+        Pierde las tablas y la jerarquía: para leerlo, usa el PDF.</div>
+      <pre class="plan">${esc(t.texto)}</pre>
+    </details>` : ""}
+
     <div class="campo"><h3>Documento fuente</h3>
-      <p class="ruta">Modificaciones Licenciaturas Julio 2026/${esc(t.ruta)}</p></div>
-    <pre class="plan">${esc(t.texto)}</pre>
-    <p class="acciones"><a class="boton" href="#/lic/${claveLic}">
-      Volver a ${esc(l.nombre_propuesto || l.nombre)}</a></p>`;
+      <p class="ruta">Modificaciones Licenciaturas Julio 2026/${esc(pdf ? pdf.original : t.ruta)}</p></div>
+    <p class="acciones"><a class="boton hueco" href="#/lic/${claveLic}">Volver a ${nombre}</a></p>`;
 }
 
 /* ------------------------------------------------------------- una UEA */
@@ -565,7 +581,10 @@ const reducido = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
    campo tiene que corresponder a lo que se ve, no a lo que pedía la ruta. */
 function nivelDe(p) {
   if (p[0] === "buscar") return "buscar";
-  if (p[0] === "plan") return lic(p[1])?.plan_texto ? "plan" : "lic";
+  if (p[0] === "plan") {
+    const l = lic(p[1]);
+    return (l?.plan_texto || l?.plan_pdf) ? "plan" : "lic";
+  }
   if ((p[0] === "uea" || p[0] === "uea2020") && p[1] && p[2]) {
     const l = lic(p[1]);
     if (!l) return "panorama";

@@ -674,3 +674,23 @@ pre.plan {
   pre.plan { font-size: 12.5px; padding: 16px 14px; }
   .boton { display: block; text-align: center; }
 }
+
+/* ---------------------------------------------- visor del plan en PDF */
+.acciones .boton + .boton { margin-left: 10px; }
+.boton.hueco { background: transparent; color: var(--texto);
+               box-shadow: inset 0 0 0 2px var(--masa-neutra); }
+.boton.hueco:hover { background: var(--gris-claro); }
+.visor { margin: 18px 0 10px; border: 1px solid var(--linea); background: var(--gris-claro); }
+.visor object { display: block; width: 100%; height: 78vh; min-height: 460px; }
+.plegable { margin: 26px 0 8px; }
+.plegable > summary {
+  cursor: pointer; font-size: 13px; font-weight: bold; letter-spacing: .06em;
+  text-transform: uppercase; padding: 13px 0; min-height: 44px; box-sizing: border-box;
+}
+@media (max-width: 720px) {
+  .acciones .boton + .boton { margin: 8px 0 0; }
+  .visor object { height: 62vh; min-height: 360px; }
+}
+.portada-plan { display: block; padding: 18px; text-align: center; color: var(--texto); }
+.portada-plan img { max-width: 420px; width: 100%; border: 1px solid var(--linea); }
+.portada-plan span { display: block; margin-top: 12px; font-size: 13px; color: var(--gris); }

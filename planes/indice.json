@@ -1,0 +1,72 @@
+{
+ "amb": {
+  "archivo": "planes/amb.pdf",
+  "original": "Ing. Ambiental/2. Plan de estudios propuesto/Plan de Estudios de Ingeniería Ambiental.pdf",
+  "convertido": false,
+  "kb": 347,
+  "portada": "planes/amb-p1.png"
+ },
+ "civ": {
+  "archivo": "planes/civ.pdf",
+  "original": "Ing. Civil/Plan_de_estudios_final-ICivil092026-R2.pdf",
+  "convertido": false,
+  "kb": 683,
+  "portada": "planes/civ-p1.png"
+ },
+ "com": {
+  "archivo": "planes/com.pdf",
+  "original": "Ing. Computación/2. Plan de Estudios propuesto/Plan de Estudios Ingeniería Computacion.pdf",
+  "convertido": false,
+  "kb": 583,
+  "portada": "planes/com-p1.png"
+ },
+ "ele": {
+  "archivo": "planes/ele.pdf",
+  "original": "Ing. Electrica/02.- Plan de Estudios/Plan de Estudios Eléctrica.docx",
+  "convertido": true,
+  "kb": 608,
+  "portada": "planes/ele-p1.png"
+ },
+ "elo": {
+  "archivo": "planes/elo.pdf",
+  "original": "Ing. Electrónica/02_Plan de Estudio/Formato del Plan de EstudiosSEyC2026_Ago.pdf",
+  "convertido": false,
+  "kb": 894,
+  "portada": "planes/elo-p1.png"
+ },
+ "fis": {
+  "archivo": "planes/fis.pdf",
+  "original": "Ing. Física/2. Plan de estudios - Ingeniería Física.pdf",
+  "convertido": false,
+  "kb": 552,
+  "portada": "planes/fis-p1.png"
+ },
+ "ind": {
+  "archivo": "planes/ind.pdf",
+  "original": "Ing. Industrial/2.Plan de Estudio Propuesto/Formato del Plan de Estudios Industrial 14  09 2026 MG.pdf",
+  "convertido": false,
+  "kb": 226,
+  "portada": "planes/ind-p1.png"
+ },
+ "mec": {
+  "archivo": "planes/mec.pdf",
+  "original": "Ing. Mecánica/2. Plan de Estudios/Plan de Estudios 2025_Mecánica_v15 sept 2026.pdf",
+  "convertido": false,
+  "kb": 321,
+  "portada": "planes/mec-p1.png"
+ },
+ "met": {
+  "archivo": "planes/met.pdf",
+  "original": "Ing. Metalúrgica/Plan de Estudios_ING METALURGIA Y MATERIALES_septiembre26.docx",
+  "convertido": true,
+  "kb": 691,
+  "portada": "planes/met-p1.png"
+ },
+ "qui": {
+  "archivo": "planes/qui.pdf",
+  "original": "Ing. Química/2 - Plan de Estudios 2026 ing. Química 2026.docx",
+  "convertido": true,
+  "kb": 621,
+  "portada": "planes/qui-p1.png"
+ }
+}
