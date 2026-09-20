@@ -78,6 +78,12 @@ programa queda como respaldo. Al principio se leía sólo de la ficha, y por eso
 Electrónica y Física aparecían sin seriación: ambas la declaran únicamente en
 la tabla.
 
+**Texto del plan de estudios.** Cada licenciatura tiene un botón que abre el
+contenido de su plan propuesto, tal como se extrajo del archivo que entregó la
+coordinación, con sus tablas y su orden. No está editado ni reordenado, así que
+la extracción puede arrastrar saltos de línea o columnas desalineadas; la vista
+lo advierte y da la ruta del documento original para verificar antes de citar.
+
 **Árbol de dependencias.** La ficha de cada UEA muestra dos árboles
 navegables: lo que hay que aprobar antes de llegar a ella y lo que se abre
 después, con el total de UEA implicadas en cada dirección y hasta tres niveles

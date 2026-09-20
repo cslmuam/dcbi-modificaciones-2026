@@ -193,6 +193,9 @@ function licenciatura(clave, q = "") {
     </div>
     </div>
 
+    ${l.plan_texto ? `<p class="acciones"><a class="boton" href="#/plan/${l.clave}">
+      Ver el texto del plan de estudios</a></p>` : ""}
+
     <h2>Distribución de créditos</h2>
     ${barra(cv, "Plan vigente 2020")}
     ${barra(cp, "Plan modificado")}
@@ -394,6 +397,29 @@ function detalleUEA2020(claveLic, claveUEA) {
     incluye programas de las UEA que sólo existen en él.</div>`;
 }
 
+/* --------------------------------------------- texto del plan de estudios */
+function planDeEstudios(claveLic) {
+  const l = lic(claveLic);
+  if (!l?.plan_texto) return licenciatura(claveLic);
+  const t = l.plan_texto;
+  vista.innerHTML = `
+    <div class="migaja"><a href="#/">Panorama</a> ›
+      <a href="#/lic/${claveLic}">${esc(l.nombre_propuesto || l.nombre)}</a> ›
+      plan de estudios</div>
+    <p class="kicker">Plan de estudios propuesto</p>
+    <h1>${esc(l.nombre_propuesto || l.nombre)}</h1>
+    <div class="aviso"><strong>Texto del documento.</strong>
+      Es el contenido del plan de estudios tal como se extrajo del archivo que entregó
+      la coordinación, con sus tablas y su orden. No está editado ni reordenado, así que
+      la extracción puede arrastrar saltos de línea o columnas desalineadas. Para citar
+      ante un órgano colegiado, verifica contra el documento original.</div>
+    <div class="campo"><h3>Documento fuente</h3>
+      <p class="ruta">Modificaciones Licenciaturas Julio 2026/${esc(t.ruta)}</p></div>
+    <pre class="plan">${esc(t.texto)}</pre>
+    <p class="acciones"><a class="boton" href="#/lic/${claveLic}">
+      Volver a ${esc(l.nombre_propuesto || l.nombre)}</a></p>`;
+}
+
 /* ------------------------------------------------------------- una UEA */
 function detalleUEA(claveLic, claveUEA) {
   const l = lic(claveLic);
@@ -522,13 +548,15 @@ function buscar(q) {
    de una búsqueda a su resultado— no hay plano: sólo un asentamiento de
    180 ms, para no cobrarle espera a quien navega rápido. */
 
-const CAMPO = { panorama: "papel", lic: "papel", uea: "papel", buscar: "papel" };
-const HONDURA = { panorama: 1, lic: 2, uea: 3, buscar: 3 };
+const CAMPO = { panorama: "papel", lic: "papel", uea: "papel", buscar: "papel",
+                plan: "papel" };
+const HONDURA = { panorama: 1, lic: 2, uea: 3, buscar: 3, plan: 3 };
 // Color del plano que barre al llegar a cada nivel. El panorama trae el suyo
 // en rojo —el mismo plano que se queda de encabezado— y la licenciatura en
 // tinta, de modo que bajar del índice al plan se ve aunque los dos campos
 // sean oscuros: el barrido se lleva el plano rojo y no lo devuelve.
-const CORTINA = { panorama: "#CD032E", lic: "#1C1C1C", uea: "#FFFFFF", buscar: "#FFFFFF" };
+const CORTINA = { panorama: "#CD032E", lic: "#1C1C1C", uea: "#FFFFFF",
+                  buscar: "#FFFFFF", plan: "#FFFFFF" };
 
 const reducido = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
@@ -537,6 +565,7 @@ const reducido = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
    campo tiene que corresponder a lo que se ve, no a lo que pedía la ruta. */
 function nivelDe(p) {
   if (p[0] === "buscar") return "buscar";
+  if (p[0] === "plan") return lic(p[1])?.plan_texto ? "plan" : "lic";
   if ((p[0] === "uea" || p[0] === "uea2020") && p[1] && p[2]) {
     const l = lic(p[1]);
     if (!l) return "panorama";
@@ -630,6 +659,7 @@ function contadores() {
 /* ------------------------------------------------------------- ruteo */
 function pintar(p, q) {
   if (p[0] === "buscar") { buscar(decodeURIComponent(p[1] || "")); }
+  else if (p[0] === "plan" && p[1]) { planDeEstudios(p[1]); }
   else if (p[0] === "uea2020" && p[1] && p[2]) { detalleUEA2020(p[1], p[2]); }
   else if (p[0] === "uea" && p[1] && p[2]) { detalleUEA(p[1], p[2]); }
   else if (p[0] === "lic" && p[1]) { licenciatura(p[1], q); }

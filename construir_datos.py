@@ -310,6 +310,36 @@ def tabla_del_plan(corpus, lic):
     return filas
 
 
+def texto_del_plan(corpus, lic):
+    """Texto del documento de plan de estudios, en orden de fragmento. Se
+    conserva tal como lo extrajo el corpus, incluidas sus tablas: el tablero lo
+    ofrece como lectura del documento, no como una versión editada."""
+    frags = [u for u in corpus["unidades"]
+             if u.get("tipo") == "plan_estudios" and u.get("clave_lic") == lic]
+    if not frags:
+        return None
+    por_doc = defaultdict(list)
+    for u in frags:
+        por_doc[u.get("documento", "")].append(u)
+    doc_nombre, doc = max(por_doc.items(),
+                          key=lambda kv: sum(len(x.get("texto", "")) for x in kv[1]))
+
+    def orden(u):
+        m = RE_FRAG.search(u.get("nombre", ""))
+        return int(m.group(1)) if m else 0
+
+    partes = []
+    for u in sorted(doc, key=orden):
+        t = u.get("texto", "")
+        # cada fragmento repite el encabezado de contexto del corpus
+        t = re.sub(r"^[^.]{0,90}\.\s*[^.]{0,90}\.(docx|pdf)\.\s*", "", t, flags=re.I)
+        partes.append(t.strip())
+    return {"documento": doc_nombre,
+            "ruta": sorted(doc, key=orden)[0].get("ruta", ""),
+            "texto": "\n\n".join(partes)}
+
+
+
 def main():
     corpus = json.loads(F_2026.read_text())
     grafo = json.loads(F_GRAFO.read_text())
@@ -619,6 +649,7 @@ def main():
             "diff": {"nuevas": nuevas, "salen": [vig[c] for c in salen],
                      "siguen": siguen, "renumeradas": renumeradas,
                      "provisionales": sorted(provisional)},
+            "plan_texto": texto_del_plan(corpus, lic),
             "seriacion": {"vigente": m_v, "propuesto": m_p},
             # aristas antecedente → consecuente, para armar el árbol de
             # dependencias de cualquier UEA en una y otra versión del plan

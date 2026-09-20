@@ -653,3 +653,24 @@ tbody tr:hover .punto { transform: scale(1.12); }
   .p-cifras b { font-size: 30px; }
   .p-entrar { padding: 15px 26px; }
 }
+
+/* ------------------------------------- botón de acción y texto del plan */
+.acciones { margin: 22px 0 10px; }
+.boton {
+  display: inline-block; background: var(--masa); color: var(--sobre-masa);
+  padding: 13px 22px; font-size: 13px; font-weight: bold;
+  letter-spacing: .06em; text-transform: uppercase; min-height: 44px;
+  line-height: 1.4; box-sizing: border-box;
+  transition: transform .18s ease, background .18s ease;
+}
+.boton:hover { text-decoration: none; transform: translateX(4px); }
+pre.plan {
+  font-family: inherit; font-size: 13.5px; line-height: 1.62;
+  white-space: pre-wrap; word-wrap: break-word; overflow-wrap: anywhere;
+  background: var(--gris-claro); padding: 22px 24px; margin: 18px 0 8px;
+  border-left: 5px solid var(--masa); max-width: 92ch;
+}
+@media (max-width: 720px) {
+  pre.plan { font-size: 12.5px; padding: 16px 14px; }
+  .boton { display: block; text-align: center; }
+}
