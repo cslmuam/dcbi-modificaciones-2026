@@ -190,7 +190,12 @@ def tabla_del_plan(corpus, lic):
             esperado = 2 * teoria + practica
             cand = [x for x in nums[2:5] if 0 < x <= 30]
             creditos = min(cand, key=lambda x: abs(x - esperado)) if cand else None
-            horas = max([x for x in nums[2:5] if x > 30], default=None)
+            # las horas totales son once semanas por hora semanal; la columna
+            # de seriación trae claves de UEA, que caen muy por encima del tope
+            esperado_h = 11 * (teoria + practica)
+            cand_h = [x for x in nums[2:5] if 10 <= x <= 600]
+            horas = (min(cand_h, key=lambda x: abs(x - esperado_h))
+                     if cand_h else None)
             reg.setdefault("teoria", teoria)
             reg.setdefault("practica", practica)
             if creditos is not None:
@@ -206,49 +211,61 @@ def main():
     grafo = json.loads(F_GRAFO.read_text())
     planes20 = json.loads(F_PLAN20.read_text())
 
-    # ---------------------------------------------------- UEA propuestas
-    ueas = defaultdict(dict)          # lic -> clave -> registro
+    # ---------------------------------------------------- programas entregados
+    # Se indexan por DOCUMENTO, no por clave. Hay 27 claves que más de un
+    # programa declara como propia — típicamente porque un programa nuevo se
+    # derivó de otro sin corregir la ficha —, de modo que indexar por clave
+    # fusionaba en un solo registro los campos de dos UEA distintas.
+    docs = {}
     for u in corpus["unidades"]:
-        if u.get("tipo") != "programa_uea":
+        if u.get("tipo") != "programa_uea" or not u.get("ruta"):
             continue
-        lic, clave = u.get("clave_lic"), u.get("clave_uea")
+        lic = u.get("clave_lic")
         if not lic:
             continue
-        if not clave:
-            # el archivo trae clave provisional (11XXXXX-Nombre.docx), así que
-            # el extractor no pudo leerla; se indexa por nombre para no perderlo
-            base = re.sub(r"^1?1[0-9X]{4,6}\s*[-_ ]\s*", "",
-                          (u.get("nombre_uea") or "").strip(), flags=re.I)
-            if not base:
-                continue
-            clave = "prov:" + norma_nombre(base)[:60]
-        reg = ueas[lic].setdefault(clave, {
-            "clave": clave, "nombre": u.get("nombre_uea") or "",
-            "tronco": tronco_de_ruta(u.get("ruta", "")),
-            "ruta": u.get("ruta", ""), "campos": {},
+        # Varias coordinaciones entregan el mismo programa dos veces, en .docx y
+        # en .pdf, y a veces en carpetas hermanas (doc/ y pdf/). El documento se
+        # identifica por el nombre del archivo, no por la ruta, para que esas
+        # copias no cuenten como programas distintos.
+        doc = pathlib.Path(u["ruta"]).name
+        doc = re.sub(r"\.(docx|pdf|doc)$", "", doc, flags=re.I)
+        doc = re.sub(r"\.(docx|pdf|doc)$", "", doc, flags=re.I)   # ".docx.pdf"
+        doc = norma_nombre(doc)
+        reg = docs.setdefault((lic, doc), {
+            "lic": lic, "ruta": u["ruta"], "clave_ficha": u.get("clave_uea"),
+            "nombre": "", "campos": {},
         })
-        # el nombre del archivo a veces arrastra sufijos de versión
-        nom = (u.get("nombre_uea") or "").strip()
-        nom = re.sub(r"^1?1[0-9X]{4,6}\s*[-_ ]\s*", "", nom, flags=re.I)
+        nom = re.sub(r"^1?1[0-9Xx]{4,6}\s*[-_ ]\s*", "", (u.get("nombre_uea") or "").strip())
         nom = re.sub(r"^\d{6,7}[_\s-]*", "", nom)
-        nom = re.sub(r"[_\s-]*v\d+$", "", nom, flags=re.I).replace("_", " ").strip()
-        # los archivos rematan con OBL/OPT y con sufijos de versión
+        nom = re.sub(r"[_\s-]*v\d+$", "", nom, flags=re.I).replace("_", " ")
         nom = re.sub(r"\s*[-_ ](OBL|OPT)\.?\s*$", "", nom, flags=re.I).strip(" -_")
-        # se prefiere siempre el nombre ya limpio, nunca el más largo: el largo
-        # es justo el que conserva la clave pegada al título
+        # algunos archivos llevan doble extensión (.docx.pdf) y el extractor
+        # dejó la primera dentro del nombre
+        nom = re.sub(r"\.(docx|pdf|doc)$", "", nom, flags=re.I).strip()
         if nom and not nom.isdigit():
             reg["nombre"] = nom
-        if reg["tronco"] == "sin_clasificar":
-            reg["tronco"] = tronco_de_ruta(u.get("ruta", ""))
         campo = u.get("campo")
         texto = limpia(u.get("texto", ""), u.get("carrera", ""),
-                       clave, u.get("nombre_uea") or "")
+                       u.get("clave_uea") or "", u.get("nombre_uea") or "")
         if campo == "ficha":
-            reg.update(parsea_ficha(u.get("texto", "")))
-        elif campo in CAMPOS:
-            # se conserva la versión más extensa entre .docx y .pdf
-            if len(texto) > len(reg["campos"].get(campo, "")):
-                reg["campos"][campo] = texto
+            reg.update({k: v for k, v in parsea_ficha(u.get("texto", "")).items()
+                        if v is not None})
+        elif campo in CAMPOS and len(texto) > len(reg["campos"].get(campo, "")):
+            reg["campos"][campo] = texto
+
+    # índices de búsqueda, por licenciatura
+    por_nombre = defaultdict(dict)      # lic -> nombre normalizado -> documento
+    por_clave = defaultdict(lambda: defaultdict(list))   # lic -> clave -> documentos
+    for (lic, _), reg in docs.items():
+        if not reg["campos"]:
+            continue
+        n = norma_nombre(reg["nombre"])
+        if n and n not in por_nombre[lic]:
+            por_nombre[lic][n] = reg
+        if reg.get("clave_ficha"):
+            por_clave[lic][reg["clave_ficha"]].append(reg)
+    colisiones = {(lic, c): [r["nombre"] for r in v]
+                  for lic, d in por_clave.items() for c, v in d.items() if len(v) > 1}
 
     # ---------------------------------------------------- UEA vigentes 2020
     v2020 = defaultdict(dict)
@@ -296,59 +313,61 @@ def main():
                 d[k] = int(next(g for g in m.groups() if g))
 
     # ---------------------------------------------------- ensamblado
-    salida = {"licenciaturas": [], "generado": "2026-09-19"}
+    salida = {"licenciaturas": [], "generado": "2026-09-19",
+              "colisiones": [{"lic": k[0], "clave": k[1], "programas": v}
+                             for k, v in sorted(colisiones.items())]}
     for lic, nombre in LIC.items():
         plan = tabla_del_plan(corpus, lic)      # UEA que lista el plan propuesto
-        prog = ueas.get(lic, {})                # programas entregados
+        # los programas ya viven en docs/por_nombre/por_clave
         vig = v2020.get(lic, {})                # UEA del plan vigente 2020
 
         for clave, reg in plan.items():
-            # Emparejamiento en cascada. La clave de la tabla del plan y la del
-            # programa no siempre coinciden — hay claves provisionales
-            # (11XXXXX), claves de seis dígitos y renumeraciones — y varias UEA
-            # compartidas tienen un único programa, archivado en la carpeta de
-            # otra licenciatura. Sin la cascada, 88 de 101 UEA se reportaban
-            # "sin programa" teniendo su programa en el expediente.
-            p = prog.get(clave)
-            reg["emparejamiento"] = "clave" if p else None
-            if not p:
-                for otra_lic, otras in ueas.items():
-                    if clave in otras and otras[clave]["campos"]:
-                        p = otras[clave]
-                        reg["emparejamiento"] = "clave_compartida"
-                        reg["programa_de"] = LIC.get(otra_lic, otra_lic)
-                        break
-            if not p:
-                n = norma_nombre(reg["nombre"])
-                for cand in prog.values():
-                    if cand["campos"] and norma_nombre(cand["nombre"]) == n:
-                        p = cand
-                        reg["emparejamiento"] = "nombre"
-                        reg["clave_programa"] = cand["clave"]
-                        break
-            if not p:
-                n = norma_nombre(reg["nombre"])
-                cand = prog.get("prov:" + n[:60])
-                if cand and cand["campos"]:
-                    p = cand
-                    reg["emparejamiento"] = "nombre_clave_provisional"
-            if not p:
-                n = norma_nombre(reg["nombre"])
-                for otra_lic, otras in ueas.items():
-                    if otra_lic == lic:
+            # El nombre del archivo resultó más confiable que la clave de la
+            # ficha, porque esa clave a veces quedó sin actualizar al derivar
+            # un programa de otro. Por eso el nombre va primero en la cascada.
+            n = norma_nombre(reg["nombre"])
+            p, como, de = None, None, None
+            if n in por_nombre[lic]:
+                p, como = por_nombre[lic][n], "nombre"
+            if p is None:
+                cands = por_clave[lic].get(clave, [])
+                if len(cands) == 1:
+                    p, como = cands[0], "clave"
+                elif len(cands) > 1:
+                    # clave declarada por varios programas: se desempata por nombre
+                    mejor = [c for c in cands if norma_nombre(c["nombre"]) == n]
+                    if mejor:
+                        p, como = mejor[0], "clave"
+            if p is None and len(n) >= 12:
+                # varios nombres llegaron truncados ("Aprovechamiento y
+                # Tratamiento de Re"), así que se admite prefijo inequívoco
+                pref = [r for k, r in por_nombre[lic].items()
+                        if len(k) >= 12 and (k.startswith(n) or n.startswith(k))]
+                if len(pref) == 1:
+                    p, como = pref[0], "nombre_truncado"
+            if p is None:
+                for otra in LIC:
+                    if otra == lic:
                         continue
-                    for cand in otras.values():
-                        if cand["campos"] and norma_nombre(cand["nombre"]) == n:
-                            p, reg["emparejamiento"] = cand, "nombre_compartido"
-                            reg["programa_de"] = LIC.get(otra_lic, otra_lic)
-                            reg["clave_programa"] = cand["clave"]
-                            break
-                    if p:
+                    if n in por_nombre[otra]:
+                        p, como, de = por_nombre[otra][n], "nombre_compartido", LIC[otra]
+                        break
+                    cands = por_clave[otra].get(clave, [])
+                    if len(cands) == 1:
+                        p, como, de = cands[0], "clave_compartida", LIC[otra]
                         break
             reg["programa"] = bool(p and p["campos"])
+            reg["emparejamiento"] = como
+            if de:
+                reg["programa_de"] = de
             if p:
+                reg["_doc"] = p
                 reg["campos"] = p["campos"]
                 reg["ruta"] = p["ruta"]
+                if p.get("clave_ficha") and p["clave_ficha"] != clave:
+                    reg["clave_programa"] = p["clave_ficha"]
+                if (lic, p.get("clave_ficha")) in colisiones:
+                    reg["clave_colisionada"] = True
                 for k in ("horas", "seriacion"):
                     if p.get(k) is not None:
                         reg.setdefault(k, p[k])
@@ -357,10 +376,18 @@ def main():
                         reg[k] = p[k]
             else:
                 reg["campos"] = {}
+
         # programas entregados de UEA que la tabla del plan no listó
-        huerfanos = [dict(r, programa=True, tipo=r.get("tipo") or "",
-                          tronco=r["tronco"], fuera_de_tabla=True)
-                     for c, r in prog.items() if c not in plan]
+        usados = {r["ruta"] for r in
+                  [x.get("_doc") for x in plan.values()] if r}
+        huerfanos = [{"clave": r.get("clave_ficha") or "sin clave", "nombre": r["nombre"],
+                      "tronco": tronco_de_ruta(r["ruta"]), "tipo": r.get("tipo"),
+                      "creditos": r.get("creditos"), "teoria": r.get("teoria"),
+                      "practica": r.get("practica"), "horas": r.get("horas"),
+                      "seriacion": r.get("seriacion"), "campos": r["campos"],
+                      "ruta": r["ruta"], "programa": True, "fuera_de_tabla": True}
+                     for (l2, _), r in docs.items()
+                     if l2 == lic and r["campos"] and r["ruta"] not in usados]
 
         claves_p, claves_v = set(plan), set(vig)
         provisional = {c for c in claves_p if not c.isdigit()}
@@ -404,7 +431,7 @@ def main():
                 "clave_compartida": sum(1 for r in plan.values() if r.get("emparejamiento") == "clave_compartida"),
                 "nombre": sum(1 for r in plan.values() if r.get("emparejamiento") == "nombre"),
                 "nombre_compartido": sum(1 for r in plan.values() if r.get("emparejamiento") == "nombre_compartido"),
-                "clave_provisional": sum(1 for r in plan.values() if r.get("emparejamiento") == "nombre_clave_provisional"),
+                "clave_colisionada": sum(1 for r in plan.values() if r.get("clave_colisionada")),
                 "sin_programa": sum(1 for r in plan.values() if not r.get("programa")),
             },
             "discrepancias": [
@@ -414,9 +441,9 @@ def main():
                  "provisional": str(r.get("clave_programa", "")).startswith("prov:"),
                  "nombre": r["nombre"], "programa_de": r.get("programa_de")}
                 for r in plan.values()
-                if r.get("emparejamiento") in ("nombre", "nombre_compartido",
-                                               "clave_compartida", "nombre_clave_provisional")],
-            "ueas": sorted(list(plan.values()) + huerfanos,
+                if r.get("clave_programa") or r.get("programa_de")],
+            "ueas": sorted([{k: v for k, v in r.items() if k != "_doc"}
+                            for r in plan.values()] + huerfanos,
                            key=lambda r: (r.get("tronco") or "", r.get("nombre") or "")),
             "vigentes": sorted(vig.values(), key=lambda r: r["nombre"]),
         })
@@ -439,7 +466,7 @@ def main():
         e = l["emparejamiento"]
         print(f"        emparejado por clave {e['clave']:3d} · clave compartida "
               f"{e['clave_compartida']:3d} · nombre {e['nombre']:3d} · nombre compartido "
-              f"{e['nombre_compartido']:3d} · clave provisional {e['clave_provisional']:3d}"
+              f"{e['nombre_compartido']:3d} · clave colisionada {e['clave_colisionada']:3d}"
               f" · sin programa {e['sin_programa']:3d}")
 
 

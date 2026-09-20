@@ -86,40 +86,37 @@ predicción.
 ### Por qué una UEA puede aparecer «sin programa»
 
 Diagnóstico del 19 de septiembre de 2026, a raíz de que el tablero reportaba
-101 UEA sin programa.
+101 UEA sin programa. Hoy son 16 de 909.
 
 **La descarga no es la causa.** `verificar_descarga_drive.py` compara el árbol
 de Drive contra la carpeta local sin bajar contenido: 1,411 archivos de un lado
 y 1,411 del otro, coincidencia exacta byte a byte. Tampoco es la indexación:
 los archivos están en el corpus.
 
-La causa real es que **la clave de la tabla del plan y la del programa no
-siempre coinciden**, y que varias UEA compartidas tienen un único programa
-archivado en la carpeta de otra licenciatura. El emparejamiento se hace ahora
-en cascada — clave en la misma licenciatura, clave en cualquier otra, nombre
-normalizado, nombre con clave provisional— y eso bajó los casos sin programa de
-101 a 29. Cada UEA registra cómo se emparejó, y la vista de licenciatura
-lista las 72 discrepancias para que puedan revisarse.
+**La causa está en cómo el expediente identifica cada programa.** La clave de
+la tabla del plan y la que el programa declara en su ficha no siempre coinciden,
+y hay **27 claves que más de un programa declara como propia** — típicamente
+porque un programa nuevo se derivó de otro sin corregir la ficha. En Ambiental,
+la clave 1130024 la declaran cinco programas distintos; en Computación, 1125014
+la declaran cinco.
 
-Los patrones encontrados, todos ellos del expediente y no del tablero:
+Esa colisión provocaba además un **defecto grave en este tablero, ya corregido**:
+al indexar los programas por clave, los campos de dos UEA distintas se fundían
+en un solo registro, de modo que una ficha podía mostrar el objetivo de una UEA
+y la bibliografía de otra. El caso más claro era `110019 Álgebra lineal
+OBL.docx`, cuya ficha declara la clave 1114056, que es la de Sistemas de
+Ecuaciones Lineales y Matrices, del Tronco General. Los programas se indexan
+ahora **por documento**, no por clave.
 
-- Archivos con clave provisional en el nombre (`11XXXXX-Plantas
-  Potabilizadoras.docx`) cuyo contenido sí trae una clave firme, distinta de la
-  que usa el plan.
-- Claves de seis dígitos en la tabla del plan de Computación, donde las claves
-  de UEA son de siete.
-- Un archivo cuyo nombre anuncia una UEA y cuyo contenido es el programa de
-  otra: `110019 Álgebra lineal OBL.docx` contiene el programa de Sistemas de
-  Ecuaciones Lineales y Matrices, clave 1114056, que es del Tronco General.
-- UEA compartidas entre licenciaturas con el programa archivado una sola vez.
+El emparejamiento con la tabla del plan va en cascada, y empieza por el nombre
+del archivo, que resultó más confiable que la clave de la ficha: nombre exacto,
+nombre truncado por el extractor, clave única, clave en otra licenciatura para
+las UEA compartidas. Cada UEA registra cómo se emparejó, y la vista de
+licenciatura lista las discrepancias.
 
-**Defecto del propio tablero, ya corregido.** El orden de las columnas de la
-tabla del plan cambia de una coordinación a otra: unas ponen los créditos antes
-de las horas totales y otras al revés, de modo que Computación mostraba UEA de
-«108 créditos». Ahora el crédito se elige por cercanía a la fórmula del
-artículo 56 del Reglamento de Estudios Superiores —dos créditos por hora de
-teoría más uno por hora de práctica—, en vez de confiar en la posición de la
-columna. No queda ninguna UEA con créditos imposibles.
+Quedan **16 UEA sin programa**, listadas nominalmente en el tablero, y **70
+programas entregados que la tabla del plan no lista**. Unas y otros necesitan
+criterio humano, así que el tablero los marca en vez de adivinar.
 
 ### Limitaciones conocidas
 
