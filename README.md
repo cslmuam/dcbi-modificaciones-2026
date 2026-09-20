@@ -25,6 +25,23 @@ seriación, más el programa completo — objetivo general, objetivos parciales,
 contenido sintético, modalidades de conducción y de evaluación, y bibliografía—
 y la ruta del documento fuente.
 
+**Cadenas de seriación.** Cada licenciatura compara su plan vigente contra el
+modificado en cuatro medidas: cuántas UEA exigen haber aprobado otra, cuántas
+seriaciones hay, cuál es la cadena más larga —cuántas UEA hay que ir librando
+una tras otra para llegar a la más encadenada— y la profundidad media, que
+promedia ese recorrido sobre todas las UEA del plan. Debajo se dibujan las dos
+cadenas más largas, eslabón por eslabón.
+
+La cadena más larga se acorta en las ocho licenciaturas donde la columna de
+seriación resultó legible. En Computación pasa de nueve UEA encadenadas a
+cuatro, y en Civil de siete a seis. La profundidad media baja en todas ellas.
+
+Se cuentan sólo los prerrequisitos de UEA. Los mínimos de créditos se reportan
+aparte, porque no encadenan una UEA con otra. En Electrónica y en Física la
+columna de seriación del plan propuesto no quedó legible al extraerse, de modo
+que sus cifras aparecen en cero con una advertencia expresa: no significan
+ausencia de seriación.
+
 **Búsqueda.** Por nombre o por clave, sobre las 909 UEA de los diez planes.
 
 Cada vista tiene su propia dirección (`#/lic/civ`, `#/uea/civ/1100211`), de modo

@@ -121,6 +121,70 @@ def norma_nombre(n):
 
 
 
+# ---------------------------------------------- cadenas de seriación
+RE_CLAVES = re.compile(r"\b(\d{6,7})\b")
+RE_CREDITOS = re.compile(r"(\d{2,3})\s*CR[EÉ]DITOS?", re.I)
+
+
+def grafo_seriacion(ueas):
+    """Aristas antecedente → consecuente dentro de un mismo plan. La columna de
+    seriación mezcla claves de UEA, mínimos de créditos y corregistros, así que
+    sólo se toman las claves que pertenecen al propio plan."""
+    presentes = {u["clave"] for u in ueas}
+    aristas, creditos = [], {}
+    for u in ueas:
+        txt = str(u.get("seriacion") or "")
+        if not txt:
+            continue
+        m = RE_CREDITOS.search(txt)
+        if m:
+            creditos[u["clave"]] = int(m.group(1))
+        for ant in RE_CLAVES.findall(txt):
+            if ant in presentes and ant != u["clave"]:
+                aristas.append((ant, u["clave"]))
+    return sorted(set(aristas)), creditos
+
+
+def metricas_cadena(nodos, aristas):
+    """Profundidad de cada nodo — cuántas UEA hay que librar antes de llegar a
+    él— y la cadena más larga. Tolera ciclos, que aparecen cuando una clave
+    tentativa se repite."""
+    ent = defaultdict(list)
+    for a, b in aristas:
+        ent[b].append(a)
+    prof, camino, estado = {}, {}, {}
+
+    def calcula(n):
+        if estado.get(n) == "listo":
+            return prof[n]
+        if estado.get(n) == "visitando":      # ciclo
+            return 0
+        estado[n] = "visitando"
+        mejor, ruta = 0, [n]
+        for a in ent.get(n, []):
+            d = calcula(a) + 1
+            if d > mejor:
+                mejor, ruta = d, camino.get(a, [a]) + [n]
+        prof[n], camino[n], estado[n] = mejor, ruta, "listo"
+        return mejor
+
+    for n in nodos:
+        calcula(n)
+    con_prereq = [n for n in nodos if ent.get(n)]
+    prof_max = max(prof.values(), default=0)
+    cadena = max((camino.get(n, [n]) for n in nodos if prof.get(n) == prof_max),
+                 key=len, default=[])
+    return {
+        "ueas": len(nodos), "aristas": len(aristas),
+        "con_prerrequisito": len(con_prereq),
+        "pct_con_prerrequisito": round(100 * len(con_prereq) / max(len(nodos), 1), 1),
+        "profundidad_max": prof_max,
+        "profundidad_media": round(sum(prof.values()) / max(len(nodos), 1), 2),
+        "cadena_mas_larga": cadena,
+    }
+
+
+
 def compatible(a, b):
     """Dos nombres muy parecidos pueden ser UEA distintas. Un laboratorio no es
     su teoría, y un «I» no es un «II», aunque el resto del nombre coincida."""
@@ -459,6 +523,27 @@ def main():
                                     "lic": LIC.get(mejor[1], "Tronco General"),
                                     "similitud": round(sc, 2)}
 
+        # --- seriación: plan propuesto ---
+        lista_p = list(plan.values())
+        ar_p, cred_p = grafo_seriacion(lista_p)
+        m_p = metricas_cadena([u["clave"] for u in lista_p], ar_p)
+        m_p["por_creditos"] = len(cred_p)
+        nom_p_clave = {u["clave"]: u["nombre"] for u in lista_p}
+        m_p["cadena_nombres"] = [nom_p_clave.get(c, c) for c in m_p.pop("cadena_mas_larga")]
+        m_p["sin_columna"] = sum(1 for u in lista_p if not u.get("seriacion")) == len(lista_p) \
+            or len(ar_p) + len(cred_p) < 3
+
+        # --- seriación: plan vigente 2020, del grafo curricular ---
+        ar_v = sorted({(l["source"], l["target"]) for l in grafo["links"]
+                       if l.get("tipo") == "seriacion"
+                       and lic in (l.get("planes") or [])
+                       and l["source"] in vig and l["target"] in vig})
+        m_v = metricas_cadena(list(vig), ar_v)
+        m_v["por_creditos"] = None
+        m_v["cadena_nombres"] = [vig[c]["nombre"] if c in vig else c
+                                 for c in m_v.pop("cadena_mas_larga")]
+        m_v["sin_columna"] = False
+
         claves_p, claves_v = set(plan), set(vig)
         provisional = {c for c in claves_p if not c.isdigit()}
         # Una UEA puede continuar con clave nueva, así que la coincidencia por
@@ -496,6 +581,7 @@ def main():
             "diff": {"nuevas": nuevas, "salen": [vig[c] for c in salen],
                      "siguen": siguen, "renumeradas": renumeradas,
                      "provisionales": sorted(provisional)},
+            "seriacion": {"vigente": m_v, "propuesto": m_p},
             "emparejamiento": {
                 "clave": sum(1 for r in plan.values() if r.get("emparejamiento") == "clave"),
                 "clave_compartida": sum(1 for r in plan.values() if r.get("emparejamiento") == "clave_compartida"),

@@ -164,3 +164,12 @@ footer {
   .dato { flex-basis: 45%; }
   table { font-size: 12.5px; }
 }
+
+/* ------------------------------------------- cadenas de seriación */
+.cadena { display: flex; flex-wrap: wrap; align-items: center; gap: 7px; margin: 10px 0 20px; }
+.eslabon {
+  display: inline-flex; align-items: center; gap: 8px;
+  border: 1px solid var(--filete); padding: 7px 11px; font-size: 13px; background: var(--papel);
+}
+.punto.pq { width: 20px; height: 20px; font-size: 10px; }
+.flecha { color: var(--rojo); font-weight: bold; }

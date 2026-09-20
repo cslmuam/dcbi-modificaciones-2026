@@ -67,6 +67,9 @@ function panorama() {
       <td class="num">${l.conteo.nuevas}</td>
       <td class="num">${l.conteo.renumeradas}</td>
       <td class="num">${l.conteo.salen}</td>
+      <td class="num">${l.seriacion?.vigente?.profundidad_max ?? "—"} →
+        <strong style="color:var(--rojo)">${l.seriacion?.propuesto?.sin_columna
+          ? "?" : l.seriacion?.propuesto?.profundidad_max ?? "—"}</strong></td>
       <td class="num">${l.conteo.con_programa}</td>
     </tr>`;
   }).join("");
@@ -97,7 +100,8 @@ function panorama() {
         <th class="num">TG 2020</th><th class="num">TG 2026</th>
         <th class="num">Total 2020</th><th class="num">Total 2026</th><th class="num">Δ</th>
         <th class="num">UEA 2020</th><th class="num">UEA 2026</th><th class="num">Nuevas</th>
-        <th class="num">Renum.</th><th class="num">Salen</th><th class="num">Programas</th>
+        <th class="num">Renum.</th><th class="num">Salen</th>
+        <th class="num">Cadena</th><th class="num">Programas</th>
       </tr></thead>
       <tbody>${filas}</tbody>
     </table>
@@ -184,6 +188,8 @@ function licenciatura(clave, q = "") {
     ${barra(cv, "Plan vigente 2020")}
     ${barra(cp, "Plan modificado")}
 
+    ${seriacion(l)}
+
     <h2>Unidades de Enseñanza Aprendizaje del plan propuesto</h2>
     <div class="filtros">
       <select id="f-tronco" onchange="render()">
@@ -247,6 +253,47 @@ function licenciatura(clave, q = "") {
         <td class="num">${num(u.creditos)}</td>
         <td class="num">${u.aprobacion ? (100 * u.aprobacion).toFixed(1) + " %" : "—"}</td></tr>`).join("")}
       </tbody></table>` : ""}`;
+}
+
+/* --------------------------------------------------------- seriación */
+function cadena(nombres) {
+  if (!nombres || nombres.length < 2) return '<p class="sub">Sin cadenas de seriación.</p>';
+  return `<div class="cadena">${nombres.map((n, i) =>
+    `<span class="eslabon"><span class="punto pq">${i + 1}</span>${esc(n)}</span>`).join(
+    '<span class="flecha">→</span>')}</div>`;
+}
+
+function seriacion(l) {
+  const v = l.seriacion?.vigente, p = l.seriacion?.propuesto;
+  if (!v || !p) return "";
+  const fila = (t, m, acento) => `<tr>
+    <td><strong>${t}</strong></td>
+    <td class="num">${m.con_prerrequisito} <span style="color:var(--gris)">de ${m.ueas}</span></td>
+    <td class="num">${m.pct_con_prerrequisito} %</td>
+    <td class="num">${m.aristas}</td>
+    <td class="num"><strong${acento ? ' style="color:var(--rojo)"' : ""}>${m.profundidad_max}</strong></td>
+    <td class="num"><strong${acento ? ' style="color:var(--rojo)"' : ""}>${m.profundidad_media}</strong></td></tr>`;
+  return `<h2>Cadenas de seriación</h2>
+    ${p.sin_columna ? `<div class="aviso"><strong>Dato incompleto.</strong>
+      La tabla del plan propuesto de esta licenciatura no dejó legible la columna de
+      seriación al extraerse, así que sus cifras aparecen en cero y no deben leerse como
+      ausencia de seriación. El plan vigente sí se midió.</div>` : ""}
+    <table><thead><tr><th>Plan</th><th class="num">UEA con prerrequisito</th>
+      <th class="num">%</th><th class="num">Seriaciones</th>
+      <th class="num">Cadena más larga</th><th class="num">Profundidad media</th></tr></thead>
+      <tbody>${fila("Vigente 2020", v, false)}${fila("Modificado", p, true)}</tbody></table>
+    <div class="aviso"><strong>Cómo se mide.</strong>
+      La <em>cadena más larga</em> es cuántas UEA hay que ir librando, una tras otra, para
+      llegar a la más encadenada del plan. La <em>profundidad media</em> promedia ese
+      recorrido sobre todas las UEA, así que resume en una cifra cuánto encadena el plan
+      entero: cuanto más baja, antes se puede llegar a cualquier UEA. Sólo se cuentan los
+      prerrequisitos de UEA; los mínimos de créditos van aparte${
+        p.por_creditos ? ` — en este plan, ${p.por_creditos} UEA los piden` : ""}.</div>
+    <h3>La cadena más larga del plan vigente 2020</h3>
+    ${cadena(v.cadena_nombres)}
+    <h3>La cadena más larga del plan modificado</h3>
+    ${p.sin_columna ? '<p class="sub">No medible con la columna extraída.</p>'
+      : cadena(p.cadena_nombres)}`;
 }
 
 /* ------------------------------------------------------------- una UEA */
