@@ -459,6 +459,14 @@ function detalleUEA(claveLic, claveUEA) {
 /* ----------------------------------------------------- búsqueda global */
 function buscar(q) {
   const nq = norm(q);
+
+  // Las licenciaturas se listan por su nombre nuevo, así que el buscador
+  // acepta también el vigente: quien conoce «Ingeniería Electrónica» debe
+  // encontrarla aunque el plan modificado la llame de otra manera.
+  const lics = DATOS.licenciaturas.filter((l) =>
+    norm(l.nombre).includes(nq) ||
+    (l.nombre_propuesto && norm(l.nombre_propuesto).includes(nq)));
+
   const res = [];
   for (const l of DATOS.licenciaturas) {
     for (const u of l.ueas) {
@@ -470,12 +478,24 @@ function buscar(q) {
   vista.innerHTML = `
     <div class="migaja"><a href="#/">Panorama</a> › Búsqueda</div>
     <h1>“${esc(q)}”</h1>
+    ${lics.length ? `<h2>Licenciaturas</h2>
+      <table class="apilada por-nombre"><thead><tr><th>Licenciatura</th>
+        <th>Nombre en el plan vigente</th><th class="num">UEA</th>
+        <th class="num">Programas</th></tr></thead><tbody>
+      ${lics.map((l) => `<tr onclick="location.hash='#/lic/${l.clave}'">
+        <td><strong>${esc(l.nombre_propuesto || l.nombre)}</strong></td>
+        <td data-r="En el plan vigente">${l.nombre_propuesto
+          ? esc(l.nombre) : "sin cambio"}</td>
+        <td class="num" data-r="UEA">${l.conteo.plan}</td>
+        <td class="num" data-r="Programas">${l.conteo.con_programa}</td></tr>`).join("")}
+      </tbody></table>
+      <h2>Unidades de Enseñanza Aprendizaje</h2>` : ""}
     <p class="sub">${res.length} UEA en los diez planes propuestos.</p>
     <table class="apilada por-nombre"><thead><tr><th>Clave</th><th>Unidad de Enseñanza Aprendizaje</th>
       <th>Licenciatura</th><th>Tronco</th><th>Programa</th></tr></thead><tbody>
     ${res.slice(0, 300).map(([l, u]) => `<tr onclick="location.hash='#/uea/${l.clave}/${u.clave}'">
       <td class="clave" data-r="Clave">${esc(u.clave)}</td><td><strong>${esc(u.nombre)}</strong></td>
-      <td data-r="Licenciatura">${esc(l.nombre)}</td><td data-r="Tronco">${esc(TRONCO[u.tronco] || u.tronco)}</td>
+      <td data-r="Licenciatura">${esc(l.nombre_propuesto || l.nombre)}</td><td data-r="Tronco">${esc(TRONCO[u.tronco] || u.tronco)}</td>
       <td data-r="Programa">${u.programa ? '<span class="eti verde">programa</span>' : '<span class="eti hueca">sin programa</span>'}</td>
       </tr>`).join("") || '<tr><td colspan="5">Sin resultados.</td></tr>'}
     </tbody></table>
