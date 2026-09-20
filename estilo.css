@@ -236,6 +236,7 @@ h3 { font-size: 15px; margin: 22px 0 8px; }
 .dato { flex: 1 1 130px; padding: 16px 18px; border-left: 1px solid var(--linea); }
 .dato:first-child { border-left: none; }
 .dato .n { font-size: 30px; font-weight: bold; line-height: 1.1; }
+.dato .n.texto { font-size: 16px; line-height: 1.35; }
 .dato .n.acento { color: var(--rojo); }
 .dato .r { font-size: 10px; letter-spacing: .1em; text-transform: uppercase;
            color: var(--texto-2); margin-top: 5px; }
@@ -623,6 +624,51 @@ tbody tr:hover .punto { transform: scale(1.12); }
   ul.arbol li { padding-left: 11px; font-size: 13px; }
   ul.arbol li::before { width: 7px; }
 
+  /* Cédulas compactas: en el teléfono, cinco objetos apilados ocupan tres
+     pantallas y empujan hacia abajo lo que se busca. Pasan a una sola línea de
+     datos —la cifra sigue siendo la figura, el rótulo la acompaña— y el dato
+     que sostiene el hallazgo conserva su masa roja. De 258 px a unos 75. */
+  .datos {
+    display: block; padding: 9px 0; margin: 14px 0;
+    line-height: 1.75;
+  }
+  .dato, .plano-tinta .dato.acentuada, .plano-rojo .dato.acentuada {
+    display: inline; border: none; padding: 0; background: none;
+  }
+  .dato .n, .dato .n.texto { display: inline; font-size: 14.5px; line-height: inherit; }
+  .dato .r {
+    display: inline; font-size: 11.5px; letter-spacing: .02em; text-transform: none;
+    margin: 0 0 0 4px; color: var(--texto-2);
+  }
+  .dato + .dato::before { content: "·"; margin: 0 5px 0 3px; color: var(--texto-2); }
+  .plano-tinta .dato.acentuada .n, .plano-rojo .dato.acentuada .n {
+    background: var(--masa); color: var(--sobre-masa); padding: 1px 6px;
+  }
+  .plano-tinta .dato.acentuada .r, .plano-rojo .dato.acentuada .r { color: var(--texto-2); }
+  .plano-cabecera .datos { border-bottom: 1px solid var(--linea); }
+
+  /* Contexto plegado: el resumen aparece y se toca como cualquier otra cosa */
+  .contexto { margin: 4px 0 10px; }
+  .contexto > summary {
+    display: list-item; cursor: pointer;
+    font-size: 13px; font-weight: bold; letter-spacing: .04em;
+    padding: 13px 0 13px 4px; min-height: 44px; box-sizing: border-box;
+    border-top: 1px solid var(--linea);
+  }
+  .contexto > summary::marker { color: var(--acento-txt); }
+  .contexto[open] > summary { border-bottom: 1px solid var(--linea); margin-bottom: 4px; }
+  .contexto > :first-of-type + * { margin-top: 10px; }
+  .filtros-plegables { margin: 10px 0 6px; }
+  .filtros-plegables > summary { padding: 13px 0 13px 4px; }
+  .filtros-plegables > summary::marker { color: var(--acento-txt); }
+  .filtros-plegables .conteo { display: none; }
+  .filtros-plegables .filtros { margin: 10px 0 4px; }
+
+  /* Enlaces de una línea —migaja, remisiones dentro del texto—: el área que
+     se toca crece a 44 px sin que la línea crezca, con el margen negativo
+     compensando el relleno. */
+  .migaja a, .sub a { display: inline-block; padding: 14px 0; margin: -14px 0; }
+
   .aviso { padding: 13px 14px; }
   .campo pre { font-size: 14px; }
   .conteo-arbol { min-width: 26px; height: 26px; }
@@ -682,6 +728,10 @@ pre.plan {
 .boton.hueco:hover { background: var(--gris-claro); }
 .visor { margin: 18px 0 10px; border: 1px solid var(--linea); background: var(--gris-claro); }
 .visor object { display: block; width: 100%; height: 78vh; min-height: 460px; }
+/* Secciones de contexto: en el teléfono el resumen es la puerta, con su
+   triángulo de siempre. */
+/* Sin regla de escritorio: en pantalla ancha el `details` no llega a emitirse
+   —lo decide app.js—, así que el marcado es el de siempre. */
 .plegable { margin: 26px 0 8px; }
 .plegable > summary {
   cursor: pointer; font-size: 13px; font-weight: bold; letter-spacing: .06em;

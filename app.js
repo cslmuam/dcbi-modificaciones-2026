@@ -46,6 +46,19 @@ const norm = (s) =>
   String(s ?? "").normalize("NFD").replace(/[̀-ͯ]/g, "").toLowerCase();
 
 const lic = (clave) => DATOS.licenciaturas.find((l) => l.clave === clave);
+
+/* Secciones plegables de contexto. En pantalla ancha nacen abiertas y sin
+   resumen visible, de modo que el escritorio se ve exactamente igual que
+   antes; en el teléfono nacen plegadas, para que lo que se busca —la lista de
+   UEA, el programa— quede arriba. Si el usuario ya la abrió, un repintado por
+   filtro o por buscador no se la vuelve a cerrar. */
+const abierta = (id) => document.getElementById(id)?.open ? " open" : "";
+/* El envoltorio sólo existe en pantalla estrecha: así el marcado del
+   escritorio queda exactamente como estaba, sin un `details` de por medio que
+   le cambie el ritmo vertical aunque su resumen no se dibuje. */
+const pliegoIni = (id, resumen, clase = "contexto") => (estrecho()
+  ? `<details class="${clase}" id="${id}"${abierta(id)}><summary>${resumen}</summary>` : "");
+const pliegoFin = () => (estrecho() ? "</details>" : "");
 const num = (v) => (v === null || v === undefined ? "—" : v);
 
 /* ------------------------------------------------------------ panorama */
@@ -196,13 +209,17 @@ function licenciatura(clave, q = "") {
     ${(l.plan_texto || l.plan_pdf) ? `<p class="acciones"><a class="boton" href="#/plan/${l.clave}">
       Ver el texto del plan de estudios</a></p>` : ""}
 
+    ${pliegoIni("ctx-creditos", "Créditos y cadenas de seriación")}
     <h2>Distribución de créditos</h2>
     ${barra(cv, "Plan vigente 2020")}
     ${barra(cp, "Plan modificado")}
 
     ${seriacion(l)}
+    ${pliegoFin()}
 
-    <h2>Unidades de Enseñanza Aprendizaje del plan propuesto</h2>
+    <h2 id="panel-uea">Unidades de Enseñanza Aprendizaje del plan propuesto</h2>
+    ${pliegoIni("ctx-filtros", `Filtrar · ${lista.length} de ${l.ueas.length} UEA`,
+                 "plegable filtros-plegables")}
     <div class="filtros">
       <select id="f-tronco" onchange="render()">
         <option value="">Todos los troncos</option>
@@ -220,6 +237,7 @@ function licenciatura(clave, q = "") {
       </select>
       <span class="conteo">${lista.length} de ${l.ueas.length} UEA</span>
     </div>
+    ${pliegoFin()}
 
     <table class="apilada por-nombre">
       <thead><tr><th>Clave</th><th>Unidad de Enseñanza Aprendizaje</th><th>Tronco</th>
@@ -229,8 +247,10 @@ function licenciatura(clave, q = "") {
 
     ${(() => {
       const sp = l.ueas.filter((u) => !u.programa && !u.fuera_de_tabla);
-      if (!sp.length) return "";
-      return `<h2>UEA sin programa localizado en el expediente</h2>
+      const hayCola = sp.length || (l.procedencias && l.procedencias.length) || l.diff.salen.length;
+      if (!hayCola) return "";
+      return pliegoIni("ctx-otras", "Otras listas de esta licenciatura") + (!sp.length ? "" : `
+      <h2>UEA sin programa localizado en el expediente</h2>
       <p class="sub">La tabla del plan las lista, pero no se encontró su programa. Se muestra
       lo más parecido que hay en el expediente, para poder preguntar a la coordinación si el
       programa falta o si está entregado bajo otro nombre.</p>
@@ -242,10 +262,8 @@ function licenciatura(clave, q = "") {
         <td data-r="Lo más parecido">${u.candidato ? `${esc(u.candidato.nombre)}
              <span class="eti hueca">${esc(u.candidato.lic)} · ${u.candidato.similitud}</span>`
              : "<span class=\"eti hueca\">sin parecido</span>"}</td></tr>`).join("")}
-      </tbody></table>`;
-    })()}
-
-    ${l.procedencias && l.procedencias.length ? `<h2>Programas archivados en otra licenciatura</h2>
+      </tbody></table>`) + (!(l.procedencias && l.procedencias.length) ? "" : `
+      <h2>Programas archivados en otra licenciatura</h2>
       <p class="sub">UEA compartidas entre carreras cuyo programa se entregó una sola vez.
       El tablero lo toma de donde está.</p>
       <table class="apilada por-nombre"><thead><tr><th>Clave en el plan</th><th>Unidad de Enseñanza Aprendizaje</th>
@@ -253,9 +271,8 @@ function licenciatura(clave, q = "") {
       ${l.procedencias.map((x) => `<tr onclick="location.hash='#/uea/${l.clave}/${x.clave_plan}'">
         <td class="clave" data-r="Clave">${esc(x.clave_plan)}</td><td>${esc(x.nombre)}</td>
         <td data-r="Archivado en">${esc(x.programa_de || "")}</td></tr>`).join("")}
-      </tbody></table>` : ""}
-
-    ${l.diff.salen.length ? `<h2>UEA del plan vigente sin correspondencia en el propuesto</h2>
+      </tbody></table>`) + (!l.diff.salen.length ? "" : `
+      <h2>UEA del plan vigente sin correspondencia en el propuesto</h2>
       <p class="sub">Ni su clave ni su nombre aparecen en la tabla del plan modificado.
       Se listan con su tasa histórica de aprobación, del periodo 16I a 25O.</p>
       <table class="apilada por-nombre"><thead><tr><th>Clave</th><th>Unidad de Enseñanza Aprendizaje</th>
@@ -264,7 +281,8 @@ function licenciatura(clave, q = "") {
         <td class="clave" data-r="Clave">${esc(u.clave)}</td><td>${esc(u.nombre)}</td>
         <td class="num" data-r="Créditos">${num(u.creditos)}</td>
         <td class="num" data-r="Aprobación 16I–25O">${u.aprobacion ? (100 * u.aprobacion).toFixed(1) + " %" : "—"}</td></tr>`).join("")}
-      </tbody></table>` : ""}`;
+      </tbody></table>`) + pliegoFin();
+    })()}`;
 }
 
 /* --------------------------------------------------------- seriación */
@@ -462,10 +480,12 @@ function detalleUEA(claveLic, claveUEA) {
       <div class="dato"><div class="n">${num(u.teoria)}</div><div class="r">horas de teoría</div></div>
       <div class="dato"><div class="n">${num(u.practica)}</div><div class="r">horas de práctica</div></div>
       <div class="dato"><div class="n">${num(u.horas)}</div><div class="r">horas totales</div></div>
-      <div class="dato"><div class="n" style="font-size:16px;line-height:1.35">
+      <div class="dato"><div class="n texto">
         ${u.seriacion ? esc(u.seriacion) : "Sin seriación"}</div><div class="r">seriación</div></div>
     </div>
 
+    ${(u.clave_programa || u.programa_sin_clave || u.clave_repetida || u.programa_de)
+      ? pliegoIni("ctx-notas", "Notas sobre la clave y la procedencia del programa") : ""}
     ${u.clave_programa || u.programa_sin_clave || u.clave_repetida ? `<div class="aviso">
       <strong>Sobre la clave.</strong>
       Las claves de los programas nuevos son tentativas — las definitivas se asignan en una
@@ -481,6 +501,8 @@ function detalleUEA(claveLic, claveUEA) {
       Es una UEA compartida y su programa se archivó en
       <strong>${esc(u.programa_de)}</strong>, de donde se tomó.
       </div>` : ""}
+    ${(u.clave_programa || u.programa_sin_clave || u.clave_repetida || u.programa_de)
+      ? pliegoFin() : ""}
     ${campos.length
       ? campos.map(([k, t]) => `<div class="campo"><h3>${t}</h3><pre>${esc(u.campos[k])}</pre></div>`).join("")
       : `<div class="aviso"><strong>Sin programa localizado.</strong>

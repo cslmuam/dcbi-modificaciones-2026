@@ -265,6 +265,27 @@ otro con la sangría justa para que sigan leyéndose como árbol. Ninguna vista
 pide desplazamiento horizontal en ningún ancho, y se comprueba comparando
 `scrollWidth` contra `innerWidth`, no a ojo.
 
+**En el teléfono se llega antes a lo que se busca.** Lo que es lectura de
+contexto —la distribución de créditos, las cadenas de seriación con sus avisos,
+las listas complementarias de la cola, las notas sobre la clave de una UEA—
+nace plegado en una sección con su resumen, y se abre tocándolo; en pantalla
+ancha ese envoltorio ni siquiera se emite, así que el escritorio es el de
+siempre, verificado por comparación de píxeles. Los filtros del panel de UEA
+hacen lo mismo, y su resumen lleva la cuenta («Filtrar · 111 de 111 UEA»). Una
+sección abierta sigue abierta cuando el tablero se repinta por un filtro o por
+el buscador. Y la fila de cédulas se compacta a una sola línea de datos, donde
+la cifra sigue siendo la figura y el dato que sostiene el hallazgo conserva su
+masa roja.
+
+El efecto, medido a 390 × 844 desde el borde superior del documento:
+
+| Vista | Hasta | Antes | Ahora |
+|---|---|---|---|
+| `#/lic/civ` | la lista de UEA | 2 978 px | **647 px** |
+| `#/lic/civ` | el primer botón | 546 px | **381 px** |
+| `#/uea/…` | el programa | 525 px | **364 px** |
+| `#/` | la primera licenciatura | 564 px | **472 px** |
+
 Los valores son los del Acuerdo 06/2012, verificados con `/identidad-uam`.
 
 - Color de la Unidad Azcapotzalco, Pantone 186 C `#CD032E` (numeral 5.3, p. 49).
