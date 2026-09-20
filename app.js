@@ -59,20 +59,20 @@ function panorama() {
         <div><strong>${esc(l.nombre)}</strong>${l.nombre_propuesto
           ? `<div class="renombrada">pasa a llamarse ${esc(l.nombre_propuesto)}</div>` : ""}
         </div></div></td>
-      <td class="num">${num(cv.general)}</td>
-      <td class="num"><strong class="realce">${num(cp.general)}</strong></td>
-      <td class="num">${num(cv.total)}</td>
-      <td class="num">${num(cp.total)}</td>
-      <td class="num">${dTot === null ? "—" : (dTot > 0 ? "+" : "") + dTot}</td>
-      <td class="num">${l.conteo.vigentes}</td>
-      <td class="num">${l.conteo.plan}</td>
-      <td class="num">${l.conteo.nuevas}</td>
-      <td class="num">${l.conteo.renumeradas}</td>
-      <td class="num">${l.conteo.salen}</td>
-      <td class="num">${l.seriacion?.vigente?.profundidad_max ?? "—"} →
+      <td class="num" data-r="TG 2020">${num(cv.general)}</td>
+      <td class="num" data-r="TG 2026"><strong class="realce">${num(cp.general)}</strong></td>
+      <td class="num" data-r="Total 2020">${num(cv.total)}</td>
+      <td class="num" data-r="Total 2026">${num(cp.total)}</td>
+      <td class="num" data-r="Δ créditos">${dTot === null ? "—" : (dTot > 0 ? "+" : "") + dTot}</td>
+      <td class="num" data-r="UEA 2020">${l.conteo.vigentes}</td>
+      <td class="num" data-r="UEA 2026">${l.conteo.plan}</td>
+      <td class="num" data-r="Nuevas">${l.conteo.nuevas}</td>
+      <td class="num" data-r="Renumeradas">${l.conteo.renumeradas}</td>
+      <td class="num" data-r="Salen">${l.conteo.salen}</td>
+      <td class="num" data-r="Cadena">${l.seriacion?.vigente?.profundidad_max ?? "—"} →
         <strong class="realce">${l.seriacion?.propuesto?.sin_columna
           ? "?" : l.seriacion?.propuesto?.profundidad_max ?? "—"}</strong></td>
-      <td class="num">${l.conteo.con_programa}</td>
+      <td class="num" data-r="Programas">${l.conteo.con_programa}</td>
     </tr>`;
   }).join("");
 
@@ -98,7 +98,7 @@ function panorama() {
     </div>
     </div>
 
-    <table>
+    <table class="apilada">
       <thead><tr>
         <th>Licenciatura</th>
         <th class="num">TG 2020</th><th class="num">TG 2026</th>
@@ -159,15 +159,15 @@ function licenciatura(clave, q = "") {
   const filas = lista.map((u) => {
     const [txt, cls] = CONTINUIDAD[u.continuidad] || ["—", "eti hueca"];
     return `<tr onclick="location.hash='#/uea/${clave}/${u.clave}'">
-      <td class="clave">${esc(u.clave)}${u.clave_por_asignar
+      <td class="clave" data-r="Clave">${esc(u.clave)}${u.clave_por_asignar
         ? ' <span class="eti hueca" title="La clave definitiva se asigna más adelante en el proceso">por asignar</span>' : ""}</td>
       <td><strong>${esc(u.nombre)}</strong>${u.fuera_de_tabla
         ? ' <span class="eti hueca" title="El programa se entregó pero la tabla del plan no lista esta clave">fuera de la tabla</span>' : ""}</td>
-      <td>${esc(TRONCO[u.tronco] || u.tronco)}</td>
-      <td>${u.tipo || "—"}</td>
-      <td class="num">${num(u.creditos)}</td>
-      <td><span class="${cls}">${txt}</span></td>
-      <td>${(() => {
+      <td data-r="Tronco">${esc(TRONCO[u.tronco] || u.tronco)}</td>
+      <td data-r="Tipo">${u.tipo || "—"}</td>
+      <td class="num" data-r="Créditos">${num(u.creditos)}</td>
+      <td data-r="Continuidad"><span class="${cls}">${txt}</span></td>
+      <td data-r="Programa">${(() => {
         if (!u.programa) return '<span class="eti hueca">sin programa</span>';
         const [t, c, tip] = EMPAREJADO[u.emparejamiento] || ["programa", "eti verde", ""];
         return `<span class="${c}"${tip ? ` title="${esc(tip)}"` : ""}>${t}</span>`;
@@ -220,7 +220,7 @@ function licenciatura(clave, q = "") {
       <span class="conteo">${lista.length} de ${l.ueas.length} UEA</span>
     </div>
 
-    <table>
+    <table class="apilada por-nombre">
       <thead><tr><th>Clave</th><th>Unidad de Enseñanza Aprendizaje</th><th>Tronco</th>
         <th>Tipo</th><th class="num">Créd.</th><th>Continuidad</th><th>Programa</th></tr></thead>
       <tbody>${filas || '<tr><td colspan="7">Ningún resultado con estos filtros.</td></tr>'}</tbody>
@@ -233,12 +233,12 @@ function licenciatura(clave, q = "") {
       <p class="sub">La tabla del plan las lista, pero no se encontró su programa. Se muestra
       lo más parecido que hay en el expediente, para poder preguntar a la coordinación si el
       programa falta o si está entregado bajo otro nombre.</p>
-      <table><thead><tr><th>Clave en el plan</th><th>Unidad de Enseñanza Aprendizaje</th>
+      <table class="apilada por-nombre"><thead><tr><th>Clave en el plan</th><th>Unidad de Enseñanza Aprendizaje</th>
         <th>Tronco</th><th>Lo más parecido en el expediente</th></tr></thead><tbody>
       ${sp.map((u) => `<tr onclick="location.hash='#/uea/${l.clave}/${u.clave}'">
-        <td class="clave">${esc(u.clave)}</td><td><strong>${esc(u.nombre)}</strong></td>
-        <td>${esc(TRONCO[u.tronco] || u.tronco || "")}</td>
-        <td>${u.candidato ? `${esc(u.candidato.nombre)}
+        <td class="clave" data-r="Clave">${esc(u.clave)}</td><td><strong>${esc(u.nombre)}</strong></td>
+        <td data-r="Tronco">${esc(TRONCO[u.tronco] || u.tronco || "")}</td>
+        <td data-r="Lo más parecido">${u.candidato ? `${esc(u.candidato.nombre)}
              <span class="eti hueca">${esc(u.candidato.lic)} · ${u.candidato.similitud}</span>`
              : "<span class=\"eti hueca\">sin parecido</span>"}</td></tr>`).join("")}
       </tbody></table>`;
@@ -247,22 +247,22 @@ function licenciatura(clave, q = "") {
     ${l.procedencias && l.procedencias.length ? `<h2>Programas archivados en otra licenciatura</h2>
       <p class="sub">UEA compartidas entre carreras cuyo programa se entregó una sola vez.
       El tablero lo toma de donde está.</p>
-      <table><thead><tr><th>Clave en el plan</th><th>Unidad de Enseñanza Aprendizaje</th>
+      <table class="apilada por-nombre"><thead><tr><th>Clave en el plan</th><th>Unidad de Enseñanza Aprendizaje</th>
         <th>Archivado en</th></tr></thead><tbody>
       ${l.procedencias.map((x) => `<tr onclick="location.hash='#/uea/${l.clave}/${x.clave_plan}'">
-        <td class="clave">${esc(x.clave_plan)}</td><td>${esc(x.nombre)}</td>
-        <td>${esc(x.programa_de || "")}</td></tr>`).join("")}
+        <td class="clave" data-r="Clave">${esc(x.clave_plan)}</td><td>${esc(x.nombre)}</td>
+        <td data-r="Archivado en">${esc(x.programa_de || "")}</td></tr>`).join("")}
       </tbody></table>` : ""}
 
     ${l.diff.salen.length ? `<h2>UEA del plan vigente sin correspondencia en el propuesto</h2>
       <p class="sub">Ni su clave ni su nombre aparecen en la tabla del plan modificado.
       Se listan con su tasa histórica de aprobación, del periodo 16I a 25O.</p>
-      <table><thead><tr><th>Clave</th><th>Unidad de Enseñanza Aprendizaje</th>
+      <table class="apilada por-nombre"><thead><tr><th>Clave</th><th>Unidad de Enseñanza Aprendizaje</th>
         <th class="num">Créd.</th><th class="num">Aprobación</th></tr></thead><tbody>
       ${l.diff.salen.map((u) => `<tr onclick="location.hash='#/uea2020/${l.clave}/${u.clave}'">
-        <td class="clave">${esc(u.clave)}</td><td>${esc(u.nombre)}</td>
-        <td class="num">${num(u.creditos)}</td>
-        <td class="num">${u.aprobacion ? (100 * u.aprobacion).toFixed(1) + " %" : "—"}</td></tr>`).join("")}
+        <td class="clave" data-r="Clave">${esc(u.clave)}</td><td>${esc(u.nombre)}</td>
+        <td class="num" data-r="Créditos">${num(u.creditos)}</td>
+        <td class="num" data-r="Aprobación 16I–25O">${u.aprobacion ? (100 * u.aprobacion).toFixed(1) + " %" : "—"}</td></tr>`).join("")}
       </tbody></table>` : ""}`;
 }
 
@@ -279,11 +279,11 @@ function seriacion(l) {
   if (!v || !p) return "";
   const fila = (t, m, acento) => `<tr>
     <td><strong>${t}</strong></td>
-    <td class="num">${m.con_prerrequisito} <span class="tenue">de ${m.ueas}</span></td>
-    <td class="num">${m.pct_con_prerrequisito} %</td>
-    <td class="num">${m.aristas}</td>
-    <td class="num"><strong${acento ? ' class="realce"' : ""}>${m.profundidad_max}</strong></td>
-    <td class="num"><strong${acento ? ' class="realce"' : ""}>${m.profundidad_media}</strong></td></tr>`;
+    <td class="num" data-r="UEA con prerrequisito">${m.con_prerrequisito} <span class="tenue">de ${m.ueas}</span></td>
+    <td class="num" data-r="Porcentaje">${m.pct_con_prerrequisito} %</td>
+    <td class="num" data-r="Seriaciones">${m.aristas}</td>
+    <td class="num" data-r="Cadena más larga"><strong${acento ? ' class="realce"' : ""}>${m.profundidad_max}</strong></td>
+    <td class="num" data-r="Profundidad media"><strong${acento ? ' class="realce"' : ""}>${m.profundidad_media}</strong></td></tr>`;
   return `<h2>Cadenas de seriación</h2>
     ${p.sin_columna ? `<div class="aviso"><strong>Dato incompleto.</strong>
       La tabla del plan propuesto de esta licenciatura no dejó legible la columna de
@@ -294,7 +294,7 @@ function seriacion(l) {
       En lugar de pedir una UEA antecedente, condiciona ${p.por_creditos} de sus UEA a un
       mínimo de créditos acumulados, que no crea cadena: cualquier combinación de UEA sirve
       para reunirlos. Por eso su cadena más larga es de ${p.profundidad_max}.</div>` : ""}
-    <table><thead><tr><th>Plan</th><th class="num">UEA con prerrequisito</th>
+    <table class="apilada"><thead><tr><th>Plan</th><th class="num">UEA con prerrequisito</th>
       <th class="num">%</th><th class="num">Seriaciones</th>
       <th class="num">Cadena más larga</th><th class="num">Profundidad media</th></tr></thead>
       <tbody>${fila("Vigente 2020", v, false)}${fila("Modificado", p, true)}</tbody></table>
@@ -473,12 +473,12 @@ function buscar(q) {
     <div class="migaja"><a href="#/">Panorama</a> › Búsqueda</div>
     <h1>“${esc(q)}”</h1>
     <p class="sub">${res.length} UEA en los diez planes propuestos.</p>
-    <table><thead><tr><th>Clave</th><th>Unidad de Enseñanza Aprendizaje</th>
+    <table class="apilada por-nombre"><thead><tr><th>Clave</th><th>Unidad de Enseñanza Aprendizaje</th>
       <th>Licenciatura</th><th>Tronco</th><th>Programa</th></tr></thead><tbody>
     ${res.slice(0, 300).map(([l, u]) => `<tr onclick="location.hash='#/uea/${l.clave}/${u.clave}'">
-      <td class="clave">${esc(u.clave)}</td><td><strong>${esc(u.nombre)}</strong></td>
-      <td>${esc(l.nombre)}</td><td>${esc(TRONCO[u.tronco] || u.tronco)}</td>
-      <td>${u.programa ? '<span class="eti verde">programa</span>' : '<span class="eti hueca">sin programa</span>'}</td>
+      <td class="clave" data-r="Clave">${esc(u.clave)}</td><td><strong>${esc(u.nombre)}</strong></td>
+      <td data-r="Licenciatura">${esc(l.nombre)}</td><td data-r="Tronco">${esc(TRONCO[u.tronco] || u.tronco)}</td>
+      <td data-r="Programa">${u.programa ? '<span class="eti verde">programa</span>' : '<span class="eti hueca">sin programa</span>'}</td>
       </tr>`).join("") || '<tr><td colspan="5">Sin resultados.</td></tr>'}
     </tbody></table>
     ${res.length > 300 ? '<p class="sub">Se muestran los primeros 300 resultados.</p>' : ""}`;
@@ -538,7 +538,12 @@ function aplicarCampo(nivel) {
   document.body.dataset.nivel = nivel;
 }
 
-const TAPA = 230, DESCUBRE = 300;   // ms; el viaje completo del plano
+// ms del viaje del plano. En pantalla de teléfono el recorrido es más corto
+// —la misma firma de nivel, menos espera— porque el barrido cruza una pantalla
+// pequeña y cualquier demora se siente el doble mientras se navega con el pulgar.
+const estrecho = () => window.matchMedia("(max-width: 720px)").matches;
+const TAPA = () => (estrecho() ? 170 : 230);
+const DESCUBRE = () => (estrecho() ? 210 : 300);
 let generacion = 0;
 
 function barrido(nivel, haciaDentro, alCubrir) {
@@ -549,8 +554,9 @@ function barrido(nivel, haciaDentro, alCubrir) {
   c.style.background = CORTINA[nivel];
   c.style.display = "block";
   if (animCortina) animCortina.cancel();
+  const msTapa = TAPA(), msDescubre = DESCUBRE();
   const tapa = c.animate([{ transform: desde }, { transform: "translateX(0)" }],
-    { duration: TAPA, easing: "cubic-bezier(.66,0,.34,1)", fill: "forwards" });
+    { duration: msTapa, easing: "cubic-bezier(.66,0,.34,1)", fill: "forwards" });
   animCortina = tapa;
 
   // El relevo va atado al reloj de la animación, pero con red: si el motor
@@ -564,7 +570,7 @@ function barrido(nivel, haciaDentro, alCubrir) {
     clearTimeout(redTapa);
     alCubrir();
     const descubre = c.animate([{ transform: "translateX(0)" }, { transform: hasta }],
-      { duration: DESCUBRE, easing: "cubic-bezier(.32,0,.18,1)", fill: "forwards" });
+      { duration: msDescubre, easing: "cubic-bezier(.32,0,.18,1)", fill: "forwards" });
     animCortina = descubre;
     const cerrar = () => {
       if (cerrado || mia !== generacion) return;
@@ -573,10 +579,10 @@ function barrido(nivel, haciaDentro, alCubrir) {
       c.style.display = "none";
       animCortina = null;
     };
-    const redFin = setTimeout(cerrar, DESCUBRE + 400);
+    const redFin = setTimeout(cerrar, msDescubre + 400);
     descubre.finished.then(cerrar).catch(() => {});
   };
-  const redTapa = setTimeout(seguir, TAPA + 400);
+  const redTapa = setTimeout(seguir, msTapa + 400);
   tapa.finished.then(seguir).catch(() => {});
 }
 

@@ -58,6 +58,7 @@
   --papel: #FFFFFF;
   --verde: #26642B;
   --max: 1280px;
+  --aire: 28px;          /* aire superior de main; el plano de encabezado lo anula */
 }
 
 /* Los juegos de papeles valen igual para una página entera —`body[data-campo]`—
@@ -147,7 +148,7 @@ body[data-campo="tinta"], .plano-tinta {
 }
 /* Plano de encabezado: arranca pegado al encabezado fijo, comiéndose el aire
    superior de main, y cierra antes de la tabla. */
-.plano-cabecera { margin: -28px 0 26px; padding: 34px 0 20px; }
+.plano-cabecera { margin: calc(-1 * var(--aire)) 0 26px; padding: 34px 0 20px; }
 .plano-cabecera .datos { border-bottom: none; margin-bottom: 0; }
 .plano-cabecera .sub { margin-bottom: 4px; }
 
@@ -209,7 +210,7 @@ body[data-campo="tinta"] .logo-blanco { display: block; }
 #buscador::placeholder { color: var(--texto-2); opacity: 1; }
 #buscador:focus { outline: 2px solid var(--acento-txt); outline-offset: -1px; }
 
-main { max-width: var(--max); margin: 0 auto; padding: 28px 24px 80px; }
+main { max-width: var(--max); margin: 0 auto; padding: var(--aire) 24px 80px; }
 
 /* ---------------------------------------------------- tipografía */
 h1 { font-size: 27px; line-height: 1.2; margin-bottom: 6px; }
@@ -342,13 +343,6 @@ footer {
   border-top: 1px solid var(--linea); margin-top: 50px; padding: 20px 24px 40px;
   font-size: 11.5px; color: var(--texto-2); max-width: var(--max); margin-left: auto;
   margin-right: auto;
-}
-
-@media (max-width: 720px) {
-  .barra nav { width: 100%; margin-left: 0; }
-  #buscador { width: 100%; }
-  .dato { flex-basis: 45%; }
-  table { font-size: 12.5px; }
 }
 
 /* ------------------------------------------- cadenas de seriación */
@@ -502,4 +496,161 @@ tbody tr:hover .punto { transform: scale(1.12); }
   #vista.entrando .datos > .dato { animation: none; }
   #cortina { display: none !important; }
   header, tbody tr, .tarjeta, .eslabon, .punto { transition: none; }
+}
+
+/* ═══════════════════════════════════════════════════════════════════
+   Pantalla estrecha
+   ═══════════════════════════════════════════════════════════════════
+   Mismo código, misma URL, mismo sistema de campos y bloques: lo que
+   cambia es la forma de las tablas y el tamaño de lo que se toca. Dos
+   umbrales, porque son dos problemas distintos.
+
+     ≤ 980 px  Las tablas se apilan en fichas y todo lo que se toca crece
+               a 44 px. La tabla del panorama necesita unos 1000 px para
+               sus trece columnas y la del panel de UEA unos 810 px para
+               las siete suyas, así que una tableta en vertical ya las
+               desborda — y una tableta se toca con el dedo igual que un
+               teléfono.
+     ≤ 720 px  La página entera se recompone: encabezado en dos filas,
+               cédulas en retícula de dos, cadenas en vertical, árboles
+               uno debajo del otro.
+
+   Ninguna vista pide desplazamiento horizontal en ningún ancho: se
+   verifica comparando `scrollWidth` contra `innerWidth`, no a ojo.
+   ═══════════════════════════════════════════════════════════════════ */
+
+/* ---------------------------------------------------- tablas en fichas
+   Cada fila pasa a ser una ficha y cada celda lleva su rótulo, tomado del
+   atributo `data-r` que escribe app.js: la cabecera de la tabla se vuelve
+   innecesaria y el contenido deja de estar «a la derecha», que es lo que
+   el usuario no puede adivinar. La celda que manda —el nombre— encabeza
+   la ficha a todo el ancho; las demás se reparten en dos columnas, que a
+   390 px es lo que cabe sin apretar, y en el panorama deja además cada
+   cifra de 2020 junto a la de 2026, que es la comparación que importa.
+   La fila entera sigue siendo el área táctil, muy por encima de 44 px. */
+@media (max-width: 980px) {
+  .apilada thead { position: absolute; left: -9999px; }   /* sigue para el lector de pantalla */
+  .apilada, .apilada tbody { display: block; }
+  .apilada tr {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 1px 16px;
+    padding: 13px 0 15px; border-bottom: 1px solid var(--linea);
+  }
+  .apilada td {
+    display: flex; flex-wrap: wrap; align-items: baseline; gap: 2px 10px;
+    border: none; padding: 3px 0; text-align: left; min-width: 0;
+  }
+  .apilada td > * { min-width: 0; }
+  .apilada td.num { text-align: left; }
+  .apilada td[data-r]::before {
+    content: attr(data-r);
+    font-size: 10px; letter-spacing: .08em; text-transform: uppercase;
+    color: var(--texto-2); white-space: nowrap; flex: none;
+    margin-right: auto;   /* empuja el valor al canto derecho sin separar sus partes */
+  }
+  .apilada .eti { white-space: normal; }
+  .apilada td[colspan] { grid-column: 1 / -1; }
+  /* la celda que encabeza la ficha */
+  .apilada td:first-child,
+  .apilada.por-nombre td:nth-child(2) {
+    grid-column: 1 / -1; display: block; font-size: 14.5px;
+    padding-bottom: 9px; margin-bottom: 5px;
+    border-bottom: 1px solid var(--linea);
+  }
+  .apilada.por-nombre td:first-child {
+    display: flex; font-size: inherit; padding-bottom: 3px;
+    margin-bottom: 0; border-bottom: none;
+  }
+  .apilada.por-nombre td:nth-child(2) { order: -1; }
+
+  /* lo que se toca, a 44 px: pestaña, buscador, filtros, eslabones y las
+     hojas del árbol de dependencias */
+  .barra nav a { padding: 12px 14px; }
+  #buscador { font-size: 16px; padding: 12px; }   /* 16 px evita el zoom al enfocar en iOS */
+  .filtros select, .filtros input { font-size: 16px; padding: 11px 10px; }
+  .eslabon { padding: 12px; }
+  ul.arbol li { padding-top: 0; padding-bottom: 0; }
+  ul.arbol li > a { display: inline-block; padding: 13px 0; }
+  ul.arbol li::before { top: 23px; }
+}
+
+@media (max-width: 720px) {
+  :root { --aire: 20px; }
+
+  /* encabezado fijo en dos filas: marca arriba, navegación y buscador abajo */
+  .barra { padding: 11px 16px; gap: 10px 14px; }
+  .barra img { height: 30px; }
+  .barra nav { width: 100%; margin-left: 0; gap: 8px; }
+  #buscador { flex: 1 1 auto; width: auto; min-width: 0; }
+
+  main { padding: var(--aire) 16px 56px; }
+  footer { padding: 18px 16px 34px; margin-top: 34px; }
+  h1 { font-size: 23px; }
+  h2 { font-size: 17px; margin: 26px 0 10px; }
+  h3 { font-size: 14px; }
+  .sub, .migaja { font-size: 12.5px; }
+  .plano-cabecera { padding: 24px 0 16px; margin-bottom: 20px; }
+
+  /* cédulas: retícula de dos columnas, con sus filetes como líneas de la
+     retícula. La última, si queda impar, ocupa el ancho entero. */
+  .datos { display: grid; grid-template-columns: 1fr 1fr; }
+  .dato { flex: none; padding: 13px 14px; border-top: 1px solid var(--linea); }
+  .dato:nth-child(odd) { border-left: none; }
+  .dato:nth-child(1), .dato:nth-child(2) { border-top: none; }
+  .dato:last-child:nth-child(odd) { grid-column: 1 / -1; }
+  .dato .n { font-size: 25px; }
+
+  /* filtros: cada uno a lo ancho */
+  .filtros { gap: 8px; }
+  .filtros select, .filtros input { flex: 1 1 100%; }
+  .conteo { margin-left: 0; width: 100%; }
+
+  .barra-cmp { height: 30px; }
+  .barra-cmp span { padding: 0 6px; }
+
+  /* cadenas: la fila horizontal se vuelve columna y la flecha gira, que es
+     como se lee una cadena en un teléfono. Cada eslabón ocupa el ancho. */
+  .cadena { flex-direction: column; align-items: stretch; gap: 0; }
+  /* la flecha gira sobre su propia caja: sin `align-self` giraría sobre el
+     centro de una caja de ancho completo y acabaría lejos de la cadena */
+  .flecha { align-self: flex-start; width: 1.2em; text-align: center;
+            transform: rotate(90deg); margin: 5px 0 5px 16px; }
+
+  /* árboles: uno debajo del otro y con la sangría justa para que el filete
+     y la marca de cada rama sigan leyéndose como árbol a 390 px */
+  .dos-arboles { display: block; }
+  .mitad { min-width: 0; flex: none; }
+  .mitad + .mitad { margin-top: 26px; }
+  ul.arbol { margin-left: 3px; padding-left: 11px; }
+  ul.arbol li { padding-left: 11px; font-size: 13px; }
+  ul.arbol li::before { width: 7px; }
+
+  .aviso { padding: 13px 14px; }
+  .campo pre { font-size: 14px; }
+  .conteo-arbol { min-width: 26px; height: 26px; }
+
+  /* portada: el Punto se achica para no comerse la cifra, las cuatro cifras
+     van en retícula de dos y el bloque puede desplazarse si el teléfono es
+     corto, en vez de recortarse. */
+  #portada { display: block; overflow-y: auto; overflow-x: hidden; padding: 30px 20px 36px; }
+  .p-contenido { max-width: none; }
+  .p-punto { width: 300px; height: 300px; right: -155px; bottom: -150px; }
+  /* El pie puede cruzar el Punto en pantalla corta: al 52 % sobre rojo daría
+     2.27:1, así que sube al 95 %, que da 5.27:1 sobre el círculo y 15.4:1
+     sobre el campo de tinta. */
+  .p-pie { color: rgba(255,255,255,.95); }
+  /* En pantalla estrecha el Punto llega hasta el botón, y un rojo sobre rojo
+     deja de ser masa. Se invierte, que es la misma regla que rige dentro del
+     Plano rojo del panorama: blanco pleno con la palabra en rojo, 5.76:1
+     sobre el círculo y 17.0:1 contra el campo de tinta. */
+  .p-entrar { background: #fff; color: var(--rojo); }
+  .p-entrar:hover { background: #fff; }
+  .p-titulo { font-size: clamp(28px, 8.5vw, 76px); margin-top: 20px; }
+  .p-bajada { font-size: 14px; margin-top: 16px; }
+  .p-cifras { display: grid; grid-template-columns: 1fr 1fr; margin: 30px 0 28px; }
+  .p-cifras > div { flex: none; padding: 14px 14px 12px;
+                    border-top: 1px solid rgba(255,255,255,.22); }
+  .p-cifras > div:nth-child(odd) { border-left: none; }
+  .p-cifras > div:nth-child(1), .p-cifras > div:nth-child(2) { border-top: none; }
+  .p-cifras b { font-size: 30px; }
+  .p-entrar { padding: 15px 26px; }
 }

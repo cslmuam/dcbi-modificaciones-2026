@@ -238,6 +238,20 @@ del carrusel y el deck del mismo proyecto.
 El emblema cambia con el campo: sobre papel va el positivo, sobre tinta el
 negativo en blanco. Ninguno se recolorea por CSS (numeral 3.2).
 
+**En el teléfono es el mismo tablero, no otra página**: misma URL, mismo código
+y mismo sistema de campos y bloques. Lo que cambia es la forma de las tablas y
+el tamaño de lo que se toca, con dos umbrales. Por debajo de **980 px** cada
+tabla se apila en fichas —una por fila, con el rótulo de cada dato tomado del
+atributo `data-r` que escribe `app.js`— y todo lo que se toca crece a 44 px; una
+tableta en vertical ya entra aquí, porque sus 768 px no alcanzan ni para las
+trece columnas del panorama ni para las siete del panel de UEA, y porque
+también se toca con el dedo. Por debajo de **720 px** se recompone la página:
+encabezado en dos filas, cédulas en retícula de dos, cadenas de seriación en
+vertical con la flecha girada, y los dos árboles de dependencias uno debajo del
+otro con la sangría justa para que sigan leyéndose como árbol. Ninguna vista
+pide desplazamiento horizontal en ningún ancho, y se comprueba comparando
+`scrollWidth` contra `innerWidth`, no a ojo.
+
 Los valores son los del Acuerdo 06/2012, verificados con `/identidad-uam`.
 
 - Color de la Unidad Azcapotzalco, Pantone 186 C `#CD032E` (numeral 5.3, p. 49).
