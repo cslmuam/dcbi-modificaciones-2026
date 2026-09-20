@@ -15,12 +15,12 @@ const TRONCO = {
 };
 
 const EMPAREJADO = {
-  nombre_truncado: ["programa", "eti verde", "El nombre del archivo llegó truncado al extraerse"],
   clave: ["programa", "eti verde", ""],
-  clave_compartida: ["programa compartido", "eti verde", "El programa se archivó en la carpeta de otra licenciatura"],
-  nombre: ["programa · otra clave", "eti verde", "La tabla del plan y el programa usan claves distintas"],
-  nombre_compartido: ["programa · otra clave", "eti verde", "Programa de otra licenciatura, con clave distinta"],
-  nombre_clave_provisional: ["programa · clave provisional", "eti verde", "El archivo del programa lleva clave provisional"],
+  nombre: ["programa", "eti verde", ""],
+  nombre_truncado: ["programa", "eti verde", "El nombre del archivo llegó truncado al extraerse"],
+  nombre_aproximado: ["programa", "eti verde", "Emparejado por parecido del nombre, no exacto"],
+  clave_compartida: ["programa compartido", "eti verde", "UEA compartida: el programa se archivó en otra licenciatura"],
+  nombre_compartido: ["programa compartido", "eti verde", "UEA compartida: el programa se archivó en otra licenciatura"],
 };
 
 const CONTINUIDAD = {
@@ -209,6 +209,24 @@ function licenciatura(clave, q = "") {
       <tbody>${filas || '<tr><td colspan="7">Ningún resultado con estos filtros.</td></tr>'}</tbody>
     </table>
 
+    ${(() => {
+      const sp = l.ueas.filter((u) => !u.programa && !u.fuera_de_tabla);
+      if (!sp.length) return "";
+      return `<h2>UEA sin programa localizado en el expediente</h2>
+      <p class="sub">La tabla del plan las lista, pero no se encontró su programa. Se muestra
+      lo más parecido que hay en el expediente, para poder preguntar a la coordinación si el
+      programa falta o si está entregado bajo otro nombre.</p>
+      <table><thead><tr><th>Clave en el plan</th><th>Unidad de Enseñanza Aprendizaje</th>
+        <th>Tronco</th><th>Lo más parecido en el expediente</th></tr></thead><tbody>
+      ${sp.map((u) => `<tr onclick="location.hash='#/uea/${l.clave}/${u.clave}'">
+        <td class="clave">${esc(u.clave)}</td><td><strong>${esc(u.nombre)}</strong></td>
+        <td>${esc(TRONCO[u.tronco] || u.tronco || "")}</td>
+        <td>${u.candidato ? `${esc(u.candidato.nombre)}
+             <span class="eti hueca">${esc(u.candidato.lic)} · ${u.candidato.similitud}</span>`
+             : "<span class=\"eti hueca\">sin parecido</span>"}</td></tr>`).join("")}
+      </tbody></table>`;
+    })()}
+
     ${l.procedencias && l.procedencias.length ? `<h2>Programas archivados en otra licenciatura</h2>
       <p class="sub">UEA compartidas entre carreras cuyo programa se entregó una sola vez.
       El tablero lo toma de donde está.</p>
@@ -276,8 +294,11 @@ function detalleUEA(claveLic, claveUEA) {
       </div>` : ""}
     ${campos.length
       ? campos.map(([k, t]) => `<div class="campo"><h3>${t}</h3><pre>${esc(u.campos[k])}</pre></div>`).join("")
-      : `<div class="aviso">El expediente no incluye el programa de esta UEA, o su
-         archivo no tiene capa de texto extraíble. La tabla del plan sí la lista.</div>`}
+      : `<div class="aviso"><strong>Sin programa localizado.</strong>
+         La tabla del plan lista esta UEA, pero no se encontró su programa en el expediente.
+         ${u.candidato ? `Lo más parecido es <strong>${esc(u.candidato.nombre)}</strong>,
+           de ${esc(u.candidato.lic)}, con una similitud de ${u.candidato.similitud}.` : ""}
+         Conviene preguntar a la coordinación si falta o si se entregó con otro nombre.</div>`}
 
     ${u.ruta ? `<div class="campo"><h3>Documento fuente</h3>
       <p class="ruta">Modificaciones Licenciaturas Julio 2026/${esc(u.ruta)}</p></div>` : ""}`;

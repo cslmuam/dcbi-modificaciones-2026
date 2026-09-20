@@ -20,6 +20,7 @@ Uso:  python3 construir_datos.py
 import json
 import pathlib
 import re
+import difflib
 import unicodedata
 from collections import defaultdict
 
@@ -117,6 +118,19 @@ def norma_nombre(n):
     t = re.sub(r"[^a-z0-9 ]+", " ", t)
     t = re.sub(r"\b(de|del|la|el|los|las|y|en|para|a)\b", " ", t)
     return re.sub(r"\s+", " ", t).strip()
+
+
+
+def compatible(a, b):
+    """Dos nombres muy parecidos pueden ser UEA distintas. Un laboratorio no es
+    su teoría, y un «I» no es un «II», aunque el resto del nombre coincida."""
+    lab_a, lab_b = a.startswith("lab"), b.startswith("lab")
+    if lab_a != lab_b:
+        return False
+    rom = lambda t: (re.findall(r"\b(i{1,3}|iv|v)\b$", t) or [""])[0]
+    if rom(a) != rom(b):
+        return False
+    return True
 
 
 # ------------------------------------------------- tabla del plan propuesto
@@ -357,9 +371,24 @@ def main():
                 # varios nombres llegaron truncados ("Aprovechamiento y
                 # Tratamiento de Re"), así que se admite prefijo inequívoco
                 pref = [r for k, r in por_nombre[lic].items()
-                        if len(k) >= 12 and (k.startswith(n) or n.startswith(k))]
+                        if len(k) >= 12 and compatible(n, k)
+                        and (k.startswith(n) or n.startswith(k))]
                 if len(pref) == 1:
                     p, como = pref[0], "nombre_truncado"
+            if p is None and len(n) >= 10:
+                # último recurso: similitud alta dentro de la misma
+                # licenciatura, para nombres con erratas ("Tratamieno") o con
+                # la clave tentativa pegada al título ("114002X Estructuras")
+                mejor, sc_mejor = None, 0.0
+                for k, r in por_nombre[lic].items():
+                    if not compatible(n, k):
+                        continue
+                    sc = difflib.SequenceMatcher(None, n, k).ratio()
+                    if sc > sc_mejor:
+                        mejor, sc_mejor = r, sc
+                if sc_mejor >= 0.88:
+                    p, como = mejor, "nombre_aproximado"
+                    reg["similitud"] = round(sc_mejor, 2)
             if p is None:
                 for otra in LIC:
                     if otra == lic:
@@ -371,6 +400,14 @@ def main():
                     if len(cands) == 1:
                         p, como, de = cands[0], "clave_compartida", LIC[otra]
                         break
+                    if len(n) >= 10:
+                        for k, r in por_nombre[otra].items():
+                            if (compatible(n, k)
+                                    and difflib.SequenceMatcher(None, n, k).ratio() >= 0.95):
+                                p, como, de = r, "nombre_compartido", LIC[otra]
+                                break
+                        if p:
+                            break
             reg["clave_por_asignar"] = (not clave.isdigit()) or len(clave) < 7
             reg["programa"] = bool(p and p["campos"])
             reg["emparejamiento"] = como
@@ -406,6 +443,21 @@ def main():
                       "ruta": r["ruta"], "programa": True, "fuera_de_tabla": True}
                      for (l2, _), r in docs.items()
                      if l2 == lic and r["campos"] and r["ruta"] not in usados]
+
+        for reg in plan.values():
+            if reg.get("programa"):
+                continue
+            n = norma_nombre(reg["nombre"])
+            mejor, sc = None, 0.0
+            for lic2 in list(LIC) + ["tg"]:
+                for k, r in por_nombre[lic2].items():
+                    v = difflib.SequenceMatcher(None, n, k).ratio()
+                    if v > sc:
+                        mejor, sc = (r, lic2), v
+            if mejor and sc >= 0.45:
+                reg["candidato"] = {"nombre": mejor[0]["nombre"],
+                                    "lic": LIC.get(mejor[1], "Tronco General"),
+                                    "similitud": round(sc, 2)}
 
         claves_p, claves_v = set(plan), set(vig)
         provisional = {c for c in claves_p if not c.isdigit()}
