@@ -32,15 +32,21 @@ una tras otra para llegar a la más encadenada— y la profundidad media, que
 promedia ese recorrido sobre todas las UEA del plan. Debajo se dibujan las dos
 cadenas más largas, eslabón por eslabón.
 
-La cadena más larga se acorta en las ocho licenciaturas donde la columna de
-seriación resultó legible. En Computación pasa de nueve UEA encadenadas a
-cuatro, y en Civil de siete a seis. La profundidad media baja en todas ellas.
+La cadena más larga se acorta en las diez licenciaturas. En Computación pasa
+de nueve UEA encadenadas a cuatro, en Electrónica de nueve a cuatro, en
+Ambiental de ocho a cinco. La profundidad media baja en todas.
 
 Se cuentan sólo los prerrequisitos de UEA. Los mínimos de créditos se reportan
-aparte, porque no encadenan una UEA con otra. En Electrónica y en Física la
-columna de seriación del plan propuesto no quedó legible al extraerse, de modo
-que sus cifras aparecen en cero con una advertencia expresa: no significan
-ausencia de seriación.
+aparte, porque no encadenan una UEA con otra: cualquier combinación de UEA
+sirve para reunirlos. La distinción importa en Física, cuyo plan modificado
+condiciona 23 UEA a un mínimo de créditos y casi ninguna a una UEA
+antecedente, de modo que su cadena de 1 es el plan y no un dato faltante. El
+tablero lo explica en esa licenciatura con una nota propia.
+
+La seriación se lee de la tabla del plan, que es donde la fija, y la ficha del
+programa queda como respaldo. Al principio se leía sólo de la ficha, y por eso
+Electrónica y Física aparecían sin seriación: ambas la declaran únicamente en
+la tabla.
 
 **Árbol de dependencias.** La ficha de cada UEA muestra dos árboles
 navegables: lo que hay que aprobar antes de llegar a ella y lo que se abre

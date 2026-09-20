@@ -258,6 +258,18 @@ def tabla_del_plan(corpus, lic):
         reg = filas.get(clave, {})
         reg.update({"clave": clave, "nombre": nombre,
                     "tipo": m.group("tipo").upper(), "tronco": tronco})
+        # La seriación es la última columna de la tabla. Algunas coordinaciones
+        # sólo la ponen ahí y no en la ficha del programa, así que se lee de las
+        # dos partes. Una clave de UEA se distingue de una hora o un crédito por
+        # su magnitud: ninguna hora llega a seis cifras.
+        resto = m.group("resto").replace("|", " ")
+        ser = [x for x in re.findall(r"\b\d{6,7}\b", resto) if x != clave]
+        mcred = re.search(r"(\d{2,3})\s*CR[EÉ]DITOS?", resto, re.I)
+        if ser or mcred:
+            partes = ser + ([f"{mcred.group(1)} créditos"] if mcred else [])
+            reg.setdefault("seriacion_tabla", True)
+            reg.setdefault("_ser_tabla", " y ".join(partes))
+
         if len(nums) >= 3:
             teoria, practica = nums[0], nums[1]
             # El orden de las columnas cambia de una coordinación a otra: unas
@@ -266,6 +278,7 @@ def tabla_del_plan(corpus, lic):
             # fórmula del artículo 56 del RES — dos créditos por hora de teoría
             # más uno por hora de práctica.
             esperado = 2 * teoria + practica
+            nums = [x for x in nums if x < 100000]
             cand = [x for x in nums[2:5] if 0 < x <= 30]
             creditos = min(cand, key=lambda x: abs(x - esperado)) if cand else None
             # las horas totales son once semanas por hora semanal; la columna
@@ -496,6 +509,13 @@ def main():
             else:
                 reg["campos"] = {}
 
+        # La tabla del plan manda sobre la ficha del programa: es la que fija
+        # la seriación del plan, y algunas coordinaciones sólo la ponen ahí.
+        for reg in plan.values():
+            if reg.pop("seriacion_tabla", None) is not None:
+                reg["seriacion"] = reg["_ser_tabla"]
+            reg.pop("_ser_tabla", None)
+
         # programas entregados de UEA que la tabla del plan no listó
         usados = {r["ruta"] for r in
                   [x.get("_doc") for x in plan.values()] if r}
@@ -530,8 +550,11 @@ def main():
         m_p["por_creditos"] = len(cred_p)
         nom_p_clave = {u["clave"]: u["nombre"] for u in lista_p}
         m_p["cadena_nombres"] = [nom_p_clave.get(c, c) for c in m_p.pop("cadena_mas_larga")]
-        m_p["sin_columna"] = sum(1 for u in lista_p if not u.get("seriacion")) == len(lista_p) \
-            or len(ar_p) + len(cred_p) < 3
+        # "sin_columna" se reserva a que la extracción no haya aportado nada.
+        # Un plan que sólo condiciona por mínimos de créditos está bien medido:
+        # su cadena es corta porque así es el plan, no porque falte el dato.
+        m_p["sin_columna"] = len(ar_p) + len(cred_p) == 0
+        m_p["solo_creditos"] = len(ar_p) == 0 and len(cred_p) > 0
 
         # --- seriación: plan vigente 2020, del grafo curricular ---
         ar_v = sorted({(l["source"], l["target"]) for l in grafo["links"]

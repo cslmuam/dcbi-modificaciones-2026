@@ -277,7 +277,12 @@ function seriacion(l) {
     ${p.sin_columna ? `<div class="aviso"><strong>Dato incompleto.</strong>
       La tabla del plan propuesto de esta licenciatura no dejó legible la columna de
       seriación al extraerse, así que sus cifras aparecen en cero y no deben leerse como
-      ausencia de seriación. El plan vigente sí se midió.</div>` : ""}
+      ausencia de seriación. El plan vigente sí se midió.</div>`
+      : (p.aristas <= 2 && p.por_creditos > 5) ? `<div class="aviso">
+      <strong>Este plan casi no encadena UEA con UEA.</strong>
+      En lugar de pedir una UEA antecedente, condiciona ${p.por_creditos} de sus UEA a un
+      mínimo de créditos acumulados, que no crea cadena: cualquier combinación de UEA sirve
+      para reunirlos. Por eso su cadena más larga es de ${p.profundidad_max}.</div>` : ""}
     <table><thead><tr><th>Plan</th><th class="num">UEA con prerrequisito</th>
       <th class="num">%</th><th class="num">Seriaciones</th>
       <th class="num">Cadena más larga</th><th class="num">Profundidad media</th></tr></thead>
