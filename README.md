@@ -93,20 +93,25 @@ de Drive contra la carpeta local sin bajar contenido: 1,411 archivos de un lado
 y 1,411 del otro, coincidencia exacta byte a byte. Tampoco es la indexación:
 los archivos están en el corpus.
 
-**La causa está en cómo el expediente identifica cada programa.** La clave de
-la tabla del plan y la que el programa declara en su ficha no siempre coinciden,
-y hay **27 claves que más de un programa declara como propia** — típicamente
-porque un programa nuevo se derivó de otro sin corregir la ficha. En Ambiental,
-la clave 1130024 la declaran cinco programas distintos; en Computación, 1125014
-la declaran cinco.
+**La causa está en cómo el expediente identifica cada programa, y buena parte
+de eso es el estado del proceso, no un defecto.** Muchos programas nuevos
+todavía no tienen clave asignada — la definitiva se fija más adelante —, así
+que circulan con marcadores del tipo `11XXXXX` en el nombre del archivo y con
+una ficha que conserva la clave del programa del que se derivaron. En el
+tablero son 25 UEA del plan con clave por asignar y 20 cuyo programa
+todavía no lleva clave propia. Se marcan «por asignar» y no se cuentan como
+discrepancia.
 
-Esa colisión provocaba además un **defecto grave en este tablero, ya corregido**:
+Aparte de eso hay **12 claves que dos programas distintos, ambos con clave
+firme, declaran como propia**. Esas sí conviene revisarlas. En Computación,
+1125014 la declaran cinco programas, y `110019 Álgebra lineal OBL.docx`
+declara 1114056, que es la de Sistemas de Ecuaciones Lineales y Matrices, del
+Tronco General.
+
+Una y otra cosa provocaban un **defecto grave en este tablero, ya corregido**:
 al indexar los programas por clave, los campos de dos UEA distintas se fundían
 en un solo registro, de modo que una ficha podía mostrar el objetivo de una UEA
-y la bibliografía de otra. El caso más claro era `110019 Álgebra lineal
-OBL.docx`, cuya ficha declara la clave 1114056, que es la de Sistemas de
-Ecuaciones Lineales y Matrices, del Tronco General. Los programas se indexan
-ahora **por documento**, no por clave.
+y la bibliografía de otra. Los programas se indexan ahora **por documento**.
 
 El emparejamiento con la tabla del plan va en cascada, y empieza por el nombre
 del archivo, que resultó más confiable que la clave de la ficha: nombre exacto,

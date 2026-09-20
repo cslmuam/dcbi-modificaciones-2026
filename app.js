@@ -15,6 +15,7 @@ const TRONCO = {
 };
 
 const EMPAREJADO = {
+  nombre_truncado: ["programa", "eti verde", "El nombre del archivo llegó truncado al extraerse"],
   clave: ["programa", "eti verde", ""],
   clave_compartida: ["programa compartido", "eti verde", "El programa se archivó en la carpeta de otra licenciatura"],
   nombre: ["programa · otra clave", "eti verde", "La tabla del plan y el programa usan claves distintas"],
@@ -145,7 +146,8 @@ function licenciatura(clave, q = "") {
   const filas = lista.map((u) => {
     const [txt, cls] = CONTINUIDAD[u.continuidad] || ["—", "eti hueca"];
     return `<tr onclick="location.hash='#/uea/${clave}/${u.clave}'">
-      <td class="clave">${esc(u.clave)}</td>
+      <td class="clave">${esc(u.clave)}${u.clave_por_asignar
+        ? ' <span class="eti hueca" title="La clave definitiva se asigna más adelante en el proceso">por asignar</span>' : ""}</td>
       <td><strong>${esc(u.nombre)}</strong>${u.fuera_de_tabla
         ? ' <span class="eti hueca" title="El programa se entregó pero la tabla del plan no lista esta clave">fuera de la tabla</span>' : ""}</td>
       <td>${esc(TRONCO[u.tronco] || u.tronco)}</td>
@@ -204,8 +206,9 @@ function licenciatura(clave, q = "") {
 
     ${l.discrepancias && l.discrepancias.length ? `<h2>Discrepancias entre la tabla del plan y los programas</h2>
       <p class="sub">Casos en que la clave de la tabla no coincide con la del programa, o en que
-      el programa se archivó en la carpeta de otra licenciatura. No son errores del tablero:
-      conviene revisarlos antes de dictaminar.</p>
+      el programa se archivó en la carpeta de otra licenciatura. Las UEA cuya clave todavía
+      está por asignar no aparecen aquí, porque eso es el estado del proceso y no una
+      discrepancia.</p>
       <table><thead><tr><th>Clave en el plan</th><th>Unidad de Enseñanza Aprendizaje</th>
         <th>Clave en el programa</th><th>Archivado en</th></tr></thead><tbody>
       ${l.discrepancias.map((x) => `<tr onclick="location.hash='#/uea/${l.clave}/${x.clave_plan}'">
@@ -241,7 +244,8 @@ function detalleUEA(claveLic, claveUEA) {
     <p class="kicker">${esc(TRONCO[u.tronco] || u.tronco)} ·
       ${u.tipo === "OPT" ? "Optativa" : "Obligatoria"}</p>
     <h1>${esc(u.nombre)}</h1>
-    <p class="sub"><span class="clave">Clave ${esc(u.clave)}</span> ·
+    <p class="sub"><span class="clave">Clave ${esc(u.clave)}</span>${u.clave_por_asignar
+      ? ' <span class="eti hueca">por asignar</span>' : ""} ·
       <span class="${cls}">${txt}</span>
       ${u.clave_2020 ? ` · en el plan 2020 tenía la clave <span class="clave">${esc(u.clave_2020)}</span>` : ""}</p>
 
@@ -254,11 +258,16 @@ function detalleUEA(claveLic, claveUEA) {
         ${u.seriacion ? esc(u.seriacion) : "Sin seriación"}</div><div class="r">seriación</div></div>
     </div>
 
-    ${u.programa && u.emparejamiento !== "clave" ? `<div class="aviso">
+    ${u.programa_sin_clave ? `<div class="aviso">
+      <strong>Clave por asignar.</strong>
+      El archivo del programa todavía no lleva clave propia, y su ficha conserva la del
+      programa del que se derivó. Es el estado del proceso, no una inconsistencia: la clave
+      definitiva se fija más adelante.</div>` : ""}
+    ${u.programa && u.emparejamiento !== "clave" && !u.programa_sin_clave ? `<div class="aviso">
       <strong>Procedencia del programa.</strong>
       ${EMPAREJADO[u.emparejamiento] ? esc(EMPAREJADO[u.emparejamiento][2]) : ""}.
       ${u.programa_de ? `Se tomó de <strong>${esc(u.programa_de)}</strong>.` : ""}
-      ${u.clave_programa && !String(u.clave_programa).startsWith("prov:")
+      ${u.clave_programa
         ? `La tabla del plan lo lista como <span class="clave">${esc(u.clave)}</span> y el
            propio programa se identifica como <span class="clave">${esc(u.clave_programa)}</span>.` : ""}
       </div>` : ""}

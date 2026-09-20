@@ -231,9 +231,14 @@ def main():
         doc = re.sub(r"\.(docx|pdf|doc)$", "", doc, flags=re.I)
         doc = re.sub(r"\.(docx|pdf|doc)$", "", doc, flags=re.I)   # ".docx.pdf"
         doc = norma_nombre(doc)
+        # Una clave por asignar no es un defecto: es el estado del proceso.
+        # La clave definitiva se fija después, así que el expediente circula con
+        # marcadores del tipo 11XXXXX y con fichas que conservan la clave del
+        # programa del que se derivó el nuevo.
+        sin_clave = bool(re.match(r"^\s*1?1[0-9]{0,4}[Xx]{3,}", pathlib.Path(u["ruta"]).name))
         reg = docs.setdefault((lic, doc), {
             "lic": lic, "ruta": u["ruta"], "clave_ficha": u.get("clave_uea"),
-            "nombre": "", "campos": {},
+            "nombre": "", "campos": {}, "clave_por_asignar": sin_clave,
         })
         nom = re.sub(r"^1?1[0-9Xx]{4,6}\s*[-_ ]\s*", "", (u.get("nombre_uea") or "").strip())
         nom = re.sub(r"^\d{6,7}[_\s-]*", "", nom)
@@ -264,8 +269,19 @@ def main():
             por_nombre[lic][n] = reg
         if reg.get("clave_ficha"):
             por_clave[lic][reg["clave_ficha"]].append(reg)
-    colisiones = {(lic, c): [r["nombre"] for r in v]
-                  for lic, d in por_clave.items() for c, v in d.items() if len(v) > 1}
+    colisiones, heredadas = {}, {}
+    for lic, dd in por_clave.items():
+        for c, v in dd.items():
+            if len(v) <= 1:
+                continue
+            firmes = [r for r in v if not r.get("clave_por_asignar")]
+            # dos archivos del mismo programa, con el nombre escrito de dos
+            # maneras, no son una colisión de claves
+            distintos = {norma_nombre(r["nombre"])[:28] for r in firmes}
+            if len(firmes) > 1 and len(distintos) > 1:
+                colisiones[(lic, c)] = sorted(r["nombre"] for r in firmes)
+            elif len(firmes) <= 1 and len({norma_nombre(r["nombre"])[:28] for r in v}) > 1:
+                heredadas[(lic, c)] = sorted(r["nombre"] for r in v)
 
     # ---------------------------------------------------- UEA vigentes 2020
     v2020 = defaultdict(dict)
@@ -315,7 +331,9 @@ def main():
     # ---------------------------------------------------- ensamblado
     salida = {"licenciaturas": [], "generado": "2026-09-19",
               "colisiones": [{"lic": k[0], "clave": k[1], "programas": v}
-                             for k, v in sorted(colisiones.items())]}
+                             for k, v in sorted(colisiones.items())],
+              "claves_heredadas": [{"lic": k[0], "clave": k[1], "programas": v}
+                                   for k, v in sorted(heredadas.items())]}
     for lic, nombre in LIC.items():
         plan = tabla_del_plan(corpus, lic)      # UEA que lista el plan propuesto
         # los programas ya viven en docs/por_nombre/por_clave
@@ -356,6 +374,7 @@ def main():
                     if len(cands) == 1:
                         p, como, de = cands[0], "clave_compartida", LIC[otra]
                         break
+            reg["clave_por_asignar"] = (not clave.isdigit()) or len(clave) < 7
             reg["programa"] = bool(p and p["campos"])
             reg["emparejamiento"] = como
             if de:
@@ -364,9 +383,11 @@ def main():
                 reg["_doc"] = p
                 reg["campos"] = p["campos"]
                 reg["ruta"] = p["ruta"]
-                if p.get("clave_ficha") and p["clave_ficha"] != clave:
+                if p.get("clave_por_asignar"):
+                    reg["programa_sin_clave"] = True
+                elif p.get("clave_ficha") and p["clave_ficha"] != clave:
                     reg["clave_programa"] = p["clave_ficha"]
-                if (lic, p.get("clave_ficha")) in colisiones:
+                if (lic, p.get("clave_ficha")) in colisiones and not p.get("clave_por_asignar"):
                     reg["clave_colisionada"] = True
                 for k in ("horas", "seriacion"):
                     if p.get(k) is not None:
@@ -432,6 +453,8 @@ def main():
                 "nombre": sum(1 for r in plan.values() if r.get("emparejamiento") == "nombre"),
                 "nombre_compartido": sum(1 for r in plan.values() if r.get("emparejamiento") == "nombre_compartido"),
                 "clave_colisionada": sum(1 for r in plan.values() if r.get("clave_colisionada")),
+                "clave_por_asignar": sum(1 for r in plan.values() if r.get("clave_por_asignar")),
+                "programa_sin_clave": sum(1 for r in plan.values() if r.get("programa_sin_clave")),
                 "sin_programa": sum(1 for r in plan.values() if not r.get("programa")),
             },
             "discrepancias": [
@@ -441,7 +464,8 @@ def main():
                  "provisional": str(r.get("clave_programa", "")).startswith("prov:"),
                  "nombre": r["nombre"], "programa_de": r.get("programa_de")}
                 for r in plan.values()
-                if r.get("clave_programa") or r.get("programa_de")],
+                if (r.get("clave_programa") or r.get("programa_de"))
+                and not r.get("programa_sin_clave")],
             "ueas": sorted([{k: v for k, v in r.items() if k != "_doc"}
                             for r in plan.values()] + huerfanos,
                            key=lambda r: (r.get("tronco") or "", r.get("nombre") or "")),
