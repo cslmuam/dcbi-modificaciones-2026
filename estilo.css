@@ -372,7 +372,6 @@ ul.arbol li::before {
 }
 ul.arbol .clave { margin-left: 7px; font-size: 11px; }
 
-.renombrada { font-size: 11.5px; color: var(--acento-txt); margin-top: 2px; font-weight: normal; }
 
 /* ═══════════════════════════════════════════════════════════════════
    Portada — nivel 0, campo tinta. El fondo es #1C1C1C, nunca negro

@@ -56,9 +56,7 @@ function panorama() {
     return `<tr onclick="location.hash='#/lic/${l.clave}'">
       <td><div style="display:flex;align-items:center;gap:10px">
         <span class="punto">${String(i + 1).padStart(2, "0")}</span>
-        <div><strong>${esc(l.nombre)}</strong>${l.nombre_propuesto
-          ? `<div class="renombrada">pasa a llamarse ${esc(l.nombre_propuesto)}</div>` : ""}
-        </div></div></td>
+        <div><strong>${esc(l.nombre_propuesto || l.nombre)}</strong></div></div></td>
       <td class="num" data-r="TG 2020">${num(cv.general)}</td>
       <td class="num" data-r="TG 2026"><strong class="realce">${num(cp.general)}</strong></td>
       <td class="num" data-r="Total 2020">${num(cv.total)}</td>
@@ -177,7 +175,7 @@ function licenciatura(clave, q = "") {
 
   vista.innerHTML = `
     <div class="plano plano-cabecera plano-tinta">
-    <div class="migaja"><a href="#/">Panorama</a> › ${esc(l.nombre)}</div>
+    <div class="migaja"><a href="#/">Panorama</a> › ${esc(l.nombre_propuesto || l.nombre)}</div>
     <p class="kicker">Licenciatura en</p>
     <h1>${esc(l.nombre_propuesto || l.nombre)}</h1>
     ${l.nombre_propuesto ? `<div class="aviso">
@@ -380,7 +378,7 @@ function detalleUEA2020(claveLic, claveUEA) {
   if (!u) return licenciatura(claveLic);
   vista.innerHTML = `
     <div class="migaja"><a href="#/">Panorama</a> ›
-      <a href="#/lic/${claveLic}">${esc(l.nombre)}</a> › plan vigente 2020</div>
+      <a href="#/lic/${claveLic}">${esc(l.nombre_propuesto || l.nombre)}</a> › plan vigente 2020</div>
     <p class="kicker">Plan vigente 2020 · ${esc(TRONCO[u.tronco] || u.tronco || "")}</p>
     <h1>${esc(u.nombre)}</h1>
     <p class="sub"><span class="clave">Clave ${esc(u.clave)}</span></p>
@@ -406,7 +404,7 @@ function detalleUEA(claveLic, claveUEA) {
 
   vista.innerHTML = `
     <div class="migaja"><a href="#/">Panorama</a> ›
-      <a href="#/lic/${claveLic}">${esc(l.nombre)}</a> › ${esc(u.clave)}</div>
+      <a href="#/lic/${claveLic}">${esc(l.nombre_propuesto || l.nombre)}</a> › ${esc(u.clave)}</div>
     <p class="kicker">${esc(TRONCO[u.tronco] || u.tronco)} ·
       ${u.tipo === "OPT" ? "Optativa" : "Obligatoria"}</p>
     <h1>${esc(u.nombre)}</h1>
