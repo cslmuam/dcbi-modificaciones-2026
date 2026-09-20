@@ -102,6 +102,11 @@ function panorama() {
       <tbody>${filas}</tbody>
     </table>
 
+    <div class="aviso"><strong>Sobre las claves.</strong>
+    Las claves de las UEA nuevas son tentativas. Las definitivas se asignan en una ronda
+    posterior del proceso, así que el tablero identifica cada UEA por su nombre y usa la clave
+    sólo como referencia al documento.</div>
+
     <div class="aviso"><strong>Cómo leer las tres últimas columnas.</strong>
     «Nuevas» son UEA cuya clave y cuyo nombre no existían en el plan 2020.
     «Renum.» son UEA que continúan con el mismo nombre bajo una clave distinta,
@@ -204,18 +209,14 @@ function licenciatura(clave, q = "") {
       <tbody>${filas || '<tr><td colspan="7">Ningún resultado con estos filtros.</td></tr>'}</tbody>
     </table>
 
-    ${l.discrepancias && l.discrepancias.length ? `<h2>Discrepancias entre la tabla del plan y los programas</h2>
-      <p class="sub">Casos en que la clave de la tabla no coincide con la del programa, o en que
-      el programa se archivó en la carpeta de otra licenciatura. Las UEA cuya clave todavía
-      está por asignar no aparecen aquí, porque eso es el estado del proceso y no una
-      discrepancia.</p>
+    ${l.procedencias && l.procedencias.length ? `<h2>Programas archivados en otra licenciatura</h2>
+      <p class="sub">UEA compartidas entre carreras cuyo programa se entregó una sola vez.
+      El tablero lo toma de donde está.</p>
       <table><thead><tr><th>Clave en el plan</th><th>Unidad de Enseñanza Aprendizaje</th>
-        <th>Clave en el programa</th><th>Archivado en</th></tr></thead><tbody>
-      ${l.discrepancias.map((x) => `<tr onclick="location.hash='#/uea/${l.clave}/${x.clave_plan}'">
+        <th>Archivado en</th></tr></thead><tbody>
+      ${l.procedencias.map((x) => `<tr onclick="location.hash='#/uea/${l.clave}/${x.clave_plan}'">
         <td class="clave">${esc(x.clave_plan)}</td><td>${esc(x.nombre)}</td>
-        <td class="clave">${x.provisional ? "clave provisional en el archivo"
-          : esc(x.clave_programa || "la misma")}</td>
-        <td>${x.programa_de ? esc(x.programa_de) : "esta licenciatura"}</td></tr>`).join("")}
+        <td>${esc(x.programa_de || "")}</td></tr>`).join("")}
       </tbody></table>` : ""}
 
     ${l.diff.salen.length ? `<h2>UEA del plan vigente sin correspondencia en el propuesto</h2>
@@ -258,18 +259,20 @@ function detalleUEA(claveLic, claveUEA) {
         ${u.seriacion ? esc(u.seriacion) : "Sin seriación"}</div><div class="r">seriación</div></div>
     </div>
 
-    ${u.programa_sin_clave ? `<div class="aviso">
-      <strong>Clave por asignar.</strong>
-      El archivo del programa todavía no lleva clave propia, y su ficha conserva la del
-      programa del que se derivó. Es el estado del proceso, no una inconsistencia: la clave
-      definitiva se fija más adelante.</div>` : ""}
-    ${u.programa && u.emparejamiento !== "clave" && !u.programa_sin_clave ? `<div class="aviso">
+    ${u.clave_programa || u.programa_sin_clave || u.clave_repetida ? `<div class="aviso">
+      <strong>Sobre la clave.</strong>
+      Las claves de los programas nuevos son tentativas — las definitivas se asignan en una
+      ronda posterior del proceso —, así que un programa puede conservar la clave de aquel del
+      que se derivó.
+      ${u.clave_programa ? `Aquí la tabla del plan lo lista como
+        <span class="clave">${esc(u.clave)}</span> y la ficha del programa trae
+        <span class="clave">${esc(u.clave_programa)}</span>.` : ""}
+      ${u.clave_repetida ? "Esa clave aparece además en otro programa de la misma licenciatura." : ""}
+      El tablero empareja por nombre, no por clave.</div>` : ""}
+    ${u.programa_de ? `<div class="aviso">
       <strong>Procedencia del programa.</strong>
-      ${EMPAREJADO[u.emparejamiento] ? esc(EMPAREJADO[u.emparejamiento][2]) : ""}.
-      ${u.programa_de ? `Se tomó de <strong>${esc(u.programa_de)}</strong>.` : ""}
-      ${u.clave_programa
-        ? `La tabla del plan lo lista como <span class="clave">${esc(u.clave)}</span> y el
-           propio programa se identifica como <span class="clave">${esc(u.clave_programa)}</span>.` : ""}
+      Es una UEA compartida y su programa se archivó en
+      <strong>${esc(u.programa_de)}</strong>, de donde se tomó.
       </div>` : ""}
     ${campos.length
       ? campos.map(([k, t]) => `<div class="campo"><h3>${t}</h3><pre>${esc(u.campos[k])}</pre></div>`).join("")

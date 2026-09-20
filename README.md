@@ -93,31 +93,27 @@ de Drive contra la carpeta local sin bajar contenido: 1,411 archivos de un lado
 y 1,411 del otro, coincidencia exacta byte a byte. Tampoco es la indexación:
 los archivos están en el corpus.
 
-**La causa está en cómo el expediente identifica cada programa, y buena parte
-de eso es el estado del proceso, no un defecto.** Muchos programas nuevos
-todavía no tienen clave asignada — la definitiva se fija más adelante —, así
-que circulan con marcadores del tipo `11XXXXX` en el nombre del archivo y con
-una ficha que conserva la clave del programa del que se derivaron. En el
-tablero son 25 UEA del plan con clave por asignar y 20 cuyo programa
-todavía no lleva clave propia. Se marcan «por asignar» y no se cuentan como
-discrepancia.
+**La causa es que las claves todavía no identifican a las UEA nuevas.** Las
+claves definitivas se asignan en una ronda posterior del proceso, de modo que
+las que circulan hoy en el expediente son tentativas. Muchos programas llevan
+un marcador del tipo `11XXXXX` en el nombre del archivo, y muchos otros
+conservan en su ficha la clave del programa del que se derivaron. Por eso 23
+claves aparecen en más de un programa dentro de una misma licenciatura — en
+Computación, 1125014 la traen cinco programas de redes—. No es una
+inconsistencia que haya que corregir ahora: es el estado del proceso.
 
-Aparte de eso hay **12 claves que dos programas distintos, ambos con clave
-firme, declaran como propia**. Esas sí conviene revisarlas. En Computación,
-1125014 la declaran cinco programas, y `110019 Álgebra lineal OBL.docx`
-declara 1114056, que es la de Sistemas de Ecuaciones Lineales y Matrices, del
-Tronco General.
-
-Una y otra cosa provocaban un **defecto grave en este tablero, ya corregido**:
-al indexar los programas por clave, los campos de dos UEA distintas se fundían
-en un solo registro, de modo que una ficha podía mostrar el objetivo de una UEA
-y la bibliografía de otra. Los programas se indexan ahora **por documento**.
+Eso provocaba un **defecto grave en este tablero, ya corregido**: al indexar los
+programas por clave, los campos de dos UEA distintas se fundían en un solo
+registro, de modo que una ficha podía mostrar el objetivo de una UEA y la
+bibliografía de otra. Los programas se indexan ahora **por documento**, y la
+identidad de cada UEA es su nombre. La clave sirve sólo como referencia al
+documento, y el tablero la muestra marcada «por asignar» cuando corresponde.
 
 El emparejamiento con la tabla del plan va en cascada, y empieza por el nombre
 del archivo, que resultó más confiable que la clave de la ficha: nombre exacto,
 nombre truncado por el extractor, clave única, clave en otra licenciatura para
 las UEA compartidas. Cada UEA registra cómo se emparejó, y la vista de
-licenciatura lista las discrepancias.
+licenciatura lista las UEA compartidas cuyo programa se archivó en otra carrera.
 
 Quedan **16 UEA sin programa**, listadas nominalmente en el tablero, y **70
 programas entregados que la tabla del plan no lista**. Unas y otros necesitan
