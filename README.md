@@ -25,6 +25,17 @@ seriación, más el programa completo — objetivo general, objetivos parciales,
 contenido sintético, modalidades de conducción y de evaluación, y bibliografía—
 y la ruta del documento fuente.
 
+**Cambio de denominación.** Tres licenciaturas cambian de nombre en la
+modificación, y el tablero muestra el nuevo con el anterior al lado. Ingeniería
+Eléctrica pasa a Ingeniería Eléctrica y Tecnologías Sostenibles, Ingeniería
+Electrónica a Ingeniería en Sistemas Electrónicos y Ciberfísicos, e Ingeniería
+Metalúrgica a Ingeniería en Metalurgia y Materiales. Las tres se tomaron del
+propio expediente: la pertinencia de Eléctrica describe el tránsito de una
+denominación a la otra, la de Electrónica indica la sustitución del nombre, y
+el plan de Metalúrgica ya usa el nuevo en su perfil de egreso. Se registra
+también el título que se expedirá, que no siempre sigue al nombre del plan —
+Eléctrica seguirá titulando Ingeniero o Ingeniera Electricista.
+
 **Cadenas de seriación.** Cada licenciatura compara su plan vigente contra el
 modificado en cuatro medidas: cuántas UEA exigen haber aprobado otra, cuántas
 seriaciones hay, cuál es la cadena más larga —cuántas UEA hay que ir librando

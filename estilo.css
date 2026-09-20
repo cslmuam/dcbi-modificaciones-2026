@@ -191,3 +191,5 @@ ul.arbol li::before {
   width: 9px; height: 1px; background: var(--filete);
 }
 ul.arbol .clave { margin-left: 7px; font-size: 11px; }
+
+.renombrada { font-size: 11.5px; color: var(--rojo); margin-top: 2px; font-weight: normal; }

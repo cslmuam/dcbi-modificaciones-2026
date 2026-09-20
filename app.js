@@ -56,7 +56,9 @@ function panorama() {
     return `<tr onclick="location.hash='#/lic/${l.clave}'">
       <td><div style="display:flex;align-items:center;gap:10px">
         <span class="punto">${String(i + 1).padStart(2, "0")}</span>
-        <strong>${esc(l.nombre)}</strong></div></td>
+        <div><strong>${esc(l.nombre)}</strong>${l.nombre_propuesto
+          ? `<div class="renombrada">pasa a llamarse ${esc(l.nombre_propuesto)}</div>` : ""}
+        </div></div></td>
       <td class="num">${num(cv.general)}</td>
       <td class="num"><strong style="color:var(--rojo)">${num(cp.general)}</strong></td>
       <td class="num">${num(cv.total)}</td>
@@ -174,7 +176,12 @@ function licenciatura(clave, q = "") {
   vista.innerHTML = `
     <div class="migaja"><a href="#/">Panorama</a> › ${esc(l.nombre)}</div>
     <p class="kicker">Licenciatura en</p>
-    <h1>${esc(l.nombre)}</h1>
+    <h1>${esc(l.nombre_propuesto || l.nombre)}</h1>
+    ${l.nombre_propuesto ? `<div class="aviso">
+      <strong>Cambia de denominación.</strong>
+      El plan vigente se llama <em>Licenciatura en ${esc(l.nombre)}</em> y el modificado
+      pasa a ser <em>Licenciatura en ${esc(l.nombre_propuesto)}</em>. El título que se
+      expide será de ${esc(l.titulo_propuesto)}.</div>` : ""}
 
     <div class="datos">
       <div class="dato"><div class="n">${l.conteo.plan}</div><div class="r">UEA en el plan propuesto</div></div>

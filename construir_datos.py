@@ -48,6 +48,19 @@ LIC = {
 CAMPOS = ["objetivo", "objetivos_parciales", "contenido", "conduccion",
           "evaluacion", "bibliografia"]
 
+# Tres licenciaturas cambian de denominación en la modificación. Se toman del
+# propio expediente: la pertinencia de Eléctrica describe el tránsito de una
+# denominación a la otra, la de Electrónica indica la sustitución del nombre, y
+# el plan de Metalúrgica ya usa el nuevo en su perfil de egreso y en el título.
+NOMBRE_PROPUESTO = {
+    "ele": ("Ingeniería Eléctrica y Tecnologías Sostenibles",
+            "Ingeniero o Ingeniera Electricista"),
+    "elo": ("Ingeniería en Sistemas Electrónicos y Ciberfísicos",
+            "Ingeniero o Ingeniera en Sistemas Electrónicos y Ciberfísicos"),
+    "met": ("Ingeniería en Metalurgia y Materiales",
+            "Ingeniero o Ingeniera en Ingeniería en Metalurgia y Materiales"),
+}
+
 
 def sin_acentos(s):
     return "".join(c for c in unicodedata.normalize("NFD", s)
@@ -592,8 +605,10 @@ def main():
         siguen = sorted(claves_p & claves_v)
         salen = sorted(c for c, r in vig.items()
                        if c not in claves_p and not nom_p.get(norma_nombre(r["nombre"])))
+        nuevo_nombre, titulo = NOMBRE_PROPUESTO.get(lic, (None, None))
         salida["licenciaturas"].append({
             "clave": lic, "nombre": nombre,
+            "nombre_propuesto": nuevo_nombre, "titulo_propuesto": titulo,
             "creditos": {"vigente": cred20.get(lic, {}), "propuesto": cred26.get(lic, {})},
             "conteo": {"plan": len(claves_p), "vigentes": len(claves_v),
                        "nuevas": len(nuevas), "salen": len(salen),
