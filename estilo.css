@@ -1,0 +1,166 @@
+/* Dashboard de modificaciones curriculares DCBI 2026
+   Identidad institucional UAM — Acuerdo 06/2012.
+   · Color de la Unidad Azcapotzalco, Pantone 186 C #CD032E (numeral 5.3, p. 49).
+   · Tipografía web obligatoria Verdana, con Arial y Tahoma como alternativas
+     (numeral 4.1). Helvetica Neue queda reservada a material primario impreso.
+   · Negro puro #000000 se reserva al emblema (numeral 2.3), así que la tinta
+     de cuerpo es #1C1C1C. */
+
+:root {
+  --rojo: #CD032E;
+  --tinta: #1C1C1C;
+  --gris: #646464;
+  --gris-claro: #F4F4F4;
+  --filete: #DEDEDE;
+  --papel: #FFFFFF;
+  --verde: #26642B;
+  --max: 1280px;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  font-family: Verdana, Arial, Tahoma, sans-serif;
+  color: var(--tinta);
+  background: var(--papel);
+  font-size: 14px;
+  line-height: 1.55;
+}
+
+a { color: var(--rojo); text-decoration: none; }
+a:hover { text-decoration: underline; }
+
+/* ---------------------------------------------------- encabezado fijo */
+header {
+  position: sticky; top: 0; z-index: 20;
+  background: var(--papel);
+  border-bottom: 1px solid var(--filete);
+}
+.barra {
+  max-width: var(--max); margin: 0 auto; padding: 14px 24px;
+  display: flex; align-items: center; gap: 20px; flex-wrap: wrap;
+}
+/* Variación 2 del manual, el emblema sin lema ni denominación */
+.barra img { height: 34px; }
+.marca { font-size: 11px; letter-spacing: .12em; text-transform: uppercase; color: var(--gris); }
+.marca b { color: var(--rojo); }
+.barra nav { margin-left: auto; display: flex; gap: 6px; align-items: center; }
+.barra nav a {
+  font-size: 12px; padding: 7px 12px; color: var(--tinta);
+  border: 1px solid var(--filete);
+}
+.barra nav a.activo { background: var(--tinta); color: #fff; border-color: var(--tinta); }
+#buscador {
+  font-family: inherit; font-size: 13px; padding: 8px 11px;
+  border: 1px solid var(--filete); width: 260px;
+}
+#buscador:focus { outline: 2px solid var(--rojo); outline-offset: -1px; }
+
+main { max-width: var(--max); margin: 0 auto; padding: 28px 24px 80px; }
+
+/* ---------------------------------------------------- tipografía */
+h1 { font-size: 27px; line-height: 1.2; margin-bottom: 6px; }
+h2 { font-size: 19px; margin: 34px 0 12px; }
+h3 { font-size: 15px; margin: 22px 0 8px; }
+.kicker {
+  font-size: 11px; letter-spacing: .14em; text-transform: uppercase;
+  color: var(--rojo); font-weight: bold; margin-bottom: 8px;
+}
+.sub { color: var(--gris); font-size: 13px; max-width: 78ch; }
+.migaja { font-size: 12px; color: var(--gris); margin-bottom: 14px; }
+
+/* ---------------------------------------------------- cédulas de dato */
+.datos { display: flex; flex-wrap: wrap; gap: 0; border-top: 1px solid var(--filete);
+         border-bottom: 1px solid var(--filete); margin: 20px 0; }
+.dato { flex: 1 1 130px; padding: 16px 18px; border-left: 1px solid var(--filete); }
+.dato:first-child { border-left: none; }
+.dato .n { font-size: 30px; font-weight: bold; line-height: 1.1; }
+.dato .n.acento { color: var(--rojo); }
+.dato .r { font-size: 10px; letter-spacing: .1em; text-transform: uppercase;
+           color: var(--gris); margin-top: 5px; }
+
+/* ---------------------------------------------------- tabla */
+table { width: 100%; border-collapse: collapse; margin: 14px 0; }
+th {
+  text-align: left; font-size: 11px; letter-spacing: .06em; text-transform: uppercase;
+  padding: 9px 10px; border-bottom: 1px solid var(--tinta); white-space: nowrap;
+}
+td { padding: 9px 10px; border-bottom: 1px solid var(--filete); vertical-align: top; }
+tbody tr:hover { background: var(--gris-claro); cursor: pointer; }
+td.num, th.num { text-align: right; font-variant-numeric: tabular-nums; }
+.clave { font-family: "Courier New", monospace; font-size: 12px; color: var(--gris); }
+
+/* ------------------------------------------------- chip circular (Punto)
+   Numera las licenciaturas en el panorama. Junto con la caja de aviso de
+   abajo, es lo único que se conserva del ensayo neobrutalista. */
+.punto {
+  display: inline-flex; align-items: center; justify-content: center;
+  width: 26px; height: 26px; border-radius: 50%; background: var(--rojo);
+  color: #fff; font-size: 11px; font-weight: bold; flex: none;
+  font-family: "Courier New", monospace;
+}
+
+/* ---------------------------------------------------- etiquetas */
+.eti {
+  display: inline-block; font-size: 10px; letter-spacing: .08em; text-transform: uppercase;
+  padding: 3px 7px; border: 1px solid var(--filete); color: var(--gris); white-space: nowrap;
+}
+.eti.roja { background: var(--rojo); color: #fff; border-color: var(--rojo); }
+.eti.tinta { background: var(--tinta); color: #fff; border-color: var(--tinta); }
+.eti.verde { background: var(--verde); color: #fff; border-color: var(--verde); }
+.eti.hueca { background: transparent; }
+
+/* ---------------------------------------------------- barras comparativas */
+.barra-cmp { display: flex; height: 26px; margin: 4px 0 2px; background: var(--gris-claro); }
+.barra-cmp span { display: flex; align-items: center; padding: 0 7px;
+                  font-size: 10px; color: #fff; overflow: hidden; white-space: nowrap; }
+.seg-tg { background: var(--rojo); }
+.seg-pro { background: var(--tinta); }
+.seg-otro { background: #BDBDBD; color: var(--tinta) !important; }
+
+/* ---------------------------------------------------- rejilla de tarjetas */
+.rejilla { display: grid; grid-template-columns: repeat(auto-fill, minmax(290px, 1fr)); gap: 16px; }
+.tarjeta { border: 1px solid var(--filete); padding: 18px; display: block; color: inherit; }
+.tarjeta:hover { border-color: var(--tinta); text-decoration: none; }
+.tarjeta h3 { margin: 0 0 4px; font-size: 16px; }
+.tarjeta .pie { display: flex; gap: 14px; margin-top: 12px; font-size: 12px; color: var(--gris); }
+
+/* ---------------------------------------------------- filtros */
+.filtros { display: flex; gap: 8px; flex-wrap: wrap; align-items: center; margin: 16px 0; }
+.filtros select, .filtros input {
+  font-family: inherit; font-size: 12px; padding: 7px 9px; border: 1px solid var(--filete);
+}
+.conteo { font-size: 12px; color: var(--gris); margin-left: auto; }
+
+/* ---------------------------------------------------- detalle de UEA */
+.campo { border-top: 1px solid var(--filete); padding: 16px 0; }
+.campo h3 { margin: 0 0 8px; font-size: 12px; letter-spacing: .1em;
+            text-transform: uppercase; color: var(--rojo); }
+.campo pre {
+  font-family: inherit; font-size: 13.5px; line-height: 1.6;
+  white-space: pre-wrap; word-wrap: break-word; max-width: 90ch;
+}
+.aviso {
+  background: var(--gris-claro); border: 2px solid var(--tinta);
+  padding: 15px 18px; margin: 20px 0; font-size: 13px; max-width: 90ch;
+}
+.aviso strong:first-child {
+  display: inline-block; background: var(--rojo); color: #fff;
+  font-size: 10px; letter-spacing: .12em; text-transform: uppercase;
+  padding: 4px 8px; margin-right: 9px; vertical-align: 1px;
+}
+.ruta { font-family: "Courier New", monospace; font-size: 11px; color: var(--gris);
+        word-break: break-all; }
+
+footer {
+  border-top: 1px solid var(--filete); margin-top: 50px; padding: 20px 24px 40px;
+  font-size: 11.5px; color: var(--gris); max-width: var(--max); margin-left: auto;
+  margin-right: auto;
+}
+
+@media (max-width: 720px) {
+  .barra nav { width: 100%; margin-left: 0; }
+  #buscador { width: 100%; }
+  .dato { flex-basis: 45%; }
+  table { font-size: 12.5px; }
+}
