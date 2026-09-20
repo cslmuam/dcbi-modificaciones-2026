@@ -42,6 +42,18 @@ columna de seriación del plan propuesto no quedó legible al extraerse, de modo
 que sus cifras aparecen en cero con una advertencia expresa: no significan
 ausencia de seriación.
 
+**Árbol de dependencias.** La ficha de cada UEA muestra dos árboles
+navegables: lo que hay que aprobar antes de llegar a ella y lo que se abre
+después, con el total de UEA implicadas en cada dirección y hasta tres niveles
+desplegados. Cuando la UEA continúa del plan vigente, se muestra también el
+árbol que tenía entonces, de modo que la comparación es directa. Las UEA del
+plan vigente tienen su propia ficha, con su tasa histórica de aprobación y su
+árbol de 2020; se llega a ellas desde la tabla de bajas o desde cualquier
+eslabón del árbol.
+
+El recorrido marca «ya visto» cuando una rama vuelve sobre sí misma, cosa que
+ocurre si una clave tentativa se repite, en vez de entrar en un ciclo.
+
 **Búsqueda.** Por nombre o por clave, sobre las 909 UEA de los diez planes.
 
 Cada vista tiene su propia dirección (`#/lic/civ`, `#/uea/civ/1100211`), de modo

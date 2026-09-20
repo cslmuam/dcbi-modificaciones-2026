@@ -582,6 +582,10 @@ def main():
                      "siguen": siguen, "renumeradas": renumeradas,
                      "provisionales": sorted(provisional)},
             "seriacion": {"vigente": m_v, "propuesto": m_p},
+            # aristas antecedente → consecuente, para armar el árbol de
+            # dependencias de cualquier UEA en una y otra versión del plan
+            "grafo": {"propuesto": [list(a) for a in ar_p],
+                      "vigente": [list(a) for a in ar_v]},
             "emparejamiento": {
                 "clave": sum(1 for r in plan.values() if r.get("emparejamiento") == "clave"),
                 "clave_compartida": sum(1 for r in plan.values() if r.get("emparejamiento") == "clave_compartida"),

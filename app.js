@@ -248,7 +248,7 @@ function licenciatura(clave, q = "") {
       Se listan con su tasa histórica de aprobación, del periodo 16I a 25O.</p>
       <table><thead><tr><th>Clave</th><th>Unidad de Enseñanza Aprendizaje</th>
         <th class="num">Créd.</th><th class="num">Aprobación</th></tr></thead><tbody>
-      ${l.diff.salen.map((u) => `<tr style="cursor:default">
+      ${l.diff.salen.map((u) => `<tr onclick="location.hash='#/uea2020/${l.clave}/${u.clave}'">
         <td class="clave">${esc(u.clave)}</td><td>${esc(u.nombre)}</td>
         <td class="num">${num(u.creditos)}</td>
         <td class="num">${u.aprobacion ? (100 * u.aprobacion).toFixed(1) + " %" : "—"}</td></tr>`).join("")}
@@ -296,6 +296,90 @@ function seriacion(l) {
       : cadena(p.cadena_nombres)}`;
 }
 
+
+/* ------------------------------------------------- árbol de dependencias */
+function indices(l, plan) {
+  const aristas = l.grafo?.[plan] || [];
+  const antes = {}, despues = {};
+  for (const [x, y] of aristas) {
+    (antes[y] = antes[y] || []).push(x);
+    (despues[x] = despues[x] || []).push(y);
+  }
+  const nombres = {};
+  if (plan === "propuesto") {
+    for (const u of l.ueas) nombres[u.clave] = u.nombre;
+  } else {
+    for (const u of l.vigentes) nombres[u.clave] = u.nombre;
+  }
+  return { antes, despues, nombres };
+}
+
+function rama(clave, mapa, nombres, lic, plan, nivel, vistos, max) {
+  const hijos = mapa[clave] || [];
+  if (!hijos.length || nivel >= max) return "";
+  return `<ul class="arbol">${hijos.map((h) => {
+    const ciclo = vistos.has(h);
+    const v2 = new Set(vistos); v2.add(h);
+    const ruta = plan === "propuesto" ? `#/uea/${lic}/${h}` : `#/uea2020/${lic}/${h}`;
+    return `<li><a href="${ruta}">${esc(nombres[h] || h)}</a>
+      <span class="clave">${esc(h)}</span>
+      ${ciclo ? '<span class="eti hueca">ya visto</span>'
+              : rama(h, mapa, nombres, lic, plan, nivel + 1, v2, max)}</li>`;
+  }).join("")}</ul>`;
+}
+
+function cuenta(clave, mapa) {
+  const vistos = new Set(), cola = [clave];
+  while (cola.length) {
+    for (const h of mapa[cola.pop()] || []) {
+      if (!vistos.has(h)) { vistos.add(h); cola.push(h); }
+    }
+  }
+  return vistos.size;
+}
+
+function dependencias(l, clave, plan, titulo) {
+  const { antes, despues, nombres } = indices(l, plan);
+  if (!nombres[clave] && plan === "propuesto") return "";
+  const nA = cuenta(clave, antes), nD = cuenta(clave, despues);
+  if (!nA && !nD) {
+    return `<div class="campo"><h3>${titulo}</h3>
+      <p class="sub">Ninguna UEA la antecede ni depende de ella en este plan.</p></div>`;
+  }
+  const bloque = (mapa, t, n, vacio) => `<div class="mitad">
+    <h4>${t} <span class="conteo-arbol">${n}</span></h4>
+    ${n ? rama(clave, mapa, nombres, l.clave, plan, 0, new Set([clave]), 3)
+        : `<p class="sub">${vacio}</p>`}</div>`;
+  return `<div class="campo"><h3>${titulo}</h3>
+    <div class="dos-arboles">
+      ${bloque(antes, "Hay que aprobar antes", nA, "Nada la antecede: se puede cursar desde el principio.")}
+      ${bloque(despues, "Se abren después", nD, "No bloquea ninguna otra UEA.")}
+    </div></div>`;
+}
+
+/* -------------------------------------------------- UEA del plan vigente */
+function detalleUEA2020(claveLic, claveUEA) {
+  const l = lic(claveLic);
+  const u = l?.vigentes.find((x) => x.clave === claveUEA);
+  if (!u) return licenciatura(claveLic);
+  vista.innerHTML = `
+    <div class="migaja"><a href="#/">Panorama</a> ›
+      <a href="#/lic/${claveLic}">${esc(l.nombre)}</a> › plan vigente 2020</div>
+    <p class="kicker">Plan vigente 2020 · ${esc(TRONCO[u.tronco] || u.tronco || "")}</p>
+    <h1>${esc(u.nombre)}</h1>
+    <p class="sub"><span class="clave">Clave ${esc(u.clave)}</span></p>
+    <div class="datos">
+      <div class="dato"><div class="n acento">${num(u.creditos)}</div><div class="r">créditos</div></div>
+      <div class="dato"><div class="n">${u.aprobacion ? (100 * u.aprobacion).toFixed(1) + " %" : "—"}</div>
+        <div class="r">aprobación histórica 16I–25O</div></div>
+      <div class="dato"><div class="n">${u.intentos ?? "—"}</div>
+        <div class="r">inscripciones esperadas</div></div>
+    </div>
+    ${dependencias(l, u.clave, "vigente", "Dependencias en el plan vigente 2020")}
+    <div class="aviso">Esta ficha corresponde al plan vigente. El expediente no
+    incluye programas de las UEA que sólo existen en él.</div>`;
+}
+
 /* ------------------------------------------------------------- una UEA */
 function detalleUEA(claveLic, claveUEA) {
   const l = lic(claveLic);
@@ -313,7 +397,9 @@ function detalleUEA(claveLic, claveUEA) {
     <p class="sub"><span class="clave">Clave ${esc(u.clave)}</span>${u.clave_por_asignar
       ? ' <span class="eti hueca">por asignar</span>' : ""} ·
       <span class="${cls}">${txt}</span>
-      ${u.clave_2020 ? ` · en el plan 2020 tenía la clave <span class="clave">${esc(u.clave_2020)}</span>` : ""}</p>
+      ${u.clave_2020 ? ` · en el plan 2020 era
+        <a href="#/uea2020/${claveLic}/${esc(u.clave_2020)}">la clave
+        <span class="clave">${esc(u.clave_2020)}</span></a>` : ""}</p>
 
     <div class="datos">
       <div class="dato"><div class="n acento">${num(u.creditos)}</div><div class="r">créditos</div></div>
@@ -346,6 +432,11 @@ function detalleUEA(claveLic, claveUEA) {
          ${u.candidato ? `Lo más parecido es <strong>${esc(u.candidato.nombre)}</strong>,
            de ${esc(u.candidato.lic)}, con una similitud de ${u.candidato.similitud}.` : ""}
          Conviene preguntar a la coordinación si falta o si se entregó con otro nombre.</div>`}
+
+    ${dependencias(l, u.clave, "propuesto", "Dependencias en el plan modificado")}
+    ${u.clave_2020 || u.continuidad === "misma_clave"
+      ? dependencias(l, u.clave_2020 || u.clave, "vigente",
+                     "Dependencias que tenía en el plan vigente 2020") : ""}
 
     ${u.ruta ? `<div class="campo"><h3>Documento fuente</h3>
       <p class="ruta">Modificaciones Licenciaturas Julio 2026/${esc(u.ruta)}</p></div>` : ""}`;
@@ -384,6 +475,7 @@ function render() {
   const q = $("#buscador").value.trim();
 
   if (p[0] === "buscar") { buscar(decodeURIComponent(p[1] || "")); }
+  else if (p[0] === "uea2020" && p[1] && p[2]) { detalleUEA2020(p[1], p[2]); }
   else if (p[0] === "uea" && p[1] && p[2]) { detalleUEA(p[1], p[2]); }
   else if (p[0] === "lic" && p[1]) { licenciatura(p[1], q); }
   else { panorama(); }
