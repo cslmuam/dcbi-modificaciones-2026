@@ -10,6 +10,18 @@ dependencias.
 
 ## Qué permite hacer
 
+**Portada.** Al abrir sin destino, el tablero recibe con una portada en modo
+oscuro: fondo de tinta `#1C1C1C`, emblema en negativo, las cuatro cifras que
+resumen el expediente contando hasta su valor, y el Punto de acento sangrando
+por la esquina. Un enlace profundo —`#/lic/civ`, `#/uea/…`— la salta y entra
+directo a lo que pidió, de modo que un enlace compartido sigue llevando a su
+destino.
+
+Las transiciones son discretas: la portada se va hacia arriba al entrar, cada
+vista aparece con un desplazamiento corto, y los eslabones de las cadenas
+responden al cursor. Todo se desactiva con `prefers-reduced-motion`, incluidos
+los contadores, que en ese caso muestran su cifra final de inmediato.
+
 **Panorama.** Las diez licenciaturas en una tabla, con los créditos del Tronco
 General y del plan completo antes y después, el número de UEA de cada plan, y
 cuántas son nuevas, cuántas continúan con clave distinta y cuántas no tienen

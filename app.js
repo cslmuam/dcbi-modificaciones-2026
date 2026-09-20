@@ -481,6 +481,39 @@ function buscar(q) {
 }
 
 /* ------------------------------------------------------------- ruteo */
+/* ------------------------------------------------------------ portada */
+const reducido = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+function cerrarPortada(animar) {
+  const p = $("#portada");
+  if (!p || p.dataset.cerrada) return;
+  p.dataset.cerrada = "1";
+  document.body.classList.remove("con-portada");
+  if (animar && !reducido) {
+    p.classList.add("saliendo");
+    p.addEventListener("animationend", () => p.remove(), { once: true });
+  } else {
+    p.remove();
+  }
+}
+
+function contadores() {
+  if (reducido) {
+    document.querySelectorAll(".p-cifras b").forEach((b) => (b.textContent = b.dataset.hasta));
+    return;
+  }
+  document.querySelectorAll(".p-cifras b").forEach((b) => {
+    const hasta = +b.dataset.hasta, ini = performance.now(), dur = 1100;
+    const paso = (t) => {
+      const k = Math.min((t - ini) / dur, 1);
+      // desaceleración cúbica: la cifra corre y se asienta, no aterriza de golpe
+      b.textContent = Math.round(hasta * (1 - Math.pow(1 - k, 3)));
+      if (k < 1) requestAnimationFrame(paso);
+    };
+    requestAnimationFrame(paso);
+  });
+}
+
 function render() {
   const h = location.hash.replace(/^#\/?/, "");
   const p = h.split("/").filter(Boolean);
@@ -495,10 +528,27 @@ function render() {
   document.querySelectorAll("header nav a").forEach((a) =>
     a.classList.toggle("activo", a.getAttribute("href") === "#/" + (p[0] || "")));
   window.scrollTo(0, 0);
+
+  if (!reducido) {                 // reinicia la animación de entrada
+    vista.classList.remove("entrando");
+    void vista.offsetWidth;
+    vista.classList.add("entrando");
+  }
 }
 
-window.addEventListener("hashchange", render);
+window.addEventListener("hashchange", () => { cerrarPortada(true); render(); });
 window.addEventListener("DOMContentLoaded", () => {
+  // La portada sólo recibe a quien llega sin destino. Un enlace profundo
+  // —#/lic/civ, #/uea/…— entra directo a lo que pidió.
+  if (location.hash.replace(/^#\/?/, "")) {
+    cerrarPortada(false);
+  } else {
+    document.body.classList.add("con-portada");
+    contadores();
+    $("#portada").addEventListener("click", (e) => {
+      if (e.target.closest(".p-entrar")) { e.preventDefault(); cerrarPortada(true); }
+    });
+  }
   const b = $("#buscador");
   b.addEventListener("input", () => {
     const q = b.value.trim();
