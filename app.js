@@ -799,6 +799,15 @@ function render(opts = {}) {
   });
 }
 
+/* La malla incrustada avisa su alto (mallas/recursos/malla.js) y el visor
+   crece con ella: una sola barra de desplazamiento, la de la página. */
+window.addEventListener("message", (e) => {
+  if (!e.data || e.data.malla !== true || !(e.data.alto > 0)) return;
+  const f = [...document.querySelectorAll(".visor-malla iframe")]
+    .find((x) => x.contentWindow === e.source);
+  if (f) f.style.height = e.data.alto + "px";
+});
+
 window.addEventListener("hashchange", () => render());
 window.addEventListener("DOMContentLoaded", () => {
   // La portada sólo recibe a quien llega sin destino. Un enlace profundo

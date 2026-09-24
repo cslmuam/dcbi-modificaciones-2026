@@ -322,11 +322,13 @@ def emparejar(lic, r, ueas, por_clave, por_nombre):
     clave = CLAVE_ERRATA.get((lic, r["clave"]), r["clave"])
     # Una UEA del TG se reconoce primero por su nombre: Electrónica rotula
     # Cultura de Paz y Género con la clave de Comunicación Asertiva.
+    # Gana el más parecido, no el primero que pase el umbral: «Fundamentos de
+    # Física y Aplicaciones II» también se parece más de 0.85 a la I.
     if r["nombre"]:
-        for c, oficial in TG.items():
-            if difflib.SequenceMatcher(None, norm(r["nombre"]), norm(oficial)).ratio() > 0.85:
-                clave = c
-                break
+        puntaje, c = max((difflib.SequenceMatcher(None, norm(r["nombre"]), norm(o)).ratio(), c)
+                         for c, o in TG.items())
+        if puntaje > 0.85:
+            clave = c
     if clave in TG:
         cand = [u for u in ueas if u["clave"] == clave]
         return cand[0] if cand else None, clave

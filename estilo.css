@@ -747,10 +747,13 @@ pre.plan {
 
 /* ------------------------------------------ visor de la malla curricular */
 /* El deck de la malla (mallas/<clave>.html) se escala solo al ancho del
-   visor; el alto deja ver una lámina completa y la mitad de la siguiente. */
-.visor-malla iframe { display: block; width: 100%; height: 78vh; min-height: 460px; border: 0; }
+   visor y le avisa su alto por postMessage (app.js), así que el 78vh sólo
+   rige mientras carga. */
+.visor-malla iframe { display: block; width: 100%; height: 78vh; border: 0; }
+/* En teléfono la malla es una lista sobre papel: el visor pierde su marco
+   gris y se funde con la página. */
 @media (max-width: 720px) {
-  .visor-malla iframe { height: 62vh; min-height: 360px; }
+  .visor-malla { border: 0; background: transparent; margin-top: 8px; }
 }
 
 /* La lista de optativas se abre desde la malla con scrollIntoView; el

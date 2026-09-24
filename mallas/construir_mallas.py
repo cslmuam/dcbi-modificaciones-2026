@@ -171,6 +171,54 @@ def matriz(filas, glosa, base, lic):
     return cuerpo + pie
 
 
+# ── lectura en teléfono ──────────────────────────────────────────────────────
+def tarjeta(u, base, lic):
+    """El mismo recuadro de la lámina, a la medida de la pantalla estrecha:
+    masa de color por tronco, nombre completo y créditos, y el mismo enlace."""
+    if u["opt"]:
+        href = f"{base}#/lic/{lic}/optativas"
+    elif u["ruta"]:
+        href = base + u["ruta"]
+    else:
+        href = None
+    cuerpo = (f'<span class="m-nombre">{ent(u["nombre"])}</span>'
+              f'<span class="m-cr">{_cr(u["creditos"])} cr&eacute;d.</span>')
+    clase = f'm-uea t-{u["tronco"]}'
+    if not href:
+        return f'<div class="{clase}">{cuerpo}</div>'
+    return f'<a class="{clase}" href="{ent(href)}" target="_top">{cuerpo}</a>'
+
+
+def movil(m, base, cr, total, nota):
+    """Versión de lectura para pantallas de 720 px o menos. La lámina de
+    1280 px reducida a un teléfono deja la letra en tres o cuatro píxeles, así
+    que en pantalla estrecha se sustituye por una lista por trimestre. La
+    impresión nunca la usa: el PDF es siempre el deck."""
+    lic = m["clave"]
+    cedulas = "".join(
+        f'<div class="m-dato t-{t}"><span class="m-n">{v:g}</span>'
+        f'<span class="m-r">{r}</span></div>'
+        for t, v, r in (("general", cr["general"], "Tronco General"),
+                        ("profesional", cr["profesional"], "Tronco Profesional"),
+                        ("integracion", cr["integracion"], "Tronco de Integraci&oacute;n")))
+    trims = "".join(
+        f'<section class="m-trim"><h2><span>Trimestre {ROMANO[t["trimestre"]]}</span>'
+        f'<span class="m-trim-cr">{t["creditos"]:g} cr&eacute;ditos</span></h2>'
+        f'<div class="m-lista">{"".join(tarjeta(u, base, lic) for u in t["ueas"])}</div></section>'
+        for t in m["trimestres"])
+    nota_html = (f'<p class="m-nota"><strong>Nota.</strong> {nota}</p>' if nota else "")
+    return (f'<div class="movil">'
+            f'<header class="m-cab"><p class="m-kicker">Malla curricular &middot; plan propuesto</p>'
+            f'<h1>{ent(m["nombre"])}</h1></header>'
+            f'<p class="m-ayuda">Toca una UEA para abrir su programa. Las casillas de '
+            f'optativa llevan a la lista de optativas.</p>'
+            f'<div class="m-datos">{cedulas}'
+            f'<div class="m-dato m-total"><span class="m-n">{total:g}</span>'
+            f'<span class="m-r">Cr&eacute;ditos de la malla</span></div></div>'
+            f'{trims}{nota_html}'
+            f'<p class="m-fuente">Fuente &middot; {ent(FUENTE[lic])}</p></div>')
+
+
 # ── deck ─────────────────────────────────────────────────────────────────────
 def construir(m, base):
     lic = m["clave"]
@@ -260,7 +308,8 @@ def construir(m, base):
             f'<title>Mapa curricular &middot; {nombre}</title>\n'
             '<link rel="stylesheet" href="recursos/style.css">\n'
             '<link rel="stylesheet" href="recursos/malla.css">\n'
-            '</head>\n<body>\n' + "\n".join(partes) +
+            '</head>\n<body>\n' + movil(m, base, cr, total, nota) + "\n" +
+            "\n".join(partes) +
             '\n<script src="recursos/malla.js"></script>\n</body>\n</html>')
 
 

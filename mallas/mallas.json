@@ -115,12 +115,12 @@
       "ruta": "#/uea/amb/~laboratorioestructuraypropiedadesdelosmaterialesen"
      },
      {
-      "nombre": "Fundamentos de Física y Aplicaciones I",
-      "clave": "1114052",
+      "nombre": "Fundamentos de Física y Aplicaciones II",
+      "clave": "1114053",
       "creditos": 6.0,
       "tronco": "general",
       "opt": false,
-      "ruta": "#/uea/amb/1114052"
+      "ruta": "#/uea/amb/1114053"
      },
      {
       "nombre": "Laboratorio de movimiento de una partícula",
@@ -654,12 +654,12 @@
     "creditos": 36.0,
     "ueas": [
      {
-      "nombre": "Fundamentos de Física y Aplicaciones I",
-      "clave": "1114052",
+      "nombre": "Fundamentos de Física y Aplicaciones II",
+      "clave": "1114053",
       "creditos": 6.0,
       "tronco": "general",
       "opt": false,
-      "ruta": "#/uea/civ/1114052"
+      "ruta": "#/uea/civ/1114053"
      },
      {
       "nombre": "Sistemas de Ecuaciones Lineales y Matrices",
@@ -1804,12 +1804,12 @@
       "ruta": "#/uea/ele/1114058"
      },
      {
-      "nombre": "Fundamentos de Física y Aplicaciones I",
-      "clave": "1114052",
+      "nombre": "Fundamentos de Física y Aplicaciones II",
+      "clave": "1114053",
       "creditos": 6.0,
       "tronco": "general",
       "opt": false,
-      "ruta": "#/uea/ele/1114052"
+      "ruta": "#/uea/ele/1114053"
      },
      {
       "nombre": "Cálculo Diferencial",
@@ -2381,12 +2381,12 @@
     "creditos": 44.0,
     "ueas": [
      {
-      "nombre": "Fundamentos de Física y Aplicaciones I",
-      "clave": "1114052",
+      "nombre": "Fundamentos de Física y Aplicaciones II",
+      "clave": "1114053",
       "creditos": 6.0,
       "tronco": "general",
       "opt": false,
-      "ruta": "#/uea/elo/1114052"
+      "ruta": "#/uea/elo/1114053"
      },
      {
       "nombre": "Cálculo Integral",
@@ -2906,12 +2906,12 @@
       "ruta": "#/uea/fis/1114048"
      },
      {
-      "nombre": "Fundamentos de Física y Aplicaciones I",
-      "clave": "1114052",
+      "nombre": "Fundamentos de Física y Aplicaciones II",
+      "clave": "1114053",
       "creditos": 6.0,
       "tronco": "general",
       "opt": false,
-      "ruta": "#/uea/fis/1114052"
+      "ruta": "#/uea/fis/1114053"
      },
      {
       "nombre": "Sistemas de Ecuaciones Lineales y Matrices",
@@ -3501,12 +3501,12 @@
       "ruta": "#/uea/ind/1150030"
      },
      {
-      "nombre": "Fundamentos de Física y Aplicaciones I",
-      "clave": "1114052",
+      "nombre": "Fundamentos de Física y Aplicaciones II",
+      "clave": "1114053",
       "creditos": 6.0,
       "tronco": "general",
       "opt": false,
-      "ruta": "#/uea/ind/1114052"
+      "ruta": "#/uea/ind/1114053"
      },
      {
       "nombre": "Cálculo Diferencial",
@@ -5330,12 +5330,12 @@
       "ruta": "#/uea/qui/1114065"
      },
      {
-      "nombre": "Fundamentos de Física y Aplicaciones I",
-      "clave": "1114052",
+      "nombre": "Fundamentos de Física y Aplicaciones II",
+      "clave": "1114053",
       "creditos": 6.0,
       "tronco": "general",
       "opt": false,
-      "ruta": "#/uea/qui/1114052"
+      "ruta": "#/uea/qui/1114053"
      },
      {
       "nombre": "Sistemas de Ecuaciones Lineales y Matrices",

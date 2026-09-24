@@ -10,6 +10,9 @@ Comprueba las mallas generadas, en tres frentes:
 2. Cada enlace a una UEA resuelve a exactamente una ficha del tablero, con la
    misma regla que app.js (`buscaUEA`).
 3. El PDF lleva un enlace por recuadro, a la dirección pública del tablero.
+4. El Tronco General trae sus diez UEA, cada una una sola vez. Un
+   emparejamiento por parecido confundía Fundamentos de Física y
+   Aplicaciones II con la I.
 
 Uso:  python3 verificar_mallas.py
 """
@@ -61,9 +64,13 @@ for lic, m in mallas.items():
     pdf = open(os.path.join(AQUI, f"{lic}.pdf"), "rb").read()
     enlaces = len(re.findall(rb"/URI \(https://cslmuam\.github\.io/dcbi-modificaciones-2026/#/", pdf))
 
-    ok = not recortes and not malas and enlaces == celdas
+    tg = [u["clave"] for t in m["trimestres"] for u in t["ueas"] if u["tronco"] == "general"]
+    tg_ok = len(tg) == 10 and len(set(tg)) == 10
+
+    ok = not recortes and not malas and enlaces == celdas and tg_ok
     fallas += not ok
     print(f"{lic}  {'ok ' if ok else 'MAL'}  {celdas} recuadros, {enlaces} enlaces en el PDF"
           + (f"  · recortes: {recortes}" if recortes else "")
-          + (f"  · sin ficha única: {malas}" if malas else ""))
+          + (f"  · sin ficha única: {malas}" if malas else "")
+          + ("" if tg_ok else f"  · Tronco General: {sorted(tg)}"))
 sys.exit(1 if fallas else 0)

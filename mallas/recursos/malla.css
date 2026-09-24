@@ -1,12 +1,20 @@
 /* Malla curricular en pantalla. La hoja del deck (style.css) fija el lienzo
-   de 1280x720 y la página impresa; aquí sólo se añade lo que hace falta para
-   leerla en el navegador o dentro del visor del tablero. Nada de esto entra
-   en el PDF: todo va bajo `@media screen`. */
+   de 1280x720 y la página impresa; aquí se añade lo que hace falta para leerla
+   en el navegador o dentro del visor del tablero. Nada de esto entra en el
+   PDF: todo va bajo `@media screen`, y la versión de teléfono (.movil) se
+   oculta al imprimir. */
+.movil { display: none; }
+@media print { .movil { display: none !important; } }
+
 @media screen {
   html { background: #E9E9E9; }
-  body { background: transparent; zoom: var(--escala, 1); }
-  .slide { margin: 0 auto 24px; box-shadow: 0 1px 3px rgba(0, 0, 0, .12); }
-  .slide:first-child { margin-top: 24px; }
+  body { background: transparent; }
+  .slide { zoom: var(--escala, 1); margin: 0 auto 24px;
+           box-shadow: 0 1px 3px rgba(0, 0, 0, .12); }
+  .slide:first-of-type { margin-top: 24px; }
+  /* Dentro del visor del tablero la malla no deja aire propio arriba: el
+     visor ya lo pone. */
+  html.incrustada .slide:first-of-type { margin-top: 16px; }
   a.celda { cursor: pointer; transition: transform .12s ease, box-shadow .12s ease; }
   a.celda:hover, a.celda:focus-visible {
     transform: translateY(-2px);
@@ -19,4 +27,76 @@
 @media screen and (prefers-reduced-motion: reduce) {
   a.celda { transition: none; }
   a.celda:hover, a.celda:focus-visible { transform: none; }
+}
+
+/* ---------------------------------------------------------- teléfono
+   A 720 px o menos la lámina reducida dejaría la letra en tres o cuatro
+   píxeles, así que se sustituye por una lista por trimestre. Tipografía
+   Verdana, la de medios electrónicos del manual (numeral 4.1), la misma del
+   tablero en el que se lee. Los troncos conservan su masa de color. */
+@media screen and (max-width: 720px) {
+  html { background: #FFFFFF; }
+  .slide { display: none; }
+  .movil {
+    display: block; padding: 20px 16px 28px;
+    font-family: Verdana, Arial, Tahoma, sans-serif; color: var(--uamblue);
+  }
+  html.incrustada .movil { padding: 4px 0 8px; }
+  html.incrustada .m-cab, html.incrustada .m-ayuda { display: none; }
+
+  .m-kicker { font-size: 11px; font-weight: bold; letter-spacing: .12em;
+              text-transform: uppercase; color: var(--uamred); margin: 0 0 6px; }
+  .m-cab h1 { font-size: 24px; line-height: 1.2; margin: 0 0 10px; }
+  .m-ayuda { font-size: 13px; line-height: 1.55; color: var(--uamgray); margin: 0 0 16px; }
+
+  .m-datos { display: grid; grid-template-columns: 1fr 1fr; gap: 1px;
+             background: var(--hairline); border: 1px solid var(--hairline); margin: 0 0 8px; }
+  .m-dato { background: #FFFFFF; padding: 12px 12px 11px; display: flex;
+            flex-direction: column; gap: 4px; }
+  .m-n { font-size: 26px; line-height: 1; font-weight: bold; }
+  .m-total .m-n { color: var(--uamred); }
+  .m-r { font-size: 10.5px; line-height: 1.35; letter-spacing: .06em;
+         text-transform: uppercase; color: var(--uamgray); display: flex; gap: 7px;
+         align-items: center; }
+  .m-dato.t-general .m-r::before, .m-dato.t-profesional .m-r::before,
+  .m-dato.t-integracion .m-r::before {
+    content: ""; flex: none; width: 11px; height: 11px;
+  }
+  .m-dato.t-general .m-r::before { background: var(--uamlightgray);
+                                   box-shadow: inset 0 0 0 1px var(--hairline); }
+  .m-dato.t-profesional .m-r::before { background: var(--uamred); }
+  .m-dato.t-integracion .m-r::before { background: var(--uamblue); }
+
+  .m-trim { margin-top: 22px; }
+  .m-trim h2 { display: flex; justify-content: space-between; align-items: baseline;
+               gap: 12px; margin: 0 0 8px; padding-bottom: 6px;
+               border-bottom: 1px solid var(--hairline);
+               font-size: 13px; letter-spacing: .08em; text-transform: uppercase; }
+  .m-trim-cr { font-size: 12px; font-weight: normal; letter-spacing: 0;
+               text-transform: none; color: var(--uamgray); }
+  .m-lista { display: grid; grid-template-columns: 1fr; gap: 6px; }
+
+  .m-uea { display: flex; justify-content: space-between; align-items: center; gap: 12px;
+           min-height: 48px; padding: 10px 12px; text-decoration: none; }
+  .m-nombre { font-size: 14px; line-height: 1.35; font-weight: bold; }
+  .m-cr { flex: none; font-size: 12px; white-space: nowrap; }
+  .m-uea.t-general { background: var(--uamlightgray); color: var(--uamblue);
+                     box-shadow: inset 0 0 0 1px var(--hairline); }
+  .m-uea.t-general .m-cr { color: var(--uamgray); }
+  .m-uea.t-profesional { background: var(--uamred); color: #FFFFFF; }
+  .m-uea.t-integracion { background: var(--uamblue); color: #FFFFFF; }
+  .m-uea.t-profesional .m-cr, .m-uea.t-integracion .m-cr { color: rgba(255, 255, 255, .85); }
+  a.m-uea:active { opacity: .8; }
+  a.m-uea:focus-visible { outline: 2px solid var(--uamblue); outline-offset: 2px; }
+
+  .m-nota { font-size: 13px; line-height: 1.55; margin: 24px 0 0; }
+  .m-nota strong { color: var(--uamred); }
+  .m-fuente { font-family: "Courier New", monospace; font-size: 11px; line-height: 1.5;
+              color: var(--uamgray); margin: 14px 0 0; word-break: break-word; }
+}
+/* Entre 480 y 720 px, dos columnas de tarjetas. */
+@media screen and (min-width: 480px) and (max-width: 720px) {
+  .m-lista { grid-template-columns: 1fr 1fr; }
+  .m-uea { align-items: flex-start; flex-direction: column; justify-content: space-between; }
+  .m-datos { grid-template-columns: repeat(4, 1fr); }
 }
