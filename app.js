@@ -453,10 +453,10 @@ function malla(claveLic) {
     <p class="kicker">Malla curricular del plan propuesto</p>
     <h1>${nombre}</h1>
     <p class="sub">Toca una UEA para abrir su programa.</p>
+    <p class="acciones"><a class="boton hueco" href="${pdf}" download="malla-${claveLic}.pdf">
+      Descargar PDF</a></p>
     ${frag}
-    <p class="acciones">
-      <a class="boton hueco" href="${pdf}" target="_blank" rel="noopener">Ver en PDF</a>
-      <a class="boton hueco" href="#/lic/${claveLic}">Volver a ${nombre}</a></p>`;
+    <p class="acciones"><a class="boton hueco" href="#/lic/${claveLic}">Volver a ${nombre}</a></p>`;
     window.mallaMovil?.(vista, $("header")?.getBoundingClientRect().height || 0);
     return;
   }
