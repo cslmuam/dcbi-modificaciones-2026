@@ -1,0 +1,22 @@
+/* Malla curricular en pantalla. La hoja del deck (style.css) fija el lienzo
+   de 1280x720 y la página impresa; aquí sólo se añade lo que hace falta para
+   leerla en el navegador o dentro del visor del tablero. Nada de esto entra
+   en el PDF: todo va bajo `@media screen`. */
+@media screen {
+  html { background: #E9E9E9; }
+  body { background: transparent; zoom: var(--escala, 1); }
+  .slide { margin: 0 auto 24px; box-shadow: 0 1px 3px rgba(0, 0, 0, .12); }
+  .slide:first-child { margin-top: 24px; }
+  a.celda { cursor: pointer; transition: transform .12s ease, box-shadow .12s ease; }
+  a.celda:hover, a.celda:focus-visible {
+    transform: translateY(-2px);
+    box-shadow: 0 0 0 2px var(--uamblue); outline: none;
+  }
+  a.celda.t-integracion:hover, a.celda.t-integracion:focus-visible {
+    box-shadow: 0 0 0 2px var(--uamred);
+  }
+}
+@media screen and (prefers-reduced-motion: reduce) {
+  a.celda { transition: none; }
+  a.celda:hover, a.celda:focus-visible { transform: none; }
+}

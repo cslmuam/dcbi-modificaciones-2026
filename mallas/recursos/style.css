@@ -1,0 +1,346 @@
+/* ============================================================
+   PCIE — Colegio Académico, sesión 588
+   Sistema visual: paleta institucional UAM-A (Acuerdo 06/2012,
+   numeral 5.3) + escala tipográfica de tipografia_sistema.md
+   Lienzo de referencia: 1280 x 720 pt (16:9)
+   ============================================================ */
+
+@page { size: 1280px 720px; margin: 0; }
+
+:root{
+  --uamred: #CD032E;
+  --uamblue: #1C1C1C;
+  --uamgray: #646464;
+  --uamlightgray: #F4F4F4;
+  --hairline: #DEDEDE;
+  --okgreen: #26642B;
+  --white: #FFFFFF;
+
+  --m-side: 72px;
+  --content-w: 1136px; /* 1280 - 2*72 */
+}
+
+*{ box-sizing: border-box; }
+
+html,body{ margin:0; padding:0; }
+
+body{
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  color: var(--uamblue);
+  -webkit-font-smoothing: antialiased;
+  background: var(--white);
+}
+
+.mono{ font-family: "Menlo", "Courier New", monospace; font-variant-numeric: tabular-nums; }
+
+/* ---------- slide shell ---------- */
+
+.slide{
+  position: relative;
+  width: 1280px;
+  height: 720px;
+  overflow: hidden;
+  background: var(--white);
+  page-break-after: always;
+  break-after: page;
+}
+.slide:last-child{ page-break-after: auto; }
+
+.slide.bg-blue{ background: var(--uamblue); color: var(--white); }
+.slide.bg-gray{ background: var(--uamlightgray); }
+
+/* ---------- header + content flow wrapper ----------
+   .slide-body es el único elemento posicionado de forma absoluta;
+   .hd y .content fluyen dentro de él (flexbox), así que un título
+   que envuelve a 2 líneas nunca puede colisionar con el contenido:
+   el alto real del encabezado siempre empuja el contenido, no un
+   offset fijo adivinado. ---------------------------------------- */
+
+.slide-body{
+  position:absolute;
+  left: var(--m-side);
+  right: var(--m-side);
+  top: 44px;
+  bottom: 76px;
+  display:flex;
+  flex-direction:column;
+}
+
+.hd{
+  flex:none;
+  width: 100%;
+  margin-bottom: 18px;
+}
+.kicker{
+  font-weight:700;
+  font-size:14px;
+  line-height:16px;
+  text-transform:uppercase;
+  letter-spacing:0.08em;
+  color: var(--uamred);
+  margin:0 0 8px 0;
+}
+.kicker.muted{ color: var(--uamgray); }
+.kicker .sep{ color: var(--hairline); margin:0 6px; font-weight:400; }
+.kicker .time{ color: var(--uamgray); font-weight:700; }
+
+.title{
+  font-weight:700;
+  font-size:48px;
+  line-height:52px;
+  letter-spacing:-0.01em;
+  color: var(--uamblue);
+  margin:0;
+}
+.title.long{ font-size:36px; line-height:40px; letter-spacing:-0.005em; }
+.title.on-dark{ color: var(--white); }
+
+.subtitle{
+  font-weight:400;
+  font-size:20px;
+  line-height:26px;
+  color: var(--uamgray);
+  margin:10px 0 0 0;
+}
+
+.hd-rule{
+  height:1px;
+  background: var(--hairline);
+  margin-top: 14px;
+}
+
+/* área de contenido: flexible, ocupa el resto de .slide-body.
+   overflow:hidden es una red de seguridad de último recurso —
+   cada diapositiva se revisó visualmente para que nada dependa de
+   este recorte; si algo se recorta, es un bug a corregir en el
+   contenido, no una solución. */
+.content{
+  flex:1;
+  min-height:0;
+  overflow:hidden;
+}
+.content.tight{ }
+.content.long-title{ }
+/* 2026-09-16: modificador puntual para permitir que UNA figura exceda el
+   ancho de .content (1136px) por instrucción expresa de César (mostrar
+   03_secihti_2025_por_pregunta.svg a 864pt reales = 1152px CSS, más ancha
+   que el área de contenido estándar). Centrada por flexbox, el excedente
+   (16px) se reparte 8px a cada lado, invadiendo levemente el margen
+   estándar de la diapositiva — deliberado, no un error. Usar solo donde
+   se pida explícitamente esta distribución horizontal amplia. */
+.content.bleed-h{ overflow-x:visible; }
+
+/* ---------- footer ---------- */
+
+.footer-rule{
+  position:absolute;
+  left: var(--m-side); right: var(--m-side);
+  bottom: 52px;
+  height:1px;
+  background: var(--hairline);
+}
+.footer{
+  position:absolute;
+  left: var(--m-side); right: var(--m-side);
+  bottom: 24px;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+}
+.footer img{ height:16px; display:block; }
+.footer .folio{
+  font-family:"Menlo", monospace;
+  font-size:11px;
+  color: var(--uamgray);
+}
+.footer .doc-tag{
+  font-family:"Menlo", monospace;
+  font-size:11px;
+  color: var(--uamgray);
+}
+.slide.bg-blue .footer .folio,
+.slide.bg-blue .footer .doc-tag{ color:#9a9a9a; }
+.slide.bg-blue .footer-rule{ background:#3a3a3a; }
+
+/* ---------- body text / lists ---------- */
+
+.body-text{ font-size:20px; line-height:28px; font-weight:400; color:var(--uamblue); }
+.body-text.on-dark{ color:#EDEDED; }
+p{ margin:0; }
+
+ul.plain{ list-style:none; margin:0; padding:0; }
+
+/* ---------- chips (círculo, jerarquía Judd/Kandinsky) ---------- */
+
+.chip{
+  display:inline-flex; align-items:center; justify-content:center;
+  width:32px; height:32px; border-radius:50%;
+  background: var(--uamred); color:#fff;
+  font-weight:700; font-size:14px; flex:none;
+}
+.chip.lg{ width:48px; height:48px; font-size:20px; }
+.chip.xl{ width:64px; height:64px; font-size:26px; }
+.chip.gray{ background: var(--uamgray); }
+.chip.hollow{ background:none; border:1px solid var(--uamgray); color:var(--uamgray); }
+.chip.hollow-sm{ background:none; border:1px solid var(--uamgray); color:var(--uamgray); width:12px; height:12px; font-size:0; }
+.chip.dot-sm{ width:12px; height:12px; font-size:0; background:var(--uamgray); }
+
+/* ---------- cédula de dato (\dato / datorow) ---------- */
+
+.dato{ text-align:center; }
+.dato .num{
+  font-weight:700; font-size:64px; line-height:64px; letter-spacing:-0.01em;
+  color: var(--uamblue);
+}
+.dato .num.accent{ color: var(--uamred); }
+.dato .num.small{ font-size:44px; line-height:46px; }
+.dato .num.hero{ font-size:150px; line-height:150px; letter-spacing:-0.02em; }
+.dato .label{
+  font-weight:700; font-size:13px; line-height:16px;
+  text-transform:uppercase; letter-spacing:0.07em; color: var(--uamgray);
+  margin-top:12px;
+}
+.dato .sub{
+  font-weight:400; font-size:14px; line-height:18px; color:var(--uamgray); margin-top:6px;
+}
+
+.datorow{
+  display:flex;
+  border-top:1px solid var(--hairline);
+  border-bottom:1px solid var(--hairline);
+  padding: 18px 0;
+}
+.datorow > .dato{ flex:1; padding:0 20px; border-left:1px solid var(--hairline); }
+.datorow > .dato:first-child{ border-left:none; }
+
+/* ---------- tabla-A: registro corto (diapositiva 6 backup) ---------- */
+
+table.table-a{ width:100%; border-collapse:collapse; }
+table.table-a thead th{
+  font-weight:700; font-size:14px; text-transform:uppercase; letter-spacing:0.04em;
+  color:var(--uamblue); background:var(--uamlightgray);
+  height:44px; text-align:left; padding:0 14px; border-bottom:1px solid var(--hairline);
+}
+table.table-a tbody td{
+  font-size:18px; line-height:24px; font-weight:400; color:var(--uamblue);
+  height:40px; padding:0 14px; border-bottom:1px solid var(--hairline);
+  vertical-align:middle;
+}
+table.table-a tbody td.mono{ font-size:15px; color:var(--uamgray); }
+table.table-a tbody td.accent{ color:var(--uamred); font-weight:700; }
+
+/* ---------- tabla-B: comparativa narrativa (envuelve) ---------- */
+
+table.table-b{ width:100%; border-collapse:collapse; table-layout:fixed; }
+table.table-b thead th{
+  font-weight:700; font-size:14px; text-transform:uppercase; letter-spacing:0.04em;
+  text-align:left; padding:10px 16px; border-bottom:1px solid var(--uamblue);
+  color:var(--uamblue);
+}
+table.table-b tbody td{
+  font-size:16px; line-height:20px; font-weight:400; color:var(--uamblue);
+  padding:14px 16px; border-bottom:1px solid var(--hairline); vertical-align:top;
+}
+table.table-b tbody td strong.accent{ color:var(--uamred); font-weight:700; }
+table.table-b tbody tr:last-child td{ border-bottom:none; }
+
+/* ---------- listas con marcador ---------- */
+
+.item-row{ display:flex; gap:18px; align-items:flex-start; }
+.item-row + .item-row{ margin-top:18px; }
+.item-row .marker{ margin-top:4px; }
+.item-row .txt strong{ display:block; font-size:20px; color:var(--uamblue); font-weight:700; margin-bottom:4px; }
+.item-row .txt span{ font-size:16px; line-height:22px; color:var(--uamgray); }
+
+/* ---------- separator (24) ---------- */
+
+.sep-num{ font-weight:700; font-size:14px; color:var(--uamgray); text-transform:uppercase; letter-spacing:0.08em; }
+
+/* ---------- misc ---------- */
+
+.hr-thin{ height:1px; background:var(--hairline); border:none; margin:0; }
+.small-cite{ font-style:italic; font-size:14px; color:var(--uamgray); }
+
+/* ═══════════════════════════════════════════════════════════════════
+   Cadencia blanco / negro / rojo — específica de este deck
+   (el README del sistema sugiere un solo modo oscuro por deck; aquí se
+   adopta el alternado del carrusel del mismo proyecto, por decisión de
+   César, 2026-09-19). Las reglas llevan !important sólo donde deben
+   ganarle a un estilo inline de los componentes del generador.
+   ═══════════════════════════════════════════════════════════════════ */
+
+.slide.bg-red{ background: var(--uamred); color: var(--white); }
+
+/* --- encabezado, filetes y pie ------------------------------------ */
+.slide.bg-red .kicker{ color: rgba(255,255,255,.88); }
+.slide.bg-red .title{ color: var(--white); }
+.slide.bg-red .subtitle{ color: rgba(255,255,255,.82); }
+.slide.bg-red .hd-rule,
+.slide.bg-red .footer-rule{ background: rgba(255,255,255,.38); }
+.slide.bg-red .footer .folio{ color: rgba(255,255,255,.82); }
+
+/* --- cédulas de dato ---------------------------------------------- */
+.slide.bg-red .dato .num,
+.slide.bg-red .dato .num.accent{ color: var(--white); }
+.slide.bg-red .dato .label,
+.slide.bg-red .dato .sub{ color: rgba(255,255,255,.82); }
+.slide.bg-red .datorow{ border-color: rgba(255,255,255,.38); }
+.slide.bg-red .datorow > .dato{ border-left-color: rgba(255,255,255,.38); }
+.slide.bg-blue .dato .num{ color: var(--white); }
+.slide.bg-blue .dato .num.accent{ color: #ff4d68; }
+.slide.bg-blue .dato .label,
+.slide.bg-blue .dato .sub{ color: rgba(255,255,255,.72); }
+.slide.bg-blue .datorow{ border-color: rgba(255,255,255,.28); }
+.slide.bg-blue .datorow > .dato{ border-left-color: rgba(255,255,255,.28); }
+
+/* --- chip circular -------------------------------------------------- */
+.slide.bg-red .chip{ background: var(--white); color: var(--uamred); }
+.slide.bg-red .chip.dot-sm{ background: var(--white); }
+
+/* --- tabla de registro corto ---------------------------------------- */
+.slide.bg-blue table.table-a tbody td,
+.slide.bg-red table.table-a tbody td{ color: var(--white); }
+.slide.bg-blue table.table-a tbody td{ border-bottom-color: rgba(255,255,255,.22); }
+.slide.bg-red table.table-a tbody td{ border-bottom-color: rgba(255,255,255,.32); }
+.slide.bg-blue table.table-a tbody td.accent{ color: #ff8a9c; }
+.slide.bg-red table.table-a tbody td.accent{ color: var(--white); }
+
+/* --- tarjetas y cajas del generador (estilo inline) ------------------ */
+.slide.bg-blue [style*="--uamlightgray"]{ background: rgba(255,255,255,.08) !important; }
+.slide.bg-red  [style*="--uamlightgray"]{ background: rgba(0,0,0,.17) !important; }
+.slide.bg-blue [style*="--uamlightgray"] strong,
+.slide.bg-red  [style*="--uamlightgray"] strong{ color: var(--white) !important; }
+.slide.bg-blue [style*="--uamlightgray"] > span[style*="--uamgray"],
+.slide.bg-red  [style*="--uamlightgray"] > span[style*="--uamgray"]{
+  color: rgba(255,255,255,.82) !important; }
+.slide.bg-blue [style*="--uamlightgray"] span[style*="line-height:22px"],
+.slide.bg-red  [style*="--uamlightgray"] span[style*="line-height:22px"]{
+  color: var(--white) !important; }
+
+/* --- texto suelto que el generador pinta en tinta --------------------- */
+.slide.bg-blue [style*="color:var(--uamblue)"],
+.slide.bg-red  [style*="color:var(--uamblue)"]{ color: var(--white) !important; }
+.slide.bg-blue [style*="color:var(--uamgray)"],
+.slide.bg-red  [style*="color:var(--uamgray)"]{ color: rgba(255,255,255,.78) !important; }
+.slide.bg-blue [style*="background:var(--uamblue)"],
+.slide.bg-red  [style*="background:var(--uamblue)"]{ background: rgba(255,255,255,.14) !important; }
+.slide.bg-red  [style*="background:var(--uamred)"]{ background: var(--white) !important;
+  color: var(--uamred) !important; }
+.slide.bg-blue [style*="border-top:4px solid var(--uamblue)"],
+.slide.bg-red  [style*="border-top:4px solid var(--uamblue)"]{
+  border-top-color: rgba(255,255,255,.65) !important; }
+.slide.bg-blue [style*="var(--hairline)"],
+.slide.bg-red  [style*="var(--hairline)"]{ border-color: rgba(255,255,255,.3) !important; }
+
+/* --- correcciones del alternado, verificadas por render -------------- */
+/* el título hereda la tinta de papel; sobre fondo pleno debe reversarse */
+.slide.bg-blue .title, .slide.bg-red .title{ color: var(--white); }
+/* cifras y rótulos que el generador pinta en el acento */
+.slide.bg-red [style*="color:var(--uamred)"]{ color: var(--white) !important; }
+.slide.bg-blue [style*="color:var(--uamred)"]{ color: #ff4d68 !important; }
+/* cajas de UEA bloqueada — masa blanca sobre tinta, ilegible */
+.slide.bg-blue [style*="background:#fff"],
+.slide.bg-red  [style*="background:#fff"]{ background: transparent !important; }
+.slide.bg-blue [style*="dashed var(--uamgray)"],
+.slide.bg-red  [style*="dashed var(--uamgray)"]{
+  border-color: rgba(255,255,255,.55) !important; }

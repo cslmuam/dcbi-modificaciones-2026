@@ -91,7 +91,15 @@ Los PDF se preparan con `python3 preparar_planes.py`, que también genera la
 imagen de la primera página, la que ve quien abre desde un navegador que no
 incrusta PDF.
 
-**Árbol de dependencias.****Árbol de dependencias.** La ficha de cada UEA muestra dos árboles
+**Malla curricular.** Cada licenciatura tiene un botón que abre su malla
+del plan propuesto, los doce trimestres con los tres troncos por color, dentro
+del propio tablero y con enlaces para abrirla aparte, como PDF o descargarla.
+Cada recuadro abre el programa de su UEA, y cada casilla de optativa, la lista
+de optativas de la licenciatura. Las mallas se generan con el sistema de decks
+institucional y viven en `mallas/`, cuyo README documenta de qué archivo del
+expediente sale cada una y en qué difiere del plan.
+
+**Árbol de dependencias.** La ficha de cada UEA muestra dos árboles
 navegables: lo que hay que aprobar antes de llegar a ella y lo que se abre
 después, con el total de UEA implicadas en cada dirección y hasta tres niveles
 desplegados. Cuando la UEA continúa del plan vigente, se muestra también el
@@ -105,8 +113,11 @@ ocurre si una clave tentativa se repite, en vez de entrar en un ciclo.
 
 **Búsqueda.** Por nombre o por clave, sobre las 909 UEA de los diez planes.
 
-Cada vista tiene su propia dirección (`#/lic/civ`, `#/uea/civ/1100211`), de modo
-que un hallazgo concreto se puede enviar por correo como enlace.
+Cada vista tiene su propia dirección (`#/lic/civ`, `#/uea/civ/1100211`,
+`#/malla/civ`), de modo que un hallazgo concreto se puede enviar por correo como
+enlace. Una UEA cuya clave no es única en su licenciatura —«sin clave»,
+`1130XXX`, claves tentativas repetidas— se direcciona por su nombre normalizado
+con el prefijo `~`.
 
 ## Archivos
 
@@ -118,6 +129,7 @@ que un hallazgo concreto se puede enviar por correo como enlace.
 | `datos.js` | Datos ya procesados, ~3.2 MB. **Generado, no se edita a mano.** |
 | `construir_datos.py` | Genera `datos.js` desde las fuentes. |
 | `assets/` | Emblema institucional, en positivo y en negativo. |
+| `mallas/` | Malla curricular de cada licenciatura en HTML y PDF, con sus generadores. |
 
 Para regenerar los datos, por ejemplo tras una entrega nueva de las
 coordinaciones:

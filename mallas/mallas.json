@@ -1,0 +1,5876 @@
+{
+ "amb": {
+  "clave": "amb",
+  "nombre": "Ingeniería Ambiental",
+  "creditos_plan": {
+   "general": 57,
+   "profesional": 352,
+   "total": 466
+  },
+  "trimestres": [
+   {
+    "trimestre": 1,
+    "creditos": 39.0,
+    "ueas": [
+     {
+      "nombre": "Matemáticas Básicas para Ingeniería",
+      "clave": "1114054",
+      "creditos": 6.0,
+      "tronco": "general",
+      "opt": false,
+      "ruta": "#/uea/amb/1114054"
+     },
+     {
+      "nombre": "Comunicación Asertiva",
+      "clave": "1100211",
+      "creditos": 3.0,
+      "tronco": "general",
+      "opt": false,
+      "ruta": "#/uea/amb/1100211"
+     },
+     {
+      "nombre": "Química General para Ingeniería",
+      "clave": "1114055",
+      "creditos": 6.0,
+      "tronco": "general",
+      "opt": false,
+      "ruta": "#/uea/amb/1114055"
+     },
+     {
+      "nombre": "Laboratorio de reacciones químicas",
+      "clave": null,
+      "creditos": 3.0,
+      "tronco": "profesional",
+      "opt": false,
+      "ruta": "#/uea/amb/1114009"
+     },
+     {
+      "nombre": "Fundamentos de Física y Aplicaciones I",
+      "clave": "1114052",
+      "creditos": 6.0,
+      "tronco": "general",
+      "opt": false,
+      "ruta": "#/uea/amb/1114052"
+     },
+     {
+      "nombre": "Ciencias Ambientales y Sustentabilidad",
+      "clave": null,
+      "creditos": 9.0,
+      "tronco": "profesional",
+      "opt": false,
+      "ruta": "#/uea/amb/1130008"
+     },
+     {
+      "nombre": "Vida Universitaria",
+      "clave": "1100215",
+      "creditos": 3.0,
+      "tronco": "general",
+      "opt": false,
+      "ruta": "#/uea/amb/1100215"
+     },
+     {
+      "nombre": "Inteligencia artificial",
+      "clave": null,
+      "creditos": 3.0,
+      "tronco": "profesional",
+      "opt": false,
+      "ruta": "#/uea/amb/1150075"
+     }
+    ]
+   },
+   {
+    "trimestre": 2,
+    "creditos": 36.0,
+    "ueas": [
+     {
+      "nombre": "Sistemas de Ecuaciones Lineales y Matrices",
+      "clave": "1114056",
+      "creditos": 6.0,
+      "tronco": "general",
+      "opt": false,
+      "ruta": "#/uea/amb/1114056"
+     },
+     {
+      "nombre": "Cálculo Diferencial",
+      "clave": "1114048",
+      "creditos": 9.0,
+      "tronco": "general",
+      "opt": false,
+      "ruta": "#/uea/amb/1114048"
+     },
+     {
+      "nombre": "Estructura y Propiedades de los materiales en ingeniería",
+      "clave": null,
+      "creditos": 6.0,
+      "tronco": "profesional",
+      "opt": false,
+      "ruta": "#/uea/amb/1114058"
+     },
+     {
+      "nombre": "Laboratorio de Estructura y Propiedades de los Materiales en Ingeniería",
+      "clave": null,
+      "creditos": 3.0,
+      "tronco": "profesional",
+      "opt": false,
+      "ruta": "#/uea/amb/~laboratorioestructuraypropiedadesdelosmaterialesen"
+     },
+     {
+      "nombre": "Fundamentos de Física y Aplicaciones I",
+      "clave": "1114052",
+      "creditos": 6.0,
+      "tronco": "general",
+      "opt": false,
+      "ruta": "#/uea/amb/1114052"
+     },
+     {
+      "nombre": "Laboratorio de movimiento de una partícula",
+      "clave": null,
+      "creditos": 3.0,
+      "tronco": "profesional",
+      "opt": false,
+      "ruta": "#/uea/amb/1114007"
+     },
+     {
+      "nombre": "Cultura de Paz y Género",
+      "clave": "1100212",
+      "creditos": 3.0,
+      "tronco": "general",
+      "opt": false,
+      "ruta": "#/uea/amb/1100212"
+     }
+    ]
+   },
+   {
+    "trimestre": 3,
+    "creditos": 39.0,
+    "ueas": [
+     {
+      "nombre": "Cálculo Integral",
+      "clave": "1114049",
+      "creditos": 9.0,
+      "tronco": "general",
+      "opt": false,
+      "ruta": "#/uea/amb/1114049"
+     },
+     {
+      "nombre": "Química Ambiental I",
+      "clave": null,
+      "creditos": 9.0,
+      "tronco": "profesional",
+      "opt": false,
+      "ruta": "#/uea/amb/1114012"
+     },
+     {
+      "nombre": "Termodinámica",
+      "clave": null,
+      "creditos": 6.0,
+      "tronco": "profesional",
+      "opt": false,
+      "ruta": "#/uea/amb/1114017"
+     },
+     {
+      "nombre": "Laboratorio del cuerpo rígido y oscilaciones",
+      "clave": null,
+      "creditos": 3.0,
+      "tronco": "profesional",
+      "opt": false,
+      "ruta": "#/uea/amb/1114010"
+     },
+     {
+      "nombre": "Taller de expresión oral y redacción de textos científicos",
+      "clave": null,
+      "creditos": 6.0,
+      "tronco": "profesional",
+      "opt": false,
+      "ruta": "#/uea/amb/~tallerdeexpresionoralyredacciondetextoscientificos"
+     },
+     {
+      "nombre": "Programación aplicada a la ingeniería",
+      "clave": null,
+      "creditos": 6.0,
+      "tronco": "profesional",
+      "opt": false,
+      "ruta": "#/uea/amb/1150041"
+     }
+    ]
+   },
+   {
+    "trimestre": 4,
+    "creditos": 43.0,
+    "ueas": [
+     {
+      "nombre": "Ecuaciones diferenciales ordinarias",
+      "clave": null,
+      "creditos": 9.0,
+      "tronco": "profesional",
+      "opt": false,
+      "ruta": "#/uea/amb/1114002"
+     },
+     {
+      "nombre": "Métodos numéricos en ingeniería",
+      "clave": null,
+      "creditos": 7.0,
+      "tronco": "profesional",
+      "opt": false,
+      "ruta": "#/uea/amb/1150017"
+     },
+     {
+      "nombre": "Química Ambiental II",
+      "clave": null,
+      "creditos": 9.0,
+      "tronco": "profesional",
+      "opt": false,
+      "ruta": "#/uea/amb/1114013"
+     },
+     {
+      "nombre": "Introducción a la electrostática y magnetostática",
+      "clave": null,
+      "creditos": 9.0,
+      "tronco": "profesional",
+      "opt": false,
+      "ruta": "#/uea/amb/1114005"
+     },
+     {
+      "nombre": "Termodinámica aplicada",
+      "clave": null,
+      "creditos": 9.0,
+      "tronco": "profesional",
+      "opt": false,
+      "ruta": "#/uea/amb/1130837"
+     }
+    ]
+   },
+   {
+    "trimestre": 5,
+    "creditos": 44.0,
+    "ueas": [
+     {
+      "nombre": "Probabilidad y estadística descriptiva",
+      "clave": null,
+      "creditos": 9.0,
+      "tronco": "profesional",
+      "opt": false,
+      "ruta": "#/uea/amb/1150040"
+     },
+     {
+      "nombre": "Equilibrio químico y cinética en ciencias ambientales",
+      "clave": null,
+      "creditos": 9.0,
+      "tronco": "profesional",
+      "opt": false,
+      "ruta": "#/uea/amb/1114004"
+     },
+     {
+      "nombre": "Bioquímica Ambiental",
+      "clave": null,
+      "creditos": 9.0,
+      "tronco": "profesional",
+      "opt": false,
+      "ruta": "#/uea/amb/1114001"
+     },
+     {
+      "nombre": "Química Analítica e Instrumental",
+      "clave": null,
+      "creditos": 6.0,
+      "tronco": "profesional",
+      "opt": false,
+      "ruta": "#/uea/amb/1114014"
+     },
+     {
+      "nombre": "Laboratorio de Química Analítica e Instrumental",
+      "clave": null,
+      "creditos": 3.0,
+      "tronco": "profesional",
+      "opt": false,
+      "ruta": "#/uea/amb/1114008"
+     },
+     {
+      "nombre": "Balance de materia y energía en Ingeniería Ambiental",
+      "clave": null,
+      "creditos": 8.0,
+      "tronco": "profesional",
+      "opt": false,
+      "ruta": "#/uea/amb/~balancedemateriayenergiaeningenieriaambiental"
+     }
+    ]
+   },
+   {
+    "trimestre": 6,
+    "creditos": 33.0,
+    "ueas": [
+     {
+      "nombre": "Microbiología Aplicada",
+      "clave": null,
+      "creditos": 9.0,
+      "tronco": "profesional",
+      "opt": false,
+      "ruta": "#/uea/amb/1114011"
+     },
+     {
+      "nombre": "Laboratorio de Microbiología Aplicada",
+      "clave": null,
+      "creditos": 6.0,
+      "tronco": "profesional",
+      "opt": false,
+      "ruta": "#/uea/amb/1114006"
+     },
+     {
+      "nombre": "Mecánica de fluidos",
+      "clave": null,
+      "creditos": 9.0,
+      "tronco": "profesional",
+      "opt": false,
+      "ruta": "#/uea/amb/1130061"
+     },
+     {
+      "nombre": "Legislación y Gestión Ambiental",
+      "clave": null,
+      "creditos": 9.0,
+      "tronco": "profesional",
+      "opt": false,
+      "ruta": "#/uea/amb/1130014"
+     }
+    ]
+   },
+   {
+    "trimestre": 7,
+    "creditos": 41.0,
+    "ueas": [
+     {
+      "nombre": "Taller de Análisis de la Calidad del Agua",
+      "clave": null,
+      "creditos": 9.0,
+      "tronco": "profesional",
+      "opt": false,
+      "ruta": "#/uea/amb/1130022"
+     },
+     {
+      "nombre": "Sistemas de Información Geográfica",
+      "clave": null,
+      "creditos": 9.0,
+      "tronco": "profesional",
+      "opt": false,
+      "ruta": "#/uea/amb/1130021"
+     },
+     {
+      "nombre": "Liderazgo y emprendimiento",
+      "clave": null,
+      "creditos": 6.0,
+      "tronco": "profesional",
+      "opt": false,
+      "ruta": "#/uea/amb/1150081"
+     },
+     {
+      "nombre": "Fenómenos de Transporte",
+      "clave": null,
+      "creditos": 9.0,
+      "tronco": "profesional",
+      "opt": false,
+      "ruta": "#/uea/amb/1130011"
+     },
+     {
+      "nombre": "Seguridad e Higiene Industrial",
+      "clave": null,
+      "creditos": 8.0,
+      "tronco": "profesional",
+      "opt": false,
+      "ruta": "#/uea/amb/1150045"
+     }
+    ]
+   },
+   {
+    "trimestre": 8,
+    "creditos": 42.0,
+    "ueas": [
+     {
+      "nombre": "Operaciones Unitarias en Ingeniería Ambiental",
+      "clave": null,
+      "creditos": 9.0,
+      "tronco": "profesional",
+      "opt": false,
+      "ruta": "#/uea/amb/1130016"
+     },
+     {
+      "nombre": "Procesos Fisicoquímicos en Ingeniería Ambiental",
+      "clave": null,
+      "creditos": 9.0,
+      "tronco": "profesional",
+      "opt": false,
+      "ruta": "#/uea/amb/1130018"
+     },
+     {
+      "nombre": "Gestión de la Contaminación Atmosférica",
+      "clave": null,
+      "creditos": 9.0,
+      "tronco": "profesional",
+      "opt": false,
+      "ruta": "#/uea/amb/~gestiondelacontaminacionatmosferica"
+     },
+     {
+      "nombre": "Ingeniería Económica",
+      "clave": null,
+      "creditos": 6.0,
+      "tronco": "profesional",
+      "opt": false,
+      "ruta": "#/uea/amb/1150034"
+     },
+     {
+      "nombre": "Optativa del Tronco de Integración",
+      "clave": null,
+      "creditos": 9.0,
+      "tronco": "integracion",
+      "opt": true,
+      "ruta": null
+     }
+    ]
+   },
+   {
+    "trimestre": 9,
+    "creditos": 42.0,
+    "ueas": [
+     {
+      "nombre": "Procesos Biológicos en Ingeniería Ambiental",
+      "clave": null,
+      "creditos": 9.0,
+      "tronco": "profesional",
+      "opt": false,
+      "ruta": "#/uea/amb/~procesosbiologicoseningenieriaambiental"
+     },
+     {
+      "nombre": "Taller de Monitoreo Atmosférico",
+      "clave": null,
+      "creditos": 9.0,
+      "tronco": "profesional",
+      "opt": false,
+      "ruta": "#/uea/amb/1130023"
+     },
+     {
+      "nombre": "Evaluación de Impacto Ambiental",
+      "clave": null,
+      "creditos": 9.0,
+      "tronco": "profesional",
+      "opt": false,
+      "ruta": "#/uea/amb/1130010"
+     },
+     {
+      "nombre": "Efecto Invernadero y Cambio Climático",
+      "clave": null,
+      "creditos": 9.0,
+      "tronco": "profesional",
+      "opt": false,
+      "ruta": "#/uea/amb/1114003"
+     },
+     {
+      "nombre": "Gestión y seguimiento de proyectos",
+      "clave": null,
+      "creditos": 6.0,
+      "tronco": "profesional",
+      "opt": false,
+      "ruta": "#/uea/amb/1150032"
+     }
+    ]
+   },
+   {
+    "trimestre": 10,
+    "creditos": 39.0,
+    "ueas": [
+     {
+      "nombre": "Gestión Integral de Residuos Sólidos Urbanos",
+      "clave": null,
+      "creditos": 9.0,
+      "tronco": "profesional",
+      "opt": false,
+      "ruta": "#/uea/amb/~gestionintegralderesiduossolidosurbanos"
+     },
+     {
+      "nombre": "Taller de Procesos de Tratamiento de Agua",
+      "clave": null,
+      "creditos": 9.0,
+      "tronco": "profesional",
+      "opt": false,
+      "ruta": "#/uea/amb/~tallerdeprocesosdetratamientodeagua"
+     },
+     {
+      "nombre": "Contaminación y Restauración de Suelos",
+      "clave": null,
+      "creditos": 9.0,
+      "tronco": "profesional",
+      "opt": false,
+      "ruta": "#/uea/amb/1130009"
+     },
+     {
+      "nombre": "Manejo y Tratamiento de Residuos Industriales y Peligrosos",
+      "clave": null,
+      "creditos": 9.0,
+      "tronco": "profesional",
+      "opt": false,
+      "ruta": "#/uea/amb/~manejoytratamientoderesiduosindustrialesypeligrosos"
+     },
+     {
+      "nombre": "Seminario de Integración en Ingeniería Ambiental",
+      "clave": null,
+      "creditos": 3.0,
+      "tronco": "integracion",
+      "opt": false,
+      "ruta": "#/uea/amb/1130019"
+     }
+    ]
+   },
+   {
+    "trimestre": 11,
+    "creditos": 41.0,
+    "ueas": [
+     {
+      "nombre": "Taller de Residuos Sólidos Urbanos y Suelos",
+      "clave": null,
+      "creditos": 9.0,
+      "tronco": "profesional",
+      "opt": false,
+      "ruta": "#/uea/amb/1130025"
+     },
+     {
+      "nombre": "Proyecto de Integración en Ingeniería Ambiental",
+      "clave": null,
+      "creditos": 18.0,
+      "tronco": "integracion",
+      "opt": false,
+      "ruta": "#/uea/amb/1100200"
+     },
+     {
+      "nombre": "Análisis de Ciclo de Vida",
+      "clave": null,
+      "creditos": 7.0,
+      "tronco": "profesional",
+      "opt": false,
+      "ruta": "#/uea/amb/1130006"
+     },
+     {
+      "nombre": "Sistemas de Gestión Ambiental",
+      "clave": null,
+      "creditos": 7.0,
+      "tronco": "profesional",
+      "opt": false,
+      "ruta": "#/uea/amb/1130020"
+     }
+    ]
+   },
+   {
+    "trimestre": 12,
+    "creditos": 27.0,
+    "ueas": [
+     {
+      "nombre": "Optativa del Tronco de Integración",
+      "clave": null,
+      "creditos": 9.0,
+      "tronco": "integracion",
+      "opt": true,
+      "ruta": null
+     },
+     {
+      "nombre": "Optativa del Tronco de Integración",
+      "clave": null,
+      "creditos": 9.0,
+      "tronco": "integracion",
+      "opt": true,
+      "ruta": null
+     },
+     {
+      "nombre": "Optativa del Tronco de Integración",
+      "clave": null,
+      "creditos": 9.0,
+      "tronco": "integracion",
+      "opt": true,
+      "ruta": null
+     }
+    ]
+   }
+  ]
+ },
+ "civ": {
+  "clave": "civ",
+  "nombre": "Ingeniería Civil",
+  "creditos_plan": {
+   "general": 57,
+   "profesional": 322,
+   "total": 451
+  },
+  "trimestres": [
+   {
+    "trimestre": 1,
+    "creditos": 30.0,
+    "ueas": [
+     {
+      "nombre": "Química General para Ingeniería",
+      "clave": "1114055",
+      "creditos": 6.0,
+      "tronco": "general",
+      "opt": false,
+      "ruta": "#/uea/civ/1114055"
+     },
+     {
+      "nombre": "Fundamentos de Física y Aplicaciones I",
+      "clave": "1114052",
+      "creditos": 6.0,
+      "tronco": "general",
+      "opt": false,
+      "ruta": "#/uea/civ/1114052"
+     },
+     {
+      "nombre": "Matemáticas Básicas para Ingeniería",
+      "clave": "1114054",
+      "creditos": 6.0,
+      "tronco": "general",
+      "opt": false,
+      "ruta": "#/uea/civ/1114054"
+     },
+     {
+      "nombre": "Vida Universitaria",
+      "clave": "1100215",
+      "creditos": 3.0,
+      "tronco": "general",
+      "opt": false,
+      "ruta": "#/uea/civ/1100215"
+     },
+     {
+      "nombre": "Herramientas digitales en ingeniería",
+      "clave": "1100202",
+      "creditos": 6.0,
+      "tronco": "profesional",
+      "opt": false,
+      "ruta": "#/uea/civ/1100202"
+     },
+     {
+      "nombre": "Ética y responsabilidad social",
+      "clave": "1100201",
+      "creditos": 3.0,
+      "tronco": "profesional",
+      "opt": false,
+      "ruta": "#/uea/civ/1100201"
+     }
+    ]
+   },
+   {
+    "trimestre": 2,
+    "creditos": 36.0,
+    "ueas": [
+     {
+      "nombre": "Fundamentos de Física y Aplicaciones I",
+      "clave": "1114052",
+      "creditos": 6.0,
+      "tronco": "general",
+      "opt": false,
+      "ruta": "#/uea/civ/1114052"
+     },
+     {
+      "nombre": "Sistemas de Ecuaciones Lineales y Matrices",
+      "clave": "1114056",
+      "creditos": 6.0,
+      "tronco": "general",
+      "opt": false,
+      "ruta": "#/uea/civ/1114056"
+     },
+     {
+      "nombre": "Cálculo Diferencial",
+      "clave": "1114048",
+      "creditos": 9.0,
+      "tronco": "general",
+      "opt": false,
+      "ruta": "#/uea/civ/1114048"
+     },
+     {
+      "nombre": "Cultura de Paz y Género",
+      "clave": "1100212",
+      "creditos": 3.0,
+      "tronco": "general",
+      "opt": false,
+      "ruta": "#/uea/civ/1100212"
+     },
+     {
+      "nombre": "Comunicación Asertiva",
+      "clave": "1100211",
+      "creditos": 3.0,
+      "tronco": "general",
+      "opt": false,
+      "ruta": "#/uea/civ/1100211"
+     },
+     {
+      "nombre": "Materiales de construcción",
+      "clave": "1140029",
+      "creditos": 9.0,
+      "tronco": "profesional",
+      "opt": false,
+      "ruta": "#/uea/civ/1140029"
+     }
+    ]
+   },
+   {
+    "trimestre": 3,
+    "creditos": 36.0,
+    "ueas": [
+     {
+      "nombre": "Programación aplicada a la ingeniería",
+      "clave": "1150041",
+      "creditos": 6.0,
+      "tronco": "profesional",
+      "opt": false,
+      "ruta": "#/uea/civ/1150041"
+     },
+     {
+      "nombre": "Estática",
+      "clave": "1140020",
+      "creditos": 9.0,
+      "tronco": "profesional",
+      "opt": false,
+      "ruta": "#/uea/civ/1140020"
+     },
+     {
+      "nombre": "Cálculo Integral",
+      "clave": "1114049",
+      "creditos": 9.0,
+      "tronco": "general",
+      "opt": false,
+      "ruta": "#/uea/civ/1114049"
+     },
+     {
+      "nombre": "Probabilidad y estadística descriptiva",
+      "clave": "1150040",
+      "creditos": 9.0,
+      "tronco": "profesional",
+      "opt": false,
+      "ruta": "#/uea/civ/1150040"
+     },
+     {
+      "nombre": "Laboratorio de concreto",
+      "clave": "1140027",
+      "creditos": 3.0,
+      "tronco": "profesional",
+      "opt": false,
+      "ruta": "#/uea/civ/1140027"
+     }
+    ]
+   },
+   {
+    "trimestre": 4,
+    "creditos": 40.0,
+    "ueas": [
+     {
+      "nombre": "Métodos numéricos en ingeniería",
+      "clave": "1150017",
+      "creditos": 7.0,
+      "tronco": "profesional",
+      "opt": false,
+      "ruta": "#/uea/civ/1150017"
+     },
+     {
+      "nombre": "Estructuras isostáticas",
+      "clave": "1140021",
+      "creditos": 6.0,
+      "tronco": "profesional",
+      "opt": false,
+      "ruta": "#/uea/civ/1140021"
+     },
+     {
+      "nombre": "Ecuaciones diferenciales ordinarias",
+      "clave": "1114002",
+      "creditos": 9.0,
+      "tronco": "profesional",
+      "opt": false,
+      "ruta": "#/uea/civ/1114002"
+     },
+     {
+      "nombre": "Geología",
+      "clave": "1140023",
+      "creditos": 9.0,
+      "tronco": "profesional",
+      "opt": false,
+      "ruta": "#/uea/civ/1140023"
+     },
+     {
+      "nombre": "Hidráulica básica y de tuberías",
+      "clave": "1130027",
+      "creditos": 9.0,
+      "tronco": "profesional",
+      "opt": false,
+      "ruta": "#/uea/civ/1130027"
+     }
+    ]
+   },
+   {
+    "trimestre": 5,
+    "creditos": 45.0,
+    "ueas": [
+     {
+      "nombre": "Investigación de operaciones",
+      "clave": "1150016",
+      "creditos": 9.0,
+      "tronco": "profesional",
+      "opt": false,
+      "ruta": "#/uea/civ/1150016"
+     },
+     {
+      "nombre": "Mecánica de materiales I",
+      "clave": "1140030",
+      "creditos": 9.0,
+      "tronco": "profesional",
+      "opt": false,
+      "ruta": "#/uea/civ/1140030"
+     },
+     {
+      "nombre": "Topografía",
+      "clave": "1140040",
+      "creditos": 12.0,
+      "tronco": "profesional",
+      "opt": false,
+      "ruta": "#/uea/civ/1140040"
+     },
+     {
+      "nombre": "Inteligencia artificial",
+      "clave": "1100213",
+      "creditos": 3.0,
+      "tronco": "profesional",
+      "opt": false,
+      "ruta": "#/uea/civ/1100213"
+     },
+     {
+      "nombre": "Hidráulica de canales",
+      "clave": "1130028",
+      "creditos": 9.0,
+      "tronco": "profesional",
+      "opt": false,
+      "ruta": "#/uea/civ/~hidraulicadecanales"
+     },
+     {
+      "nombre": "Laboratorio de Hidráulica Tuberias",
+      "clave": "1130000",
+      "creditos": 3.0,
+      "tronco": "profesional",
+      "opt": false,
+      "ruta": "#/uea/civ/~laboratoriodehidraulicatuberias"
+     }
+    ]
+   },
+   {
+    "trimestre": 6,
+    "creditos": 36.0,
+    "ueas": [
+     {
+      "nombre": "Fundamentos de Geotecnia",
+      "clave": "1140000",
+      "creditos": 9.0,
+      "tronco": "profesional",
+      "opt": false,
+      "ruta": "#/uea/civ/1140022"
+     },
+     {
+      "nombre": "Laboratorio de mecánica de materiales",
+      "clave": "1140028",
+      "creditos": 3.0,
+      "tronco": "profesional",
+      "opt": false,
+      "ruta": "#/uea/civ/1140028"
+     },
+     {
+      "nombre": "Acciones en las estructuras",
+      "clave": "1140013",
+      "creditos": 6.0,
+      "tronco": "profesional",
+      "opt": false,
+      "ruta": "#/uea/civ/1140013"
+     },
+     {
+      "nombre": "Mecánica de materiales II",
+      "clave": "1140031",
+      "creditos": 9.0,
+      "tronco": "profesional",
+      "opt": false,
+      "ruta": "#/uea/civ/1140031"
+     },
+     {
+      "nombre": "Hidrología superficial",
+      "clave": "1130029",
+      "creditos": 9.0,
+      "tronco": "profesional",
+      "opt": false,
+      "ruta": "#/uea/civ/1130029"
+     }
+    ]
+   },
+   {
+    "trimestre": 7,
+    "creditos": 42.0,
+    "ueas": [
+     {
+      "nombre": "Laboratorio de mecánica de suelos",
+      "clave": "1140026",
+      "creditos": 3.0,
+      "tronco": "profesional",
+      "opt": false,
+      "ruta": "#/uea/civ/1140026"
+     },
+     {
+      "nombre": "Análisis estructural",
+      "clave": "1140014",
+      "creditos": 9.0,
+      "tronco": "profesional",
+      "opt": false,
+      "ruta": "#/uea/civ/1140014"
+     },
+     {
+      "nombre": "Elementos de acero",
+      "clave": "1140017",
+      "creditos": 9.0,
+      "tronco": "profesional",
+      "opt": false,
+      "ruta": "#/uea/civ/1140017"
+     },
+     {
+      "nombre": "Presupuestos de obra",
+      "clave": "1140036",
+      "creditos": 9.0,
+      "tronco": "profesional",
+      "opt": false,
+      "ruta": "#/uea/civ/1140036"
+     },
+     {
+      "nombre": "Sistemas de información geográfica",
+      "clave": "1130021",
+      "creditos": 9.0,
+      "tronco": "profesional",
+      "opt": false,
+      "ruta": "#/uea/civ/1130021"
+     },
+     {
+      "nombre": "Educación ambiental y cambio climático",
+      "clave": "1130074",
+      "creditos": 3.0,
+      "tronco": "profesional",
+      "opt": false,
+      "ruta": "#/uea/civ/1130074"
+     }
+    ]
+   },
+   {
+    "trimestre": 8,
+    "creditos": 42.0,
+    "ueas": [
+     {
+      "nombre": "Ingeniería geotécnica",
+      "clave": "1140032",
+      "creditos": 9.0,
+      "tronco": "profesional",
+      "opt": false,
+      "ruta": "#/uea/civ/1140032"
+     },
+     {
+      "nombre": "Elementos de mampostería",
+      "clave": "1140019",
+      "creditos": 9.0,
+      "tronco": "profesional",
+      "opt": false,
+      "ruta": "#/uea/civ/1140019"
+     },
+     {
+      "nombre": "Elementos de concreto",
+      "clave": "1140018",
+      "creditos": 9.0,
+      "tronco": "profesional",
+      "opt": false,
+      "ruta": "#/uea/civ/1140018"
+     },
+     {
+      "nombre": "Ingeniería económica",
+      "clave": "1150034",
+      "creditos": 6.0,
+      "tronco": "profesional",
+      "opt": false,
+      "ruta": "#/uea/civ/1150034"
+     },
+     {
+      "nombre": "Gestión integrada y aprovechamiento de agua",
+      "clave": "1130026",
+      "creditos": 9.0,
+      "tronco": "profesional",
+      "opt": false,
+      "ruta": "#/uea/civ/1130026"
+     }
+    ]
+   },
+   {
+    "trimestre": 9,
+    "creditos": 39.0,
+    "ueas": [
+     {
+      "nombre": "Diseño Geotécnico de Cimentaciones",
+      "clave": "1140016",
+      "creditos": 9.0,
+      "tronco": "profesional",
+      "opt": false,
+      "ruta": "#/uea/civ/1140016"
+     },
+     {
+      "nombre": "Ingeniería sísmica",
+      "clave": "1140025",
+      "creditos": 9.0,
+      "tronco": "profesional",
+      "opt": false,
+      "ruta": "#/uea/civ/~ingenieriasismica"
+     },
+     {
+      "nombre": "Taller de comunicación técnica y profesional",
+      "clave": "1150049",
+      "creditos": 6.0,
+      "tronco": "profesional",
+      "opt": false,
+      "ruta": "#/uea/civ/1150049"
+     },
+     {
+      "nombre": "Planeación, programación y control de obra",
+      "clave": "1140035",
+      "creditos": 9.0,
+      "tronco": "profesional",
+      "opt": false,
+      "ruta": "#/uea/civ/1140035"
+     },
+     {
+      "nombre": "Taller de Ingeniería Civil I",
+      "clave": "1140000",
+      "creditos": 6.0,
+      "tronco": "profesional",
+      "opt": false,
+      "ruta": "#/uea/civ/1140000"
+     }
+    ]
+   },
+   {
+    "trimestre": 10,
+    "creditos": 30.0,
+    "ueas": [
+     {
+      "nombre": "Ingeniería de vías de comunicación",
+      "clave": "1140024",
+      "creditos": 9.0,
+      "tronco": "profesional",
+      "opt": false,
+      "ruta": "#/uea/civ/1140024"
+     },
+     {
+      "nombre": "Liderazgo y emprendimiento",
+      "clave": "1150081",
+      "creditos": 6.0,
+      "tronco": "profesional",
+      "opt": false,
+      "ruta": "#/uea/civ/1150081"
+     },
+     {
+      "nombre": "Diseño estructural de cimentaciones",
+      "clave": "1140810",
+      "creditos": 9.0,
+      "tronco": "profesional",
+      "opt": false,
+      "ruta": "#/uea/civ/1140810"
+     },
+     {
+      "nombre": "Optativa del Tronco de Integración",
+      "clave": null,
+      "creditos": 6.0,
+      "tronco": "integracion",
+      "opt": true,
+      "ruta": null
+     }
+    ]
+   },
+   {
+    "trimestre": 11,
+    "creditos": 39.0,
+    "ueas": [
+     {
+      "nombre": "Seminario de Proyecto de Integración",
+      "clave": null,
+      "creditos": 3.0,
+      "tronco": "integracion",
+      "opt": false,
+      "ruta": "#/uea/civ/~seminariodeproyectodeintegracion"
+     },
+     {
+      "nombre": "Optativa del Tronco de Integración",
+      "clave": null,
+      "creditos": 9.0,
+      "tronco": "integracion",
+      "opt": true,
+      "ruta": null
+     },
+     {
+      "nombre": "Optativa del Tronco de Integración",
+      "clave": null,
+      "creditos": 9.0,
+      "tronco": "integracion",
+      "opt": true,
+      "ruta": null
+     },
+     {
+      "nombre": "Gestión de proyectos en ingeniería civil",
+      "clave": "1140042",
+      "creditos": 9.0,
+      "tronco": "profesional",
+      "opt": false,
+      "ruta": "#/uea/civ/1140042"
+     },
+     {
+      "nombre": "Optativa del Tronco de Integración",
+      "clave": null,
+      "creditos": 9.0,
+      "tronco": "integracion",
+      "opt": true,
+      "ruta": null
+     }
+    ]
+   },
+   {
+    "trimestre": 12,
+    "creditos": 36.0,
+    "ueas": [
+     {
+      "nombre": "Proyecto de Integración en ingeniería civil",
+      "clave": null,
+      "creditos": 18.0,
+      "tronco": "integracion",
+      "opt": false,
+      "ruta": "#/uea/civ/~proyectodeintegracioneningeniariacivil"
+     },
+     {
+      "nombre": "Optativa del Tronco de Integración",
+      "clave": null,
+      "creditos": 9.0,
+      "tronco": "integracion",
+      "opt": true,
+      "ruta": null
+     },
+     {
+      "nombre": "Optativa del Tronco de Integración",
+      "clave": null,
+      "creditos": 9.0,
+      "tronco": "integracion",
+      "opt": true,
+      "ruta": null
+     }
+    ]
+   }
+  ]
+ },
+ "com": {
+  "clave": "com",
+  "nombre": "Ingeniería en Computación",
+  "creditos_plan": {
+   "general": 57,
+   "profesional": 339,
+   "total": 449
+  },
+  "trimestres": [
+   {
+    "trimestre": 1,
+    "creditos": 27.0,
+    "ueas": [
+     {
+      "nombre": "Matemáticas Básicas para Ingeniería",
+      "clave": "1114054",
+      "creditos": 6.0,
+      "tronco": "general",
+      "opt": false,
+      "ruta": "#/uea/com/1114054"
+     },
+     {
+      "nombre": "Fundamentos de Física y Aplicaciones I",
+      "clave": "1114052",
+      "creditos": 6.0,
+      "tronco": "general",
+      "opt": false,
+      "ruta": "#/uea/com/1114052"
+     },
+     {
+      "nombre": "Vida Universitaria",
+      "clave": "1100215",
+      "creditos": 3.0,
+      "tronco": "general",
+      "opt": false,
+      "ruta": "#/uea/com/1100215"
+     },
+     {
+      "nombre": "Taller de computación",
+      "clave": "110045",
+      "creditos": 3.0,
+      "tronco": "profesional",
+      "opt": false,
+      "ruta": "#/uea/com/110045"
+     },
+     {
+      "nombre": "Introducción a la ingeniería en computación",
+      "clave": "1150078",
+      "creditos": 6.0,
+      "tronco": "profesional",
+      "opt": false,
+      "ruta": "#/uea/com/1150078"
+     },
+     {
+      "nombre": "Comunicación Asertiva",
+      "clave": "1100211",
+      "creditos": 3.0,
+      "tronco": "general",
+      "opt": false,
+      "ruta": "#/uea/com/1100211"
+     }
+    ]
+   },
+   {
+    "trimestre": 2,
+    "creditos": 35.0,
+    "ueas": [
+     {
+      "nombre": "Sistemas de Ecuaciones Lineales y Matrices",
+      "clave": "1114056",
+      "creditos": 6.0,
+      "tronco": "general",
+      "opt": false,
+      "ruta": "#/uea/com/1114056"
+     },
+     {
+      "nombre": "Fundamentos de Física y Aplicaciones II",
+      "clave": "1114053",
+      "creditos": 6.0,
+      "tronco": "general",
+      "opt": false,
+      "ruta": "#/uea/com/1114053"
+     },
+     {
+      "nombre": "Metodología experimental aplicada",
+      "clave": "1150079",
+      "creditos": 3.0,
+      "tronco": "profesional",
+      "opt": false,
+      "ruta": "#/uea/com/1150079"
+     },
+     {
+      "nombre": "Fundamentos de programación",
+      "clave": "1150072",
+      "creditos": 8.0,
+      "tronco": "profesional",
+      "opt": false,
+      "ruta": "#/uea/com/1150072"
+     },
+     {
+      "nombre": "Química General para Ingeniería",
+      "clave": "1114055",
+      "creditos": 6.0,
+      "tronco": "general",
+      "opt": false,
+      "ruta": "#/uea/com/1114055"
+     },
+     {
+      "nombre": "Taller de comunicación técnica y profesional",
+      "clave": "1150049",
+      "creditos": 6.0,
+      "tronco": "profesional",
+      "opt": false,
+      "ruta": "#/uea/com/1150049"
+     }
+    ]
+   },
+   {
+    "trimestre": 3,
+    "creditos": 38.0,
+    "ueas": [
+     {
+      "nombre": "Cálculo Diferencial",
+      "clave": "1114048",
+      "creditos": 9.0,
+      "tronco": "general",
+      "opt": false,
+      "ruta": "#/uea/com/1114048"
+     },
+     {
+      "nombre": "Lógica",
+      "clave": "1150082",
+      "creditos": 9.0,
+      "tronco": "profesional",
+      "opt": false,
+      "ruta": "#/uea/com/1150082"
+     },
+     {
+      "nombre": "Diseño digital",
+      "clave": "1121062",
+      "creditos": 9.0,
+      "tronco": "profesional",
+      "opt": false,
+      "ruta": "#/uea/com/1121062"
+     },
+     {
+      "nombre": "Complementos de programación",
+      "clave": "1150064",
+      "creditos": 8.0,
+      "tronco": "profesional",
+      "opt": false,
+      "ruta": "#/uea/com/1150064"
+     },
+     {
+      "nombre": "Cultura de Paz y Género",
+      "clave": "1100212",
+      "creditos": 3.0,
+      "tronco": "general",
+      "opt": false,
+      "ruta": "#/uea/com/1100212"
+     }
+    ]
+   },
+   {
+    "trimestre": 4,
+    "creditos": 40.0,
+    "ueas": [
+     {
+      "nombre": "Cálculo Integral",
+      "clave": "1114049",
+      "creditos": 9.0,
+      "tronco": "general",
+      "opt": false,
+      "ruta": "#/uea/com/1114049"
+     },
+     {
+      "nombre": "Arquitectura de computadoras",
+      "clave": "110020",
+      "creditos": 9.0,
+      "tronco": "profesional",
+      "opt": false,
+      "ruta": "#/uea/com/110020"
+     },
+     {
+      "nombre": "Algoritmos y estructuras de datos",
+      "clave": "1150058",
+      "creditos": 8.0,
+      "tronco": "profesional",
+      "opt": false,
+      "ruta": "#/uea/com/1150058"
+     },
+     {
+      "nombre": "Programación orientada a objetos I",
+      "clave": "1150088",
+      "creditos": 8.0,
+      "tronco": "profesional",
+      "opt": false,
+      "ruta": "#/uea/com/1150088"
+     },
+     {
+      "nombre": "Ética, responsabilidad social y sostenibilidad",
+      "clave": "1100201",
+      "creditos": 6.0,
+      "tronco": "profesional",
+      "opt": false,
+      "ruta": "#/uea/com/1100201"
+     }
+    ]
+   },
+   {
+    "trimestre": 5,
+    "creditos": 42.0,
+    "ueas": [
+     {
+      "nombre": "Álgebra lineal",
+      "clave": "110019",
+      "creditos": 9.0,
+      "tronco": "profesional",
+      "opt": false,
+      "ruta": "#/uea/com/110019"
+     },
+     {
+      "nombre": "Matemáticas discretas",
+      "clave": "1150083",
+      "creditos": 8.0,
+      "tronco": "profesional",
+      "opt": false,
+      "ruta": "#/uea/com/1150083"
+     },
+     {
+      "nombre": "Almacenamiento y estructuras de archivos",
+      "clave": "1150059",
+      "creditos": 8.0,
+      "tronco": "profesional",
+      "opt": false,
+      "ruta": "#/uea/com/1150059"
+     },
+     {
+      "nombre": "Programación orientada a objetos II",
+      "clave": "110039",
+      "creditos": 8.0,
+      "tronco": "profesional",
+      "opt": false,
+      "ruta": "#/uea/com/110039"
+     },
+     {
+      "nombre": "Redes de computadoras",
+      "clave": "1125042",
+      "creditos": 9.0,
+      "tronco": "profesional",
+      "opt": false,
+      "ruta": "#/uea/com/1125042"
+     }
+    ]
+   },
+   {
+    "trimestre": 6,
+    "creditos": 43.0,
+    "ueas": [
+     {
+      "nombre": "Probabilidad",
+      "clave": "1150086",
+      "creditos": 9.0,
+      "tronco": "profesional",
+      "opt": false,
+      "ruta": "#/uea/com/1150086"
+     },
+     {
+      "nombre": "Programación numérica",
+      "clave": "1150087",
+      "creditos": 8.0,
+      "tronco": "profesional",
+      "opt": false,
+      "ruta": "#/uea/com/1150087"
+     },
+     {
+      "nombre": "Sistemas embebidos",
+      "clave": "110043",
+      "creditos": 9.0,
+      "tronco": "profesional",
+      "opt": false,
+      "ruta": "#/uea/com/110043"
+     },
+     {
+      "nombre": "Bases de datos relacionales",
+      "clave": "1150063",
+      "creditos": 8.0,
+      "tronco": "profesional",
+      "opt": false,
+      "ruta": "#/uea/com/1150063"
+     },
+     {
+      "nombre": "Administración de redes de computadoras",
+      "clave": "1125014",
+      "creditos": 9.0,
+      "tronco": "profesional",
+      "opt": false,
+      "ruta": "#/uea/com/1125014"
+     }
+    ]
+   },
+   {
+    "trimestre": 7,
+    "creditos": 40.0,
+    "ueas": [
+     {
+      "nombre": "Estadística",
+      "clave": "1150069",
+      "creditos": 9.0,
+      "tronco": "profesional",
+      "opt": false,
+      "ruta": "#/uea/com/1150069"
+     },
+     {
+      "nombre": "Investigación de operaciones",
+      "clave": "1150085",
+      "creditos": 9.0,
+      "tronco": "profesional",
+      "opt": false,
+      "ruta": "#/uea/com/1150085"
+     },
+     {
+      "nombre": "Sistemas operativos",
+      "clave": "110044",
+      "creditos": 8.0,
+      "tronco": "profesional",
+      "opt": false,
+      "ruta": "#/uea/com/110044"
+     },
+     {
+      "nombre": "Bases de datos no relacionales",
+      "clave": "1150062",
+      "creditos": 8.0,
+      "tronco": "profesional",
+      "opt": false,
+      "ruta": "#/uea/com/1150062"
+     },
+     {
+      "nombre": "Legislación informática",
+      "clave": "1150070",
+      "creditos": 6.0,
+      "tronco": "profesional",
+      "opt": false,
+      "ruta": "#/uea/com/1150070"
+     }
+    ]
+   },
+   {
+    "trimestre": 8,
+    "creditos": 41.0,
+    "ueas": [
+     {
+      "nombre": "Lenguajes, autómatas y compiladores",
+      "clave": "1150080",
+      "creditos": 9.0,
+      "tronco": "profesional",
+      "opt": false,
+      "ruta": "#/uea/com/1150080"
+     },
+     {
+      "nombre": "Cómputo ubicuo",
+      "clave": "1150066",
+      "creditos": 8.0,
+      "tronco": "profesional",
+      "opt": false,
+      "ruta": "#/uea/com/1150066"
+     },
+     {
+      "nombre": "Sistemas distribuidos",
+      "clave": "110042",
+      "creditos": 8.0,
+      "tronco": "profesional",
+      "opt": false,
+      "ruta": "#/uea/com/110042"
+     },
+     {
+      "nombre": "Programación paralela",
+      "clave": "110040",
+      "creditos": 8.0,
+      "tronco": "profesional",
+      "opt": false,
+      "ruta": "#/uea/com/110040"
+     },
+     {
+      "nombre": "Análisis y diseño de algoritmos",
+      "clave": "1150060",
+      "creditos": 8.0,
+      "tronco": "profesional",
+      "opt": false,
+      "ruta": "#/uea/com/1150060"
+     }
+    ]
+   },
+   {
+    "trimestre": 9,
+    "creditos": 38.0,
+    "ueas": [
+     {
+      "nombre": "Interfaz humano-computadora",
+      "clave": "1150076",
+      "creditos": 8.0,
+      "tronco": "profesional",
+      "opt": false,
+      "ruta": "#/uea/com/1150076"
+     },
+     {
+      "nombre": "Introducción a la ciencia de datos",
+      "clave": "1150077",
+      "creditos": 8.0,
+      "tronco": "profesional",
+      "opt": false,
+      "ruta": "#/uea/com/1150077"
+     },
+     {
+      "nombre": "Inteligencia artificial",
+      "clave": "1150075",
+      "creditos": 8.0,
+      "tronco": "profesional",
+      "opt": false,
+      "ruta": "#/uea/com/1150075"
+     },
+     {
+      "nombre": "Análisis y diseño de sistemas de software",
+      "clave": "1150061",
+      "creditos": 8.0,
+      "tronco": "profesional",
+      "opt": false,
+      "ruta": "#/uea/com/1150061"
+     },
+     {
+      "nombre": "Fundamentos de administración y finanzas",
+      "clave": "1150071",
+      "creditos": 6.0,
+      "tronco": "profesional",
+      "opt": false,
+      "ruta": "#/uea/com/1150071"
+     }
+    ]
+   },
+   {
+    "trimestre": 10,
+    "creditos": 38.0,
+    "ueas": [
+     {
+      "nombre": "Seguridad informática",
+      "clave": "110041",
+      "creditos": 8.0,
+      "tronco": "profesional",
+      "opt": false,
+      "ruta": "#/uea/com/110041"
+     },
+     {
+      "nombre": "Minería de datos",
+      "clave": "1150084",
+      "creditos": 8.0,
+      "tronco": "profesional",
+      "opt": false,
+      "ruta": "#/uea/com/1150084"
+     },
+     {
+      "nombre": "Gestión y seguimiento de proyectos tecnológicos",
+      "clave": "1150032",
+      "creditos": 6.0,
+      "tronco": "profesional",
+      "opt": false,
+      "ruta": "#/uea/com/~gestionyseguimientodeproyectostecnologicos"
+     },
+     {
+      "nombre": "Desarrollo de proyectos de software",
+      "clave": "1150068",
+      "creditos": 8.0,
+      "tronco": "profesional",
+      "opt": false,
+      "ruta": "#/uea/com/1150068"
+     },
+     {
+      "nombre": "Desarrollo de aplicaciones web",
+      "clave": "1150067",
+      "creditos": 8.0,
+      "tronco": "profesional",
+      "opt": false,
+      "ruta": "#/uea/com/1150067"
+     }
+    ]
+   },
+   {
+    "trimestre": 11,
+    "creditos": 33.0,
+    "ueas": [
+     {
+      "nombre": "Liderazgo y emprendimiento",
+      "clave": "1150081",
+      "creditos": 6.0,
+      "tronco": "profesional",
+      "opt": false,
+      "ruta": "#/uea/com/1150081"
+     },
+     {
+      "nombre": "Cómputo en la nube",
+      "clave": "1150065",
+      "creditos": 8.0,
+      "tronco": "profesional",
+      "opt": false,
+      "ruta": "#/uea/com/1150065"
+     },
+     {
+      "nombre": "Seminario de integración en ingeniería en computación",
+      "clave": "110046",
+      "creditos": 3.0,
+      "tronco": "integracion",
+      "opt": false,
+      "ruta": "#/uea/com/~seminariodeintegracioneningenieriaencomputacion"
+     },
+     {
+      "nombre": "Optativa del Tronco de Integración",
+      "clave": null,
+      "creditos": 8.0,
+      "tronco": "integracion",
+      "opt": true,
+      "ruta": null
+     },
+     {
+      "nombre": "Optativa del Tronco de Integración",
+      "clave": null,
+      "creditos": 8.0,
+      "tronco": "integracion",
+      "opt": true,
+      "ruta": null
+     }
+    ]
+   },
+   {
+    "trimestre": 12,
+    "creditos": 34.0,
+    "ueas": [
+     {
+      "nombre": "Proyecto de integración en ingeniería en computación I",
+      "clave": "110047",
+      "creditos": 18.0,
+      "tronco": "integracion",
+      "opt": false,
+      "ruta": "#/uea/com/~proyectodeintegracioneningenieriaencomputacioni"
+     },
+     {
+      "nombre": "Optativa del Tronco de Integración",
+      "clave": null,
+      "creditos": 8.0,
+      "tronco": "integracion",
+      "opt": true,
+      "ruta": null
+     },
+     {
+      "nombre": "Optativa del Tronco de Integración",
+      "clave": null,
+      "creditos": 8.0,
+      "tronco": "integracion",
+      "opt": true,
+      "ruta": null
+     }
+    ]
+   }
+  ]
+ },
+ "ele": {
+  "clave": "ele",
+  "nombre": "Ingeniería Eléctrica y Tecnologías Sostenibles",
+  "creditos_plan": {
+   "general": 57,
+   "profesional": 335,
+   "total": 473
+  },
+  "trimestres": [
+   {
+    "trimestre": 1,
+    "creditos": 27.0,
+    "ueas": [
+     {
+      "nombre": "Inteligencia artificial",
+      "clave": null,
+      "creditos": 3.0,
+      "tronco": "profesional",
+      "opt": false,
+      "ruta": "#/uea/ele/1100213"
+     },
+     {
+      "nombre": "Química General para Ingeniería",
+      "clave": "1114055",
+      "creditos": 6.0,
+      "tronco": "general",
+      "opt": false,
+      "ruta": "#/uea/ele/1114055"
+     },
+     {
+      "nombre": "Fundamentos de Física y Aplicaciones I",
+      "clave": "1114052",
+      "creditos": 6.0,
+      "tronco": "general",
+      "opt": false,
+      "ruta": "#/uea/ele/1114052"
+     },
+     {
+      "nombre": "Matemáticas Básicas para Ingeniería",
+      "clave": "1114054",
+      "creditos": 6.0,
+      "tronco": "general",
+      "opt": false,
+      "ruta": "#/uea/ele/1114054"
+     },
+     {
+      "nombre": "Vida Universitaria",
+      "clave": "1100215",
+      "creditos": 3.0,
+      "tronco": "general",
+      "opt": false,
+      "ruta": "#/uea/ele/1100215"
+     },
+     {
+      "nombre": "Cultura de Paz y Género",
+      "clave": "1100212",
+      "creditos": 3.0,
+      "tronco": "general",
+      "opt": false,
+      "ruta": "#/uea/ele/1100212"
+     }
+    ]
+   },
+   {
+    "trimestre": 2,
+    "creditos": 39.0,
+    "ueas": [
+     {
+      "nombre": "Laboratorio de estructura y propiedades de los materiales",
+      "clave": null,
+      "creditos": 3.0,
+      "tronco": "profesional",
+      "opt": false,
+      "ruta": "#/uea/ele/1114060"
+     },
+     {
+      "nombre": "Estructura y propiedades de los materiales en ingeniería",
+      "clave": null,
+      "creditos": 6.0,
+      "tronco": "profesional",
+      "opt": false,
+      "ruta": "#/uea/ele/1114058"
+     },
+     {
+      "nombre": "Fundamentos de Física y Aplicaciones I",
+      "clave": "1114052",
+      "creditos": 6.0,
+      "tronco": "general",
+      "opt": false,
+      "ruta": "#/uea/ele/1114052"
+     },
+     {
+      "nombre": "Cálculo Diferencial",
+      "clave": "1114048",
+      "creditos": 9.0,
+      "tronco": "general",
+      "opt": false,
+      "ruta": "#/uea/ele/1114048"
+     },
+     {
+      "nombre": "Sistemas de Ecuaciones Lineales y Matrices",
+      "clave": "1114056",
+      "creditos": 6.0,
+      "tronco": "general",
+      "opt": false,
+      "ruta": "#/uea/ele/1114056"
+     },
+     {
+      "nombre": "Comunicación Asertiva",
+      "clave": "1100211",
+      "creditos": 3.0,
+      "tronco": "general",
+      "opt": false,
+      "ruta": "#/uea/ele/1100211"
+     },
+     {
+      "nombre": "Dibujo asistido por computadora",
+      "clave": null,
+      "creditos": 6.0,
+      "tronco": "profesional",
+      "opt": false,
+      "ruta": "#/uea/ele/1140015"
+     }
+    ]
+   },
+   {
+    "trimestre": 3,
+    "creditos": 39.0,
+    "ueas": [
+     {
+      "nombre": "Educación ambiental y cambio climático",
+      "clave": null,
+      "creditos": 3.0,
+      "tronco": "profesional",
+      "opt": false,
+      "ruta": "#/uea/ele/1130074"
+     },
+     {
+      "nombre": "Termodinámica aplicada",
+      "clave": null,
+      "creditos": 9.0,
+      "tronco": "profesional",
+      "opt": false,
+      "ruta": "#/uea/ele/1130837"
+     },
+     {
+      "nombre": "Visualización computacional de campos electromagnéticos",
+      "clave": null,
+      "creditos": 6.0,
+      "tronco": "profesional",
+      "opt": false,
+      "ruta": "#/uea/ele/1114018"
+     },
+     {
+      "nombre": "Cálculo Integral",
+      "clave": "1114049",
+      "creditos": 9.0,
+      "tronco": "general",
+      "opt": false,
+      "ruta": "#/uea/ele/1114049"
+     },
+     {
+      "nombre": "Taller de computación",
+      "clave": null,
+      "creditos": 3.0,
+      "tronco": "profesional",
+      "opt": false,
+      "ruta": "#/uea/ele/1150045"
+     },
+     {
+      "nombre": "Probabilidad, estadística y diseño de experimentos",
+      "clave": null,
+      "creditos": 9.0,
+      "tronco": "profesional",
+      "opt": false,
+      "ruta": "#/uea/ele/1150018"
+     }
+    ]
+   },
+   {
+    "trimestre": 4,
+    "creditos": 40.0,
+    "ueas": [
+     {
+      "nombre": "Contabilidad financiera",
+      "clave": null,
+      "creditos": 6.0,
+      "tronco": "profesional",
+      "opt": false,
+      "ruta": "#/uea/ele/1150024"
+     },
+     {
+      "nombre": "Diseño digital I",
+      "clave": null,
+      "creditos": 9.0,
+      "tronco": "profesional",
+      "opt": false,
+      "ruta": "#/uea/ele/1125028"
+     },
+     {
+      "nombre": "Cálculo vectorial y fasorial",
+      "clave": null,
+      "creditos": 9.0,
+      "tronco": "profesional",
+      "opt": false,
+      "ruta": "#/uea/ele/1114015"
+     },
+     {
+      "nombre": "Ecuaciones diferenciales",
+      "clave": null,
+      "creditos": 9.0,
+      "tronco": "profesional",
+      "opt": false,
+      "ruta": "#/uea/ele/1114022"
+     },
+     {
+      "nombre": "Programación estructurada",
+      "clave": null,
+      "creditos": 7.0,
+      "tronco": "profesional",
+      "opt": false,
+      "ruta": "#/uea/ele/1150019"
+     }
+    ]
+   },
+   {
+    "trimestre": 5,
+    "creditos": 43.0,
+    "ueas": [
+     {
+      "nombre": "Ingeniería económica",
+      "clave": null,
+      "creditos": 6.0,
+      "tronco": "profesional",
+      "opt": false,
+      "ruta": "#/uea/ele/1150034"
+     },
+     {
+      "nombre": "Circuitos eléctricos en corriente directa",
+      "clave": null,
+      "creditos": 12.0,
+      "tronco": "profesional",
+      "opt": false,
+      "ruta": "#/uea/ele/1125001"
+     },
+     {
+      "nombre": "Electrónica analógica aplicada",
+      "clave": null,
+      "creditos": 9.0,
+      "tronco": "profesional",
+      "opt": false,
+      "ruta": "#/uea/ele/1125003"
+     },
+     {
+      "nombre": "Matemáticas aplicadas a la ingeniería",
+      "clave": null,
+      "creditos": 9.0,
+      "tronco": "profesional",
+      "opt": false,
+      "ruta": "#/uea/ele/1114016"
+     },
+     {
+      "nombre": "Métodos numéricos en ingeniería",
+      "clave": null,
+      "creditos": 7.0,
+      "tronco": "profesional",
+      "opt": false,
+      "ruta": "#/uea/ele/1150017"
+     }
+    ]
+   },
+   {
+    "trimestre": 6,
+    "creditos": 48.0,
+    "ueas": [
+     {
+      "nombre": "Evaluación de proyectos en ingeniería",
+      "clave": null,
+      "creditos": 6.0,
+      "tronco": "profesional",
+      "opt": false,
+      "ruta": "#/uea/ele/1150031"
+     },
+     {
+      "nombre": "Circuitos eléctricos de corriente alterna",
+      "clave": null,
+      "creditos": 12.0,
+      "tronco": "profesional",
+      "opt": false,
+      "ruta": "#/uea/ele/1130032"
+     },
+     {
+      "nombre": "Fundamentos de control",
+      "clave": null,
+      "creditos": 9.0,
+      "tronco": "profesional",
+      "opt": false,
+      "ruta": "#/uea/ele/1125002"
+     },
+     {
+      "nombre": "Teoría electromagnética",
+      "clave": null,
+      "creditos": 12.0,
+      "tronco": "profesional",
+      "opt": false,
+      "ruta": "#/uea/ele/1130050"
+     },
+     {
+      "nombre": "Microcontroladores y controladores lógicos programables",
+      "clave": null,
+      "creditos": 9.0,
+      "tronco": "profesional",
+      "opt": false,
+      "ruta": "#/uea/ele/1125004"
+     }
+    ]
+   },
+   {
+    "trimestre": 7,
+    "creditos": 45.0,
+    "ueas": [
+     {
+      "nombre": "Gestión y seguimiento de proyectos",
+      "clave": null,
+      "creditos": 6.0,
+      "tronco": "profesional",
+      "opt": false,
+      "ruta": "#/uea/ele/1150032"
+     },
+     {
+      "nombre": "Instalaciones eléctricas en baja tensión",
+      "clave": null,
+      "creditos": 9.0,
+      "tronco": "profesional",
+      "opt": false,
+      "ruta": "#/uea/ele/1130037"
+     },
+     {
+      "nombre": "Optativa del Tronco de Integración",
+      "clave": null,
+      "creditos": 6.0,
+      "tronco": "integracion",
+      "opt": true,
+      "ruta": null
+     },
+     {
+      "nombre": "Transformadores y máquinas síncronas",
+      "clave": null,
+      "creditos": 12.0,
+      "tronco": "profesional",
+      "opt": false,
+      "ruta": "#/uea/ele/1130051"
+     },
+     {
+      "nombre": "Modelado de sistemas eléctricos de potencia",
+      "clave": null,
+      "creditos": 12.0,
+      "tronco": "profesional",
+      "opt": false,
+      "ruta": "#/uea/ele/1130041"
+     }
+    ]
+   },
+   {
+    "trimestre": 8,
+    "creditos": 45.0,
+    "ueas": [
+     {
+      "nombre": "Ingeniería de altas tensiones",
+      "clave": null,
+      "creditos": 9.0,
+      "tronco": "profesional",
+      "opt": false,
+      "ruta": "#/uea/ele/1130049"
+     },
+     {
+      "nombre": "Electrónica de potencia y eficiencia energética",
+      "clave": null,
+      "creditos": 12.0,
+      "tronco": "profesional",
+      "opt": false,
+      "ruta": "#/uea/ele/1125030"
+     },
+     {
+      "nombre": "Máquinas de inducción y de corriente directa",
+      "clave": null,
+      "creditos": 12.0,
+      "tronco": "profesional",
+      "opt": false,
+      "ruta": "#/uea/ele/1130038"
+     },
+     {
+      "nombre": "Fundamentos de análisis y protección de sistemas eléctricos de potencia",
+      "clave": null,
+      "creditos": 12.0,
+      "tronco": "profesional",
+      "opt": false,
+      "ruta": "#/uea/ele/1130036"
+     }
+    ]
+   },
+   {
+    "trimestre": 9,
+    "creditos": 45.0,
+    "ueas": [
+     {
+      "nombre": "Sistemas de generación convencionales",
+      "clave": null,
+      "creditos": 9.0,
+      "tronco": "profesional",
+      "opt": false,
+      "ruta": "#/uea/ele/1130045"
+     },
+     {
+      "nombre": "Energía solar fotovoltaica",
+      "clave": null,
+      "creditos": 9.0,
+      "tronco": "profesional",
+      "opt": false,
+      "ruta": "#/uea/ele/1130034"
+     },
+     {
+      "nombre": "Calidad de la energía",
+      "clave": null,
+      "creditos": 9.0,
+      "tronco": "profesional",
+      "opt": false,
+      "ruta": "#/uea/ele/1130031"
+     },
+     {
+      "nombre": "Electromovilidad y almacenamiento de energía",
+      "clave": null,
+      "creditos": 9.0,
+      "tronco": "profesional",
+      "opt": false,
+      "ruta": "#/uea/ele/1130033"
+     },
+     {
+      "nombre": "Optativa del Tronco de Integración",
+      "clave": null,
+      "creditos": 9.0,
+      "tronco": "integracion",
+      "opt": true,
+      "ruta": null
+     }
+    ]
+   },
+   {
+    "trimestre": 10,
+    "creditos": 45.0,
+    "ueas": [
+     {
+      "nombre": "Mercado eléctrico mayorista",
+      "clave": null,
+      "creditos": 9.0,
+      "tronco": "profesional",
+      "opt": false,
+      "ruta": "#/uea/ele/1130039"
+     },
+     {
+      "nombre": "Sistemas de generación eólica",
+      "clave": null,
+      "creditos": 9.0,
+      "tronco": "profesional",
+      "opt": false,
+      "ruta": "#/uea/ele/1130046"
+     },
+     {
+      "nombre": "Sistemas de distribución eléctrica y redes inteligentes",
+      "clave": null,
+      "creditos": 9.0,
+      "tronco": "profesional",
+      "opt": false,
+      "ruta": "#/uea/ele/1130043"
+     },
+     {
+      "nombre": "Método de elemento finito aplicado a dispositivos electromagnéticos",
+      "clave": null,
+      "creditos": 9.0,
+      "tronco": "profesional",
+      "opt": false,
+      "ruta": "#/uea/ele/1130040"
+     },
+     {
+      "nombre": "Optativa del Tronco de Integración",
+      "clave": null,
+      "creditos": 9.0,
+      "tronco": "integracion",
+      "opt": true,
+      "ruta": null
+     }
+    ]
+   },
+   {
+    "trimestre": 11,
+    "creditos": 21.0,
+    "ueas": [
+     {
+      "nombre": "Optativa del Tronco de Integración",
+      "clave": null,
+      "creditos": 18.0,
+      "tronco": "integracion",
+      "opt": true,
+      "ruta": null
+     },
+     {
+      "nombre": "Seminario de integración en ingeniería eléctrica y tecnologías sostenibles",
+      "clave": null,
+      "creditos": 3.0,
+      "tronco": "integracion",
+      "opt": false,
+      "ruta": "#/uea/ele/1130044"
+     }
+    ]
+   },
+   {
+    "trimestre": 12,
+    "creditos": 36.0,
+    "ueas": [
+     {
+      "nombre": "Optativa del Tronco de Integración",
+      "clave": null,
+      "creditos": 18.0,
+      "tronco": "integracion",
+      "opt": true,
+      "ruta": null
+     },
+     {
+      "nombre": "Proyecto de integración en ingeniería eléctrica y tecnologías sostenibles",
+      "clave": null,
+      "creditos": 18.0,
+      "tronco": "integracion",
+      "opt": false,
+      "ruta": "#/uea/ele/~121proyectodeintegracioneningenieriaelectricaytecnologiassosteniblesdiv"
+     }
+    ]
+   }
+  ]
+ },
+ "elo": {
+  "clave": "elo",
+  "nombre": "Ingeniería en Sistemas Electrónicos y Ciberfísicos",
+  "creditos_plan": {
+   "general": 57,
+   "profesional": 315,
+   "total": 468
+  },
+  "trimestres": [
+   {
+    "trimestre": 1,
+    "creditos": 38.0,
+    "ueas": [
+     {
+      "nombre": "Química General para Ingeniería",
+      "clave": "1114055",
+      "creditos": 6.0,
+      "tronco": "general",
+      "opt": false,
+      "ruta": "#/uea/elo/1114055"
+     },
+     {
+      "nombre": "Matemáticas Básicas para Ingeniería",
+      "clave": "1114054",
+      "creditos": 6.0,
+      "tronco": "general",
+      "opt": false,
+      "ruta": "#/uea/elo/1114054"
+     },
+     {
+      "nombre": "Fundamentos de Física y Aplicaciones I",
+      "clave": "1114052",
+      "creditos": 6.0,
+      "tronco": "general",
+      "opt": false,
+      "ruta": "#/uea/elo/1114052"
+     },
+     {
+      "nombre": "Fundamentos de Programación",
+      "clave": "1150072",
+      "creditos": 8.0,
+      "tronco": "profesional",
+      "opt": false,
+      "ruta": "#/uea/elo/1150072"
+     },
+     {
+      "nombre": "Vida Universitaria",
+      "clave": "1100215",
+      "creditos": 3.0,
+      "tronco": "general",
+      "opt": false,
+      "ruta": "#/uea/elo/1100215"
+     },
+     {
+      "nombre": "Introducción a la Electrónica",
+      "clave": "1125033",
+      "creditos": 9.0,
+      "tronco": "profesional",
+      "opt": false,
+      "ruta": "#/uea/elo/1125033"
+     }
+    ]
+   },
+   {
+    "trimestre": 2,
+    "creditos": 32.0,
+    "ueas": [
+     {
+      "nombre": "Cálculo Diferencial",
+      "clave": "1114048",
+      "creditos": 9.0,
+      "tronco": "general",
+      "opt": false,
+      "ruta": "#/uea/elo/1114048"
+     },
+     {
+      "nombre": "Cultura de Paz y Género",
+      "clave": "1100212",
+      "creditos": 3.0,
+      "tronco": "general",
+      "opt": false,
+      "ruta": "#/uea/elo/1100212"
+     },
+     {
+      "nombre": "Inteligencia Artificial",
+      "clave": "1100213",
+      "creditos": 3.0,
+      "tronco": "profesional",
+      "opt": false,
+      "ruta": "#/uea/elo/1100213"
+     },
+     {
+      "nombre": "Sistemas de Ecuaciones Lineales y Matrices",
+      "clave": "1114056",
+      "creditos": 6.0,
+      "tronco": "general",
+      "opt": false,
+      "ruta": "#/uea/elo/1114056"
+     },
+     {
+      "nombre": "Complementos de Programación",
+      "clave": "1150064",
+      "creditos": 8.0,
+      "tronco": "profesional",
+      "opt": false,
+      "ruta": "#/uea/elo/1150064"
+     },
+     {
+      "nombre": "Laboratorio de Sistemas Electrónicos Programables",
+      "clave": "1125036",
+      "creditos": 3.0,
+      "tronco": "profesional",
+      "opt": false,
+      "ruta": "#/uea/elo/1125036"
+     }
+    ]
+   },
+   {
+    "trimestre": 3,
+    "creditos": 44.0,
+    "ueas": [
+     {
+      "nombre": "Fundamentos de Física y Aplicaciones I",
+      "clave": "1114052",
+      "creditos": 6.0,
+      "tronco": "general",
+      "opt": false,
+      "ruta": "#/uea/elo/1114052"
+     },
+     {
+      "nombre": "Cálculo Integral",
+      "clave": "1114049",
+      "creditos": 9.0,
+      "tronco": "general",
+      "opt": false,
+      "ruta": "#/uea/elo/1114049"
+     },
+     {
+      "nombre": "Circuitos en Corriente Directa",
+      "clave": "1125023",
+      "creditos": 9.0,
+      "tronco": "profesional",
+      "opt": false,
+      "ruta": "#/uea/elo/1125023"
+     },
+     {
+      "nombre": "Comunicación Asertiva",
+      "clave": "1100211",
+      "creditos": 3.0,
+      "tronco": "general",
+      "opt": false,
+      "ruta": "#/uea/elo/1100211"
+     },
+     {
+      "nombre": "Algoritmos y Estructuras de Datos",
+      "clave": "1150058",
+      "creditos": 8.0,
+      "tronco": "profesional",
+      "opt": false,
+      "ruta": "#/uea/elo/1150058"
+     },
+     {
+      "nombre": "Diseño Digital I",
+      "clave": "1125028",
+      "creditos": 9.0,
+      "tronco": "profesional",
+      "opt": false,
+      "ruta": "#/uea/elo/1125028"
+     }
+    ]
+   },
+   {
+    "trimestre": 4,
+    "creditos": 45.0,
+    "ueas": [
+     {
+      "nombre": "Educación Ambiental y Cambio Climático",
+      "clave": "1130074",
+      "creditos": 3.0,
+      "tronco": "profesional",
+      "opt": false,
+      "ruta": "#/uea/elo/1130074"
+     },
+     {
+      "nombre": "Diseño Digital II",
+      "clave": "1125029",
+      "creditos": 9.0,
+      "tronco": "profesional",
+      "opt": false,
+      "ruta": "#/uea/elo/1125029"
+     },
+     {
+      "nombre": "Cálculo Vectorial",
+      "clave": "1125019",
+      "creditos": 9.0,
+      "tronco": "profesional",
+      "opt": false,
+      "ruta": "#/uea/elo/1125019"
+     },
+     {
+      "nombre": "Aplicaciones en Electrónica con Álgebra Lineal",
+      "clave": "1125016",
+      "creditos": 9.0,
+      "tronco": "profesional",
+      "opt": false,
+      "ruta": "#/uea/elo/1125016"
+     },
+     {
+      "nombre": "Ecuaciones Diferenciales",
+      "clave": "1114022",
+      "creditos": 9.0,
+      "tronco": "profesional",
+      "opt": false,
+      "ruta": "#/uea/elo/1114022"
+     },
+     {
+      "nombre": "Radiación Electromagnética",
+      "clave": "1125041",
+      "creditos": 6.0,
+      "tronco": "profesional",
+      "opt": false,
+      "ruta": "#/uea/elo/1125041"
+     }
+    ]
+   },
+   {
+    "trimestre": 5,
+    "creditos": 42.0,
+    "ueas": [
+     {
+      "nombre": "Redes de Computadoras",
+      "clave": "1125042",
+      "creditos": 9.0,
+      "tronco": "profesional",
+      "opt": false,
+      "ruta": "#/uea/elo/1125042"
+     },
+     {
+      "nombre": "Taller de Comunicación Técnica y Profesional",
+      "clave": "1150049",
+      "creditos": 6.0,
+      "tronco": "profesional",
+      "opt": false,
+      "ruta": "#/uea/elo/1150049"
+     },
+     {
+      "nombre": "Procesadores y Arquitecturas",
+      "clave": "1125039",
+      "creditos": 9.0,
+      "tronco": "profesional",
+      "opt": false,
+      "ruta": "#/uea/elo/1125039"
+     },
+     {
+      "nombre": "Circuitos en Corriente Alterna",
+      "clave": "1125022",
+      "creditos": 9.0,
+      "tronco": "profesional",
+      "opt": false,
+      "ruta": "#/uea/elo/1125022"
+     },
+     {
+      "nombre": "Principios de los Semiconductores",
+      "clave": "1125038",
+      "creditos": 9.0,
+      "tronco": "profesional",
+      "opt": false,
+      "ruta": "#/uea/elo/1125038"
+     }
+    ]
+   },
+   {
+    "trimestre": 6,
+    "creditos": 45.0,
+    "ueas": [
+     {
+      "nombre": "Probabilidad y Estadística Descriptiva",
+      "clave": "1121061",
+      "creditos": 9.0,
+      "tronco": "profesional",
+      "opt": false,
+      "ruta": "#/uea/elo/1150040"
+     },
+     {
+      "nombre": "Circuitos Electrónicos",
+      "clave": "1125021",
+      "creditos": 9.0,
+      "tronco": "profesional",
+      "opt": false,
+      "ruta": "#/uea/elo/1125021"
+     },
+     {
+      "nombre": "Administración de Redes de Computadoras",
+      "clave": "1125014",
+      "creditos": 9.0,
+      "tronco": "profesional",
+      "opt": false,
+      "ruta": "#/uea/elo/1125014"
+     },
+     {
+      "nombre": "Introducción a las Comunicaciones",
+      "clave": "1125034",
+      "creditos": 9.0,
+      "tronco": "profesional",
+      "opt": false,
+      "ruta": "#/uea/elo/1125034"
+     },
+     {
+      "nombre": "Microcontroladores",
+      "clave": "1125037",
+      "creditos": 9.0,
+      "tronco": "profesional",
+      "opt": false,
+      "ruta": "#/uea/elo/1125037"
+     }
+    ]
+   },
+   {
+    "trimestre": 7,
+    "creditos": 45.0,
+    "ueas": [
+     {
+      "nombre": "Sistemas de Control",
+      "clave": "1125045",
+      "creditos": 12.0,
+      "tronco": "profesional",
+      "opt": false,
+      "ruta": "#/uea/elo/1125045"
+     },
+     {
+      "nombre": "Análisis y Procesamiento Digital de Señales",
+      "clave": "1125015",
+      "creditos": 9.0,
+      "tronco": "profesional",
+      "opt": false,
+      "ruta": "#/uea/elo/1125015"
+     },
+     {
+      "nombre": "Comunicaciones Digitales",
+      "clave": "1125024",
+      "creditos": 9.0,
+      "tronco": "profesional",
+      "opt": false,
+      "ruta": "#/uea/elo/1125024"
+     },
+     {
+      "nombre": "Diseño de Sistemas Electrónicos",
+      "clave": "1125027",
+      "creditos": 9.0,
+      "tronco": "profesional",
+      "opt": false,
+      "ruta": "#/uea/elo/1125027"
+     },
+     {
+      "nombre": "Tecnologias de comunicaciones para iot",
+      "clave": "1125046",
+      "creditos": 6.0,
+      "tronco": "profesional",
+      "opt": false,
+      "ruta": "#/uea/elo/1125046"
+     }
+    ]
+   },
+   {
+    "trimestre": 8,
+    "creditos": 45.0,
+    "ueas": [
+     {
+      "nombre": "Dinámica de Robots",
+      "clave": "1125026",
+      "creditos": 9.0,
+      "tronco": "profesional",
+      "opt": false,
+      "ruta": "#/uea/elo/1125026"
+     },
+     {
+      "nombre": "Internet de las Cosas",
+      "clave": "1125032",
+      "creditos": 9.0,
+      "tronco": "profesional",
+      "opt": false,
+      "ruta": "#/uea/elo/1125032"
+     },
+     {
+      "nombre": "Habilidades de Comunicación Estratégica y Liderazgo",
+      "clave": "1150033",
+      "creditos": 6.0,
+      "tronco": "profesional",
+      "opt": false,
+      "ruta": "#/uea/elo/1150033"
+     },
+     {
+      "nombre": "Electrónica de Potencia y Eficiencia Energética",
+      "clave": "1125030",
+      "creditos": 12.0,
+      "tronco": "profesional",
+      "opt": false,
+      "ruta": "#/uea/elo/1125030"
+     },
+     {
+      "nombre": "Optativa del Tronco de Integración",
+      "clave": null,
+      "creditos": 9.0,
+      "tronco": "integracion",
+      "opt": true,
+      "ruta": null
+     }
+    ]
+   },
+   {
+    "trimestre": 9,
+    "creditos": 42.0,
+    "ueas": [
+     {
+      "nombre": "Resolución de Problemas y Pensamiento Critico",
+      "clave": null,
+      "creditos": 6.0,
+      "tronco": "profesional",
+      "opt": false,
+      "ruta": "#/uea/elo/1150044"
+     },
+     {
+      "nombre": "Automatización Industrial",
+      "clave": "1125017",
+      "creditos": 9.0,
+      "tronco": "profesional",
+      "opt": false,
+      "ruta": "#/uea/elo/1125017"
+     },
+     {
+      "nombre": "Optativa del Tronco de Integración",
+      "clave": null,
+      "creditos": 9.0,
+      "tronco": "integracion",
+      "opt": true,
+      "ruta": null
+     },
+     {
+      "nombre": "Optativa del Tronco de Integración",
+      "clave": null,
+      "creditos": 9.0,
+      "tronco": "integracion",
+      "opt": true,
+      "ruta": null
+     },
+     {
+      "nombre": "Ciencia de Datos Aplicada a Electrónica",
+      "clave": "1125020",
+      "creditos": 9.0,
+      "tronco": "profesional",
+      "opt": false,
+      "ruta": "#/uea/elo/1125020"
+     }
+    ]
+   },
+   {
+    "trimestre": 10,
+    "creditos": 42.0,
+    "ueas": [
+     {
+      "nombre": "Evaluación de Proyectos en Ingeniería",
+      "clave": "1150031",
+      "creditos": 6.0,
+      "tronco": "profesional",
+      "opt": false,
+      "ruta": "#/uea/elo/1150031"
+     },
+     {
+      "nombre": "Controladores Lógicos Programables",
+      "clave": "1125025",
+      "creditos": 9.0,
+      "tronco": "profesional",
+      "opt": false,
+      "ruta": "#/uea/elo/1125025"
+     },
+     {
+      "nombre": "Optativa del Tronco de Integración",
+      "clave": null,
+      "creditos": 9.0,
+      "tronco": "integracion",
+      "opt": true,
+      "ruta": null
+     },
+     {
+      "nombre": "Sistemas Ciberfísicos",
+      "clave": "1125044",
+      "creditos": 9.0,
+      "tronco": "profesional",
+      "opt": false,
+      "ruta": "#/uea/elo/1125044"
+     },
+     {
+      "nombre": "Inteligencia Artificial para Electrónica",
+      "clave": "1125031",
+      "creditos": 9.0,
+      "tronco": "profesional",
+      "opt": false,
+      "ruta": "#/uea/elo/1125031"
+     }
+    ]
+   },
+   {
+    "trimestre": 11,
+    "creditos": 27.0,
+    "ueas": [
+     {
+      "nombre": "Ética y Responsabilidad Social",
+      "clave": "1100201",
+      "creditos": 3.0,
+      "tronco": "profesional",
+      "opt": false,
+      "ruta": "#/uea/elo/1100201"
+     },
+     {
+      "nombre": "Gestión y Seguimiento de Proyectos",
+      "clave": "1150032",
+      "creditos": 6.0,
+      "tronco": "profesional",
+      "opt": false,
+      "ruta": "#/uea/elo/1150032"
+     },
+     {
+      "nombre": "Seminario de Integración",
+      "clave": "1125043",
+      "creditos": 3.0,
+      "tronco": "integracion",
+      "opt": false,
+      "ruta": "#/uea/elo/1125043"
+     },
+     {
+      "nombre": "Robótica Industrial",
+      "clave": "1125018",
+      "creditos": 9.0,
+      "tronco": "profesional",
+      "opt": false,
+      "ruta": "#/uea/elo/1125018"
+     },
+     {
+      "nombre": "Laboratorio de Integración",
+      "clave": "1125035",
+      "creditos": 6.0,
+      "tronco": "profesional",
+      "opt": false,
+      "ruta": "#/uea/elo/1125035"
+     }
+    ]
+   },
+   {
+    "trimestre": 12,
+    "creditos": 18.0,
+    "ueas": [
+     {
+      "nombre": "Proyecto de Integración",
+      "clave": "1125040",
+      "creditos": 18.0,
+      "tronco": "integracion",
+      "opt": false,
+      "ruta": "#/uea/elo/1125040"
+     }
+    ]
+   }
+  ]
+ },
+ "fis": {
+  "clave": "fis",
+  "nombre": "Ingeniería Física",
+  "creditos_plan": {
+   "general": 57,
+   "profesional": 254,
+   "total": 457
+  },
+  "trimestres": [
+   {
+    "trimestre": 1,
+    "creditos": 33.0,
+    "ueas": [
+     {
+      "nombre": "Matemáticas Básicas para Ingeniería",
+      "clave": "1114054",
+      "creditos": 6.0,
+      "tronco": "general",
+      "opt": false,
+      "ruta": "#/uea/fis/1114054"
+     },
+     {
+      "nombre": "Fundamentos de Física y Aplicaciones I",
+      "clave": "1114052",
+      "creditos": 6.0,
+      "tronco": "general",
+      "opt": false,
+      "ruta": "#/uea/fis/1114052"
+     },
+     {
+      "nombre": "Química General para Ingeniería",
+      "clave": "1114055",
+      "creditos": 6.0,
+      "tronco": "general",
+      "opt": false,
+      "ruta": "#/uea/fis/1114055"
+     },
+     {
+      "nombre": "Herramientas digitales en ingeniería",
+      "clave": null,
+      "creditos": 6.0,
+      "tronco": "profesional",
+      "opt": false,
+      "ruta": "#/uea/fis/1100202"
+     },
+     {
+      "nombre": "Vida Universitaria",
+      "clave": "1100215",
+      "creditos": 3.0,
+      "tronco": "general",
+      "opt": false,
+      "ruta": "#/uea/fis/1100215"
+     },
+     {
+      "nombre": "Educación ambiental y cambio climático",
+      "clave": null,
+      "creditos": 3.0,
+      "tronco": "profesional",
+      "opt": false,
+      "ruta": "#/uea/fis/1130074"
+     },
+     {
+      "nombre": "Física y tecnología",
+      "clave": null,
+      "creditos": 3.0,
+      "tronco": "profesional",
+      "opt": false,
+      "ruta": "#/uea/fis/1114031"
+     }
+    ]
+   },
+   {
+    "trimestre": 2,
+    "creditos": 41.0,
+    "ueas": [
+     {
+      "nombre": "Cálculo Diferencial",
+      "clave": "1114048",
+      "creditos": 9.0,
+      "tronco": "general",
+      "opt": false,
+      "ruta": "#/uea/fis/1114048"
+     },
+     {
+      "nombre": "Fundamentos de Física y Aplicaciones I",
+      "clave": "1114052",
+      "creditos": 6.0,
+      "tronco": "general",
+      "opt": false,
+      "ruta": "#/uea/fis/1114052"
+     },
+     {
+      "nombre": "Sistemas de Ecuaciones Lineales y Matrices",
+      "clave": "1114056",
+      "creditos": 6.0,
+      "tronco": "general",
+      "opt": false,
+      "ruta": "#/uea/fis/1114056"
+     },
+     {
+      "nombre": "Fundamentos de programación",
+      "clave": null,
+      "creditos": 8.0,
+      "tronco": "profesional",
+      "opt": false,
+      "ruta": "#/uea/fis/1150072"
+     },
+     {
+      "nombre": "Introducción al método experimental",
+      "clave": null,
+      "creditos": 3.0,
+      "tronco": "profesional",
+      "opt": false,
+      "ruta": "#/uea/fis/1114036"
+     },
+     {
+      "nombre": "Estructura y propiedades químicas de los materiales",
+      "clave": null,
+      "creditos": 9.0,
+      "tronco": "profesional",
+      "opt": false,
+      "ruta": "#/uea/fis/~estructuraypropiedadesquimicasdelosmateriales"
+     }
+    ]
+   },
+   {
+    "trimestre": 3,
+    "creditos": 45.0,
+    "ueas": [
+     {
+      "nombre": "Cálculo Integral",
+      "clave": "1114049",
+      "creditos": 9.0,
+      "tronco": "general",
+      "opt": false,
+      "ruta": "#/uea/fis/1114049"
+     },
+     {
+      "nombre": "Principios de sistemas mecánicos",
+      "clave": null,
+      "creditos": 9.0,
+      "tronco": "profesional",
+      "opt": false,
+      "ruta": "#/uea/fis/1114041"
+     },
+     {
+      "nombre": "Probabilidad y estadística descriptiva",
+      "clave": null,
+      "creditos": 9.0,
+      "tronco": "profesional",
+      "opt": false,
+      "ruta": "#/uea/fis/1150040"
+     },
+     {
+      "nombre": "Programación aplicada a la ingeniería",
+      "clave": null,
+      "creditos": 6.0,
+      "tronco": "profesional",
+      "opt": false,
+      "ruta": "#/uea/fis/1150041"
+     },
+     {
+      "nombre": "Propiedades físicas de los materiales",
+      "clave": null,
+      "creditos": 9.0,
+      "tronco": "profesional",
+      "opt": false,
+      "ruta": "#/uea/fis/1140043"
+     },
+     {
+      "nombre": "Cultura de Paz y Género",
+      "clave": "1100212",
+      "creditos": 3.0,
+      "tronco": "general",
+      "opt": false,
+      "ruta": "#/uea/fis/1100212"
+     }
+    ]
+   },
+   {
+    "trimestre": 4,
+    "creditos": 45.0,
+    "ueas": [
+     {
+      "nombre": "Ecuaciones diferenciales",
+      "clave": null,
+      "creditos": 9.0,
+      "tronco": "profesional",
+      "opt": false,
+      "ruta": "#/uea/fis/1114022"
+     },
+     {
+      "nombre": "Física térmica",
+      "clave": null,
+      "creditos": 9.0,
+      "tronco": "profesional",
+      "opt": false,
+      "ruta": "#/uea/fis/1114030"
+     },
+     {
+      "nombre": "Circuitos eléctricos y electrónicos",
+      "clave": null,
+      "creditos": 9.0,
+      "tronco": "profesional",
+      "opt": false,
+      "ruta": "#/uea/fis/1125005"
+     },
+     {
+      "nombre": "Álgebra lineal",
+      "clave": null,
+      "creditos": 9.0,
+      "tronco": "integracion",
+      "opt": false,
+      "ruta": "#/uea/fis/110019"
+     },
+     {
+      "nombre": "Electricidad y magnetismo",
+      "clave": null,
+      "creditos": 9.0,
+      "tronco": "profesional",
+      "opt": false,
+      "ruta": "#/uea/fis/1114023"
+     }
+    ]
+   },
+   {
+    "trimestre": 5,
+    "creditos": 45.0,
+    "ueas": [
+     {
+      "nombre": "Variable compleja y análisis de Fourier",
+      "clave": null,
+      "creditos": 9.0,
+      "tronco": "profesional",
+      "opt": false,
+      "ruta": "#/uea/fis/1114044"
+     },
+     {
+      "nombre": "Cálculo multivariable",
+      "clave": null,
+      "creditos": 9.0,
+      "tronco": "profesional",
+      "opt": false,
+      "ruta": "#/uea/fis/1114019"
+     },
+     {
+      "nombre": "Principios de Instrumentación",
+      "clave": null,
+      "creditos": 9.0,
+      "tronco": "profesional",
+      "opt": false,
+      "ruta": "#/uea/fis/1114040"
+     },
+     {
+      "nombre": "Física de fluidos",
+      "clave": null,
+      "creditos": 9.0,
+      "tronco": "profesional",
+      "opt": false,
+      "ruta": "#/uea/fis/1114026"
+     },
+     {
+      "nombre": "Educación financiera",
+      "clave": null,
+      "creditos": 6.0,
+      "tronco": "profesional",
+      "opt": false,
+      "ruta": "#/uea/fis/1150054"
+     },
+     {
+      "nombre": "Comunicación Asertiva",
+      "clave": "1100211",
+      "creditos": 3.0,
+      "tronco": "general",
+      "opt": false,
+      "ruta": "#/uea/fis/1100211"
+     }
+    ]
+   },
+   {
+    "trimestre": 6,
+    "creditos": 45.0,
+    "ueas": [
+     {
+      "nombre": "Campos escalares y vectoriales",
+      "clave": null,
+      "creditos": 9.0,
+      "tronco": "profesional",
+      "opt": false,
+      "ruta": "#/uea/fis/1114020"
+     },
+     {
+      "nombre": "Dinámica Lagrangiana y Hamiltoniana",
+      "clave": null,
+      "creditos": 9.0,
+      "tronco": "profesional",
+      "opt": false,
+      "ruta": "#/uea/fis/1114021"
+     },
+     {
+      "nombre": "Señales y sistemas",
+      "clave": null,
+      "creditos": 9.0,
+      "tronco": "profesional",
+      "opt": false,
+      "ruta": "#/uea/fis/~senalesysistemas"
+     },
+     {
+      "nombre": "Dibujo mecánico asistido por computadora",
+      "clave": null,
+      "creditos": 9.0,
+      "tronco": "profesional",
+      "opt": false,
+      "ruta": "#/uea/fis/1130053"
+     },
+     {
+      "nombre": "Física estadística",
+      "clave": null,
+      "creditos": 6.0,
+      "tronco": "profesional",
+      "opt": false,
+      "ruta": "#/uea/fis/1114806"
+     },
+     {
+      "nombre": "Inteligencia artificial",
+      "clave": null,
+      "creditos": 3.0,
+      "tronco": "profesional",
+      "opt": false,
+      "ruta": "#/uea/fis/1100213"
+     }
+    ]
+   },
+   {
+    "trimestre": 7,
+    "creditos": 39.0,
+    "ueas": [
+     {
+      "nombre": "Funciones especiales en ingeniería",
+      "clave": null,
+      "creditos": 9.0,
+      "tronco": "profesional",
+      "opt": false,
+      "ruta": "#/uea/fis/1114032"
+     },
+     {
+      "nombre": "Física de la luz",
+      "clave": null,
+      "creditos": 9.0,
+      "tronco": "profesional",
+      "opt": false,
+      "ruta": "#/uea/fis/1114027"
+     },
+     {
+      "nombre": "Ingeniería electromagnética",
+      "clave": null,
+      "creditos": 9.0,
+      "tronco": "profesional",
+      "opt": false,
+      "ruta": "#/uea/fis/1114034"
+     },
+     {
+      "nombre": "Introducción a la física cuántica",
+      "clave": null,
+      "creditos": 6.0,
+      "tronco": "profesional",
+      "opt": false,
+      "ruta": "#/uea/fis/1114035"
+     },
+     {
+      "nombre": "Taller de comunicación técnica y profesional",
+      "clave": null,
+      "creditos": 6.0,
+      "tronco": "profesional",
+      "opt": false,
+      "ruta": "#/uea/fis/1150049"
+     }
+    ]
+   },
+   {
+    "trimestre": 8,
+    "creditos": 42.0,
+    "ueas": [
+     {
+      "nombre": "Física de radiaciones",
+      "clave": null,
+      "creditos": 9.0,
+      "tronco": "integracion",
+      "opt": false,
+      "ruta": "#/uea/fis/1114028"
+     },
+     {
+      "nombre": "Física de estado sólido",
+      "clave": null,
+      "creditos": 9.0,
+      "tronco": "integracion",
+      "opt": false,
+      "ruta": "#/uea/fis/1114025"
+     },
+     {
+      "nombre": "Física cuántica",
+      "clave": null,
+      "creditos": 9.0,
+      "tronco": "profesional",
+      "opt": false,
+      "ruta": "#/uea/fis/1114024"
+     },
+     {
+      "nombre": "Modelado y evaluación experimental de sistemas eólicos",
+      "clave": null,
+      "creditos": 9.0,
+      "tronco": "integracion",
+      "opt": false,
+      "ruta": "#/uea/fis/~modeladoyevaluacionexperimentaldesistemaseolicos"
+     },
+     {
+      "nombre": "Gestión y seguimiento de proyectos",
+      "clave": null,
+      "creditos": 6.0,
+      "tronco": "profesional",
+      "opt": false,
+      "ruta": "#/uea/fis/1150032"
+     }
+    ]
+   },
+   {
+    "trimestre": 9,
+    "creditos": 41.0,
+    "ueas": [
+     {
+      "nombre": "Fundamentos de instrumentación biomédica",
+      "clave": null,
+      "creditos": 9.0,
+      "tronco": "integracion",
+      "opt": false,
+      "ruta": "#/uea/fis/1114033"
+     },
+     {
+      "nombre": "Física de semiconductores",
+      "clave": null,
+      "creditos": 9.0,
+      "tronco": "integracion",
+      "opt": false,
+      "ruta": "#/uea/fis/1114029"
+     },
+     {
+      "nombre": "Introducción a la ciencia de datos",
+      "clave": null,
+      "creditos": 8.0,
+      "tronco": "integracion",
+      "opt": false,
+      "ruta": "#/uea/fis/1150077"
+     },
+     {
+      "nombre": "Energía solar fotovoltaica",
+      "clave": null,
+      "creditos": 9.0,
+      "tronco": "integracion",
+      "opt": false,
+      "ruta": "#/uea/fis/1130034"
+     },
+     {
+      "nombre": "Ética, responsabilidad social y sostenibilidad",
+      "clave": null,
+      "creditos": 6.0,
+      "tronco": "profesional",
+      "opt": false,
+      "ruta": "#/uea/fis/1100201"
+     }
+    ]
+   },
+   {
+    "trimestre": 10,
+    "creditos": 39.0,
+    "ueas": [
+     {
+      "nombre": "Procesamiento digital de imágenes",
+      "clave": null,
+      "creditos": 9.0,
+      "tronco": "integracion",
+      "opt": false,
+      "ruta": "#/uea/fis/1125007"
+     },
+     {
+      "nombre": "Optoelectrónica",
+      "clave": null,
+      "creditos": 9.0,
+      "tronco": "integracion",
+      "opt": false,
+      "ruta": "#/uea/fis/1114039"
+     },
+     {
+      "nombre": "Introducción al modelado computacional de sistemas físicos",
+      "clave": null,
+      "creditos": 9.0,
+      "tronco": "integracion",
+      "opt": false,
+      "ruta": "#/uea/fis/1114037"
+     },
+     {
+      "nombre": "Energía solar térmica",
+      "clave": null,
+      "creditos": 9.0,
+      "tronco": "integracion",
+      "opt": false,
+      "ruta": "#/uea/fis/1130052"
+     },
+     {
+      "nombre": "Seminario de integración en ingeniería física",
+      "clave": null,
+      "creditos": 3.0,
+      "tronco": "integracion",
+      "opt": false,
+      "ruta": "#/uea/fis/1114043"
+     }
+    ]
+   },
+   {
+    "trimestre": 11,
+    "creditos": 24.0,
+    "ueas": [
+     {
+      "nombre": "Optativa del Tronco de Integración",
+      "clave": null,
+      "creditos": 6.0,
+      "tronco": "integracion",
+      "opt": true,
+      "ruta": null
+     },
+     {
+      "nombre": "Optativa del Tronco de Integración",
+      "clave": null,
+      "creditos": 6.0,
+      "tronco": "integracion",
+      "opt": true,
+      "ruta": null
+     },
+     {
+      "nombre": "Optativa del Tronco de Integración",
+      "clave": null,
+      "creditos": 6.0,
+      "tronco": "integracion",
+      "opt": true,
+      "ruta": null
+     },
+     {
+      "nombre": "Liderazgo y emprendimiento",
+      "clave": null,
+      "creditos": 6.0,
+      "tronco": "profesional",
+      "opt": false,
+      "ruta": "#/uea/fis/1150081"
+     }
+    ]
+   },
+   {
+    "trimestre": 12,
+    "creditos": 18.0,
+    "ueas": [
+     {
+      "nombre": "Proyecto de integración en ingeniería física",
+      "clave": null,
+      "creditos": 18.0,
+      "tronco": "integracion",
+      "opt": false,
+      "ruta": "#/uea/fis/~proyectodeintegracioneningenieriafisica"
+     }
+    ]
+   }
+  ]
+ },
+ "ind": {
+  "clave": "ind",
+  "nombre": "Ingeniería Industrial",
+  "creditos_plan": {
+   "general": 57,
+   "profesional": 346,
+   "total": 469
+  },
+  "trimestres": [
+   {
+    "trimestre": 1,
+    "creditos": 39.0,
+    "ueas": [
+     {
+      "nombre": "Comunicación Asertiva",
+      "clave": "1100211",
+      "creditos": 3.0,
+      "tronco": "general",
+      "opt": false,
+      "ruta": "#/uea/ind/1100211"
+     },
+     {
+      "nombre": "Química General para Ingeniería",
+      "clave": "1114055",
+      "creditos": 6.0,
+      "tronco": "general",
+      "opt": false,
+      "ruta": "#/uea/ind/1114055"
+     },
+     {
+      "nombre": "Dibujo Mecánico Asistido por Computadora",
+      "clave": "1130053",
+      "creditos": 9.0,
+      "tronco": "profesional",
+      "opt": false,
+      "ruta": "#/uea/ind/1130053"
+     },
+     {
+      "nombre": "Matemáticas Básicas para Ingeniería",
+      "clave": "1114054",
+      "creditos": 6.0,
+      "tronco": "general",
+      "opt": false,
+      "ruta": "#/uea/ind/1114054"
+     },
+     {
+      "nombre": "Vida Universitaria",
+      "clave": "1100215",
+      "creditos": 3.0,
+      "tronco": "general",
+      "opt": false,
+      "ruta": "#/uea/ind/1100215"
+     },
+     {
+      "nombre": "Fundamentos de Física y Aplicaciones I",
+      "clave": "1114052",
+      "creditos": 6.0,
+      "tronco": "general",
+      "opt": false,
+      "ruta": "#/uea/ind/1114052"
+     },
+     {
+      "nombre": "Manufactura Sostenible y Eficiente",
+      "clave": "1150037",
+      "creditos": 6.0,
+      "tronco": "profesional",
+      "opt": false,
+      "ruta": "#/uea/ind/1150037"
+     }
+    ]
+   },
+   {
+    "trimestre": 2,
+    "creditos": 42.0,
+    "ueas": [
+     {
+      "nombre": "Estructura Atómica y Enlace Químico",
+      "clave": "1114046",
+      "creditos": 6.0,
+      "tronco": "profesional",
+      "opt": false,
+      "ruta": "#/uea/ind/1114046"
+     },
+     {
+      "nombre": "Sistemas de Ecuaciones Lineales y Matrices",
+      "clave": "1114056",
+      "creditos": 6.0,
+      "tronco": "general",
+      "opt": false,
+      "ruta": "#/uea/ind/1114056"
+     },
+     {
+      "nombre": "Cultura de Paz y Género",
+      "clave": "1100212",
+      "creditos": 3.0,
+      "tronco": "general",
+      "opt": false,
+      "ruta": "#/uea/ind/1100212"
+     },
+     {
+      "nombre": "Estructura y Dinámica Organizacional",
+      "clave": "1150030",
+      "creditos": 6.0,
+      "tronco": "profesional",
+      "opt": false,
+      "ruta": "#/uea/ind/1150030"
+     },
+     {
+      "nombre": "Fundamentos de Física y Aplicaciones I",
+      "clave": "1114052",
+      "creditos": 6.0,
+      "tronco": "general",
+      "opt": false,
+      "ruta": "#/uea/ind/1114052"
+     },
+     {
+      "nombre": "Cálculo Diferencial",
+      "clave": "1114048",
+      "creditos": 9.0,
+      "tronco": "general",
+      "opt": false,
+      "ruta": "#/uea/ind/1114048"
+     },
+     {
+      "nombre": "Programación Aplicada a la Ingeniería",
+      "clave": "1150041",
+      "creditos": 6.0,
+      "tronco": "profesional",
+      "opt": false,
+      "ruta": "#/uea/ind/1150041"
+     }
+    ]
+   },
+   {
+    "trimestre": 3,
+    "creditos": 45.0,
+    "ueas": [
+     {
+      "nombre": "Laboratorio de Reacciones Químicas",
+      "clave": "1114009",
+      "creditos": 3.0,
+      "tronco": "profesional",
+      "opt": false,
+      "ruta": "#/uea/ind/1114009"
+     },
+     {
+      "nombre": "Estructura y Propiedades de los Materiales en Ingeniería",
+      "clave": "1114058",
+      "creditos": 6.0,
+      "tronco": "profesional",
+      "opt": false,
+      "ruta": "#/uea/ind/1114058"
+     },
+     {
+      "nombre": "Tecnologías de Conformado y Ensamble",
+      "clave": "1130071",
+      "creditos": 9.0,
+      "tronco": "profesional",
+      "opt": false,
+      "ruta": "#/uea/ind/1130071"
+     },
+     {
+      "nombre": "Resolución de Problemas y Pensamiento Critico",
+      "clave": "1150044",
+      "creditos": 6.0,
+      "tronco": "profesional",
+      "opt": false,
+      "ruta": "#/uea/ind/1150044"
+     },
+     {
+      "nombre": "Fundamentos de Electricidad y Electrónica Para la Automatización Industrial",
+      "clave": "1125010",
+      "creditos": 9.0,
+      "tronco": "profesional",
+      "opt": false,
+      "ruta": "#/uea/ind/1125010"
+     },
+     {
+      "nombre": "Cálculo Integral",
+      "clave": "1114049",
+      "creditos": 9.0,
+      "tronco": "general",
+      "opt": false,
+      "ruta": "#/uea/ind/1114049"
+     },
+     {
+      "nombre": "Inteligencia Artificial",
+      "clave": "1100213",
+      "creditos": 3.0,
+      "tronco": "profesional",
+      "opt": false,
+      "ruta": "#/uea/ind/1100213"
+     }
+    ]
+   },
+   {
+    "trimestre": 4,
+    "creditos": 42.0,
+    "ueas": [
+     {
+      "nombre": "Taller de Comunicación Técnica y Profesional",
+      "clave": "1150049",
+      "creditos": 6.0,
+      "tronco": "profesional",
+      "opt": false,
+      "ruta": "#/uea/ind/1150049"
+     },
+     {
+      "nombre": "Laboratorio de Estructura y Propiedades de los Materiales",
+      "clave": "1114060",
+      "creditos": 3.0,
+      "tronco": "profesional",
+      "opt": false,
+      "ruta": "#/uea/ind/1114060"
+     },
+     {
+      "nombre": "Procesos de Maquinado Industrial",
+      "clave": "1130065",
+      "creditos": 9.0,
+      "tronco": "profesional",
+      "opt": false,
+      "ruta": "#/uea/ind/1130065"
+     },
+     {
+      "nombre": "Taller de Tecnologías de Conformado y Ensamble",
+      "clave": "1130069",
+      "creditos": 3.0,
+      "tronco": "profesional",
+      "opt": false,
+      "ruta": "#/uea/ind/1130069"
+     },
+     {
+      "nombre": "Laboratorio de Fundamentos de Electricidad y Electrónica Para la Automatización Industrial",
+      "clave": "1125012",
+      "creditos": 3.0,
+      "tronco": "profesional",
+      "opt": false,
+      "ruta": "#/uea/ind/1125012"
+     },
+     {
+      "nombre": "Ecuaciones Diferenciales Ordinarias",
+      "clave": null,
+      "creditos": 9.0,
+      "tronco": "profesional",
+      "opt": false,
+      "ruta": "#/uea/ind/1114050"
+     },
+     {
+      "nombre": "Cinemática y Dinámica de Partículas",
+      "clave": "1114045",
+      "creditos": 9.0,
+      "tronco": "profesional",
+      "opt": false,
+      "ruta": "#/uea/ind/1114045"
+     }
+    ]
+   },
+   {
+    "trimestre": 5,
+    "creditos": 42.0,
+    "ueas": [
+     {
+      "nombre": "Ingeniería de los Materiales",
+      "clave": "1140058",
+      "creditos": 9.0,
+      "tronco": "profesional",
+      "opt": false,
+      "ruta": "#/uea/ind/1140058"
+     },
+     {
+      "nombre": "Termodinámica",
+      "clave": "1114017",
+      "creditos": 6.0,
+      "tronco": "profesional",
+      "opt": false,
+      "ruta": "#/uea/ind/1114017"
+     },
+     {
+      "nombre": "Método de Trabajo para la Productividad",
+      "clave": "1150039",
+      "creditos": 6.0,
+      "tronco": "profesional",
+      "opt": false,
+      "ruta": "#/uea/ind/1150039"
+     },
+     {
+      "nombre": "Taller de Procesos de Maquinado industrial",
+      "clave": "1130068",
+      "creditos": 3.0,
+      "tronco": "profesional",
+      "opt": false,
+      "ruta": "#/uea/ind/1130068"
+     },
+     {
+      "nombre": "Probabilidad y Estadística Descriptiva",
+      "clave": "1150040",
+      "creditos": 9.0,
+      "tronco": "profesional",
+      "opt": false,
+      "ruta": "#/uea/ind/1150040"
+     },
+     {
+      "nombre": "Mediciones en Ingeniería",
+      "clave": "1130063",
+      "creditos": 6.0,
+      "tronco": "profesional",
+      "opt": false,
+      "ruta": "#/uea/ind/1130063"
+     },
+     {
+      "nombre": "Laboratorio de Movimiento de una Partícula",
+      "clave": "1114007",
+      "creditos": 3.0,
+      "tronco": "profesional",
+      "opt": false,
+      "ruta": "#/uea/ind/1114007"
+     }
+    ]
+   },
+   {
+    "trimestre": 6,
+    "creditos": 42.0,
+    "ueas": [
+     {
+      "nombre": "Laboratorio de Ingeniería de Materiales",
+      "clave": "1140059",
+      "creditos": 3.0,
+      "tronco": "profesional",
+      "opt": false,
+      "ruta": "#/uea/ind/1140059"
+     },
+     {
+      "nombre": "Programación Lineal y Análisis de Redes",
+      "clave": "1150042",
+      "creditos": 8.0,
+      "tronco": "profesional",
+      "opt": false,
+      "ruta": "#/uea/ind/1150042"
+     },
+     {
+      "nombre": "Laboratorio de Productividad",
+      "clave": "1150036",
+      "creditos": 3.0,
+      "tronco": "profesional",
+      "opt": false,
+      "ruta": "#/uea/ind/1150036"
+     },
+     {
+      "nombre": "Medición del Trabajo para la Eficiencia Operativa",
+      "clave": "1150038",
+      "creditos": 6.0,
+      "tronco": "profesional",
+      "opt": false,
+      "ruta": "#/uea/ind/1150038"
+     },
+     {
+      "nombre": "Contabilidad Financiera",
+      "clave": "1150024",
+      "creditos": 6.0,
+      "tronco": "profesional",
+      "opt": false,
+      "ruta": "#/uea/ind/1150024"
+     },
+     {
+      "nombre": "Control Estadístico de la Calidad",
+      "clave": "1150025",
+      "creditos": 8.0,
+      "tronco": "profesional",
+      "opt": false,
+      "ruta": "#/uea/ind/1150025"
+     },
+     {
+      "nombre": "Estadística Inferencial Aplicada a la Ingeniería Industrial",
+      "clave": "1150029",
+      "creditos": 8.0,
+      "tronco": "profesional",
+      "opt": false,
+      "ruta": "#/uea/ind/1150029"
+     }
+    ]
+   },
+   {
+    "trimestre": 7,
+    "creditos": 45.0,
+    "ueas": [
+     {
+      "nombre": "Pronósticos y Líneas de Espera",
+      "clave": "1150043",
+      "creditos": 8.0,
+      "tronco": "profesional",
+      "opt": false,
+      "ruta": "#/uea/ind/1150043"
+     },
+     {
+      "nombre": "Cadena de Suministro y Logística",
+      "clave": "1150023",
+      "creditos": 8.0,
+      "tronco": "profesional",
+      "opt": false,
+      "ruta": "#/uea/ind/1150023"
+     },
+     {
+      "nombre": "Automatización de Procesos Industriales",
+      "clave": "1125008",
+      "creditos": 8.0,
+      "tronco": "profesional",
+      "opt": false,
+      "ruta": "#/uea/ind/1125008"
+     },
+     {
+      "nombre": "Ergonomía y Factor Humano",
+      "clave": "1150028",
+      "creditos": 6.0,
+      "tronco": "profesional",
+      "opt": false,
+      "ruta": "#/uea/ind/1150028"
+     },
+     {
+      "nombre": "Laboratorio de Eficiencia Operativa",
+      "clave": "1150035",
+      "creditos": 3.0,
+      "tronco": "profesional",
+      "opt": false,
+      "ruta": "#/uea/ind/1150035"
+     },
+     {
+      "nombre": "Análisis de Costos para la Toma de Decisiones",
+      "clave": "1150021",
+      "creditos": 6.0,
+      "tronco": "profesional",
+      "opt": false,
+      "ruta": "#/uea/ind/1150021"
+     },
+     {
+      "nombre": "Ingeniería Económica",
+      "clave": "1150034",
+      "creditos": 6.0,
+      "tronco": "profesional",
+      "opt": false,
+      "ruta": "#/uea/ind/1150034"
+     }
+    ]
+   },
+   {
+    "trimestre": 8,
+    "creditos": 45.0,
+    "ueas": [
+     {
+      "nombre": "Administración y Gestión de la Producción",
+      "clave": "1150020",
+      "creditos": 9.0,
+      "tronco": "profesional",
+      "opt": false,
+      "ruta": "#/uea/ind/1150020"
+     },
+     {
+      "nombre": "Metrología para Manufactura",
+      "clave": "1130064",
+      "creditos": 6.0,
+      "tronco": "profesional",
+      "opt": false,
+      "ruta": "#/uea/ind/1130064"
+     },
+     {
+      "nombre": "Diseño de Instalaciones y Manejo de Materiales",
+      "clave": "1150026",
+      "creditos": 8.0,
+      "tronco": "profesional",
+      "opt": false,
+      "ruta": "#/uea/ind/1150026"
+     },
+     {
+      "nombre": "Controladores Lógicos Programables Aplicados a los Sistemas Productivos",
+      "clave": "1125009",
+      "creditos": 9.0,
+      "tronco": "profesional",
+      "opt": false,
+      "ruta": "#/uea/ind/1125009"
+     },
+     {
+      "nombre": "Análisis y Visualización de Datos",
+      "clave": "1150022",
+      "creditos": 7.0,
+      "tronco": "profesional",
+      "opt": false,
+      "ruta": "#/uea/ind/1150022"
+     },
+     {
+      "nombre": "Evaluación de Proyectos en Ingeniería",
+      "clave": "1150031",
+      "creditos": 6.0,
+      "tronco": "integracion",
+      "opt": false,
+      "ruta": "#/uea/ind/1150031"
+     }
+    ]
+   },
+   {
+    "trimestre": 9,
+    "creditos": 39.0,
+    "ueas": [
+     {
+      "nombre": "Laboratorio de Metrología para Manufactura",
+      "clave": "1130059",
+      "creditos": 3.0,
+      "tronco": "profesional",
+      "opt": false,
+      "ruta": "#/uea/ind/1130059"
+     },
+     {
+      "nombre": "Optativa del Tronco de Integración",
+      "clave": null,
+      "creditos": 9.0,
+      "tronco": "integracion",
+      "opt": true,
+      "ruta": null
+     },
+     {
+      "nombre": "Habilidades de Comunicación Estratégica y Liderazgo",
+      "clave": "1150033",
+      "creditos": 6.0,
+      "tronco": "profesional",
+      "opt": false,
+      "ruta": "#/uea/ind/1150033"
+     },
+     {
+      "nombre": "Gestión y Seguimiento de Proyectos",
+      "clave": "1150032",
+      "creditos": 6.0,
+      "tronco": "profesional",
+      "opt": false,
+      "ruta": "#/uea/ind/1150032"
+     },
+     {
+      "nombre": "Optativa del Tronco de Integración",
+      "clave": null,
+      "creditos": 9.0,
+      "tronco": "integracion",
+      "opt": true,
+      "ruta": null
+     },
+     {
+      "nombre": "Sistemas de Gestión de la Calidad",
+      "clave": "1150047",
+      "creditos": 6.0,
+      "tronco": "profesional",
+      "opt": false,
+      "ruta": "#/uea/ind/1150047"
+     }
+    ]
+   },
+   {
+    "trimestre": 10,
+    "creditos": 43.0,
+    "ueas": [
+     {
+      "nombre": "Economía Regional y Desarrollo Industrial",
+      "clave": "1150027",
+      "creditos": 6.0,
+      "tronco": "profesional",
+      "opt": false,
+      "ruta": "#/uea/ind/1150027"
+     },
+     {
+      "nombre": "Sistemas de Manufactura Esbelta",
+      "clave": "1150048",
+      "creditos": 9.0,
+      "tronco": "profesional",
+      "opt": false,
+      "ruta": "#/uea/ind/1150048"
+     },
+     {
+      "nombre": "Fundamentos de Robótica Industrial",
+      "clave": "1125011",
+      "creditos": 9.0,
+      "tronco": "profesional",
+      "opt": false,
+      "ruta": "#/uea/ind/1125011"
+     },
+     {
+      "nombre": "Seguridad e Higiene Industrial",
+      "clave": "1150045",
+      "creditos": 8.0,
+      "tronco": "profesional",
+      "opt": false,
+      "ruta": "#/uea/ind/1150045"
+     },
+     {
+      "nombre": "Simulación de Sistemas Productivos",
+      "clave": "1150046",
+      "creditos": 8.0,
+      "tronco": "profesional",
+      "opt": false,
+      "ruta": "#/uea/ind/1150046"
+     },
+     {
+      "nombre": "Seminario de Integración en Ingeniería Industrial",
+      "clave": "1100204",
+      "creditos": 3.0,
+      "tronco": "integracion",
+      "opt": false,
+      "ruta": "#/uea/ind/1100204"
+     }
+    ]
+   },
+   {
+    "trimestre": 11,
+    "creditos": 45.0,
+    "ueas": [
+     {
+      "nombre": "Proyecto de Integración en Ingeniería Industrial 1",
+      "clave": "1100203",
+      "creditos": 18.0,
+      "tronco": "integracion",
+      "opt": false,
+      "ruta": "#/uea/ind/1100203"
+     },
+     {
+      "nombre": "Optativa del Tronco de Integración",
+      "clave": null,
+      "creditos": 9.0,
+      "tronco": "integracion",
+      "opt": true,
+      "ruta": null
+     },
+     {
+      "nombre": "Optativa del Tronco de Integración",
+      "clave": null,
+      "creditos": 9.0,
+      "tronco": "integracion",
+      "opt": true,
+      "ruta": null
+     },
+     {
+      "nombre": "Optativa del Tronco de Integración",
+      "clave": null,
+      "creditos": 9.0,
+      "tronco": "integracion",
+      "opt": true,
+      "ruta": null
+     }
+    ]
+   }
+  ]
+ },
+ "mec": {
+  "clave": "mec",
+  "nombre": "Ingeniería Mecánica",
+  "creditos_plan": {
+   "general": 57,
+   "profesional": 311,
+   "total": 455
+  },
+  "trimestres": [
+   {
+    "trimestre": 1,
+    "creditos": 42.0,
+    "ueas": [
+     {
+      "nombre": "Dibujo Mecánico Asistido por Computadora",
+      "clave": "1130053",
+      "creditos": 9.0,
+      "tronco": "profesional",
+      "opt": false,
+      "ruta": "#/uea/mec/1130053"
+     },
+     {
+      "nombre": "Metrología para Manufactura",
+      "clave": "1130064",
+      "creditos": 6.0,
+      "tronco": "profesional",
+      "opt": false,
+      "ruta": "#/uea/mec/1130064"
+     },
+     {
+      "nombre": "Química General para Ingeniería",
+      "clave": "1114055",
+      "creditos": 6.0,
+      "tronco": "general",
+      "opt": false,
+      "ruta": "#/uea/mec/1114055"
+     },
+     {
+      "nombre": "Sistemas de Ecuaciones Lineales y Matrices",
+      "clave": "1114056",
+      "creditos": 6.0,
+      "tronco": "general",
+      "opt": false,
+      "ruta": "#/uea/mec/1114056"
+     },
+     {
+      "nombre": "Matemáticas Básicas para Ingeniería",
+      "clave": "1114054",
+      "creditos": 6.0,
+      "tronco": "general",
+      "opt": false,
+      "ruta": "#/uea/mec/1114054"
+     },
+     {
+      "nombre": "Vida Universitaria",
+      "clave": "1100215",
+      "creditos": 3.0,
+      "tronco": "general",
+      "opt": false,
+      "ruta": "#/uea/mec/1100215"
+     },
+     {
+      "nombre": "Fundamentos de Física y Aplicaciones I",
+      "clave": "1114052",
+      "creditos": 6.0,
+      "tronco": "general",
+      "opt": false,
+      "ruta": "#/uea/mec/1114052"
+     }
+    ]
+   },
+   {
+    "trimestre": 2,
+    "creditos": 45.0,
+    "ueas": [
+     {
+      "nombre": "Estructuras Mecánicas",
+      "clave": "114002X",
+      "creditos": 9.0,
+      "tronco": "profesional",
+      "opt": false,
+      "ruta": "#/uea/mec/114002"
+     },
+     {
+      "nombre": "Laboratorio de Metrología para Manufactura",
+      "clave": "1130059",
+      "creditos": 3.0,
+      "tronco": "profesional",
+      "opt": false,
+      "ruta": "#/uea/mec/1130059"
+     },
+     {
+      "nombre": "Estructura y Propiedades de los Materiales en Ingeniería",
+      "clave": "1114058",
+      "creditos": 6.0,
+      "tronco": "profesional",
+      "opt": false,
+      "ruta": "#/uea/mec/1114058"
+     },
+     {
+      "nombre": "Cultura de Paz y Género",
+      "clave": "1100212",
+      "creditos": 3.0,
+      "tronco": "general",
+      "opt": false,
+      "ruta": "#/uea/mec/1100212"
+     },
+     {
+      "nombre": "Cálculo Diferencial",
+      "clave": "1114048",
+      "creditos": 9.0,
+      "tronco": "general",
+      "opt": false,
+      "ruta": "#/uea/mec/1114048"
+     },
+     {
+      "nombre": "Cinemática y Dinámica de Partículas",
+      "clave": "1114045",
+      "creditos": 9.0,
+      "tronco": "profesional",
+      "opt": false,
+      "ruta": "#/uea/mec/1114045"
+     },
+     {
+      "nombre": "Fundamentos de Física y Aplicaciones II",
+      "clave": "1114053",
+      "creditos": 6.0,
+      "tronco": "general",
+      "opt": false,
+      "ruta": "#/uea/mec/1114053"
+     }
+    ]
+   },
+   {
+    "trimestre": 3,
+    "creditos": 39.0,
+    "ueas": [
+     {
+      "nombre": "Mecánica de Materiales I",
+      "clave": "1140030",
+      "creditos": 9.0,
+      "tronco": "profesional",
+      "opt": false,
+      "ruta": "#/uea/mec/1140030"
+     },
+     {
+      "nombre": "Mediciones en Ingeniería",
+      "clave": "1130063",
+      "creditos": 6.0,
+      "tronco": "profesional",
+      "opt": false,
+      "ruta": "#/uea/mec/1130063"
+     },
+     {
+      "nombre": "Laboratorio de Estructura y Propiedades de los Materiales en Ingeniería",
+      "clave": "1114060",
+      "creditos": 3.0,
+      "tronco": "profesional",
+      "opt": false,
+      "ruta": "#/uea/mec/1114060"
+     },
+     {
+      "nombre": "Cálculo Integral",
+      "clave": "1114049",
+      "creditos": 9.0,
+      "tronco": "general",
+      "opt": false,
+      "ruta": "#/uea/mec/1114049"
+     },
+     {
+      "nombre": "Laboratorio de Movimiento de una Partícula",
+      "clave": "1114007",
+      "creditos": 3.0,
+      "tronco": "profesional",
+      "opt": false,
+      "ruta": "#/uea/mec/1114007"
+     },
+     {
+      "nombre": "Dinámica del Cuerpo Rígido",
+      "clave": "1114047",
+      "creditos": 9.0,
+      "tronco": "profesional",
+      "opt": false,
+      "ruta": "#/uea/mec/1114047"
+     }
+    ]
+   },
+   {
+    "trimestre": 4,
+    "creditos": 45.0,
+    "ueas": [
+     {
+      "nombre": "Laboratorio de Mecánica de Materiales I",
+      "clave": "1140028",
+      "creditos": 3.0,
+      "tronco": "profesional",
+      "opt": false,
+      "ruta": "#/uea/mec/1140028"
+     },
+     {
+      "nombre": "Tecnologías de Conformado y Ensamble",
+      "clave": "1130071",
+      "creditos": 9.0,
+      "tronco": "profesional",
+      "opt": false,
+      "ruta": "#/uea/mec/1130071"
+     },
+     {
+      "nombre": "Ingeniería de los Materiales",
+      "clave": "1140058",
+      "creditos": 9.0,
+      "tronco": "profesional",
+      "opt": false,
+      "ruta": "#/uea/mec/1140058"
+     },
+     {
+      "nombre": "Termodinámica Aplicada",
+      "clave": "1130837",
+      "creditos": 9.0,
+      "tronco": "profesional",
+      "opt": false,
+      "ruta": "#/uea/mec/1130837"
+     },
+     {
+      "nombre": "Ecuaciones Diferenciales Ordinarias",
+      "clave": "1114050",
+      "creditos": 9.0,
+      "tronco": "profesional",
+      "opt": false,
+      "ruta": "#/uea/mec/1114050"
+     },
+     {
+      "nombre": "Comunicación Asertiva",
+      "clave": "1100211",
+      "creditos": 3.0,
+      "tronco": "general",
+      "opt": false,
+      "ruta": "#/uea/mec/1100211"
+     },
+     {
+      "nombre": "Laboratorio del Cuerpo Rígido y Oscilaciones",
+      "clave": "1114010",
+      "creditos": 3.0,
+      "tronco": "profesional",
+      "opt": false,
+      "ruta": "#/uea/mec/1114010"
+     }
+    ]
+   },
+   {
+    "trimestre": 5,
+    "creditos": 42.0,
+    "ueas": [
+     {
+      "nombre": "Diseño de Elementos de Máquinas I",
+      "clave": "1130055",
+      "creditos": 9.0,
+      "tronco": "profesional",
+      "opt": false,
+      "ruta": "#/uea/mec/1130055"
+     },
+     {
+      "nombre": "Taller de Tecnologías de Conformado y Ensamble",
+      "clave": "1130069",
+      "creditos": 3.0,
+      "tronco": "profesional",
+      "opt": false,
+      "ruta": "#/uea/mec/1130069"
+     },
+     {
+      "nombre": "Laboratorio de Ingeniería de los Materiales",
+      "clave": "1140059",
+      "creditos": 3.0,
+      "tronco": "profesional",
+      "opt": false,
+      "ruta": "#/uea/mec/1140059"
+     },
+     {
+      "nombre": "Transferencia de Calor",
+      "clave": "1130072",
+      "creditos": 9.0,
+      "tronco": "profesional",
+      "opt": false,
+      "ruta": "#/uea/mec/1130072"
+     },
+     {
+      "nombre": "Circuitos en Corriente Directa",
+      "clave": "1125023",
+      "creditos": 9.0,
+      "tronco": "profesional",
+      "opt": false,
+      "ruta": "#/uea/mec/1125023"
+     },
+     {
+      "nombre": "Taller de Comunicación Técnica y Profesional",
+      "clave": "1150049",
+      "creditos": 6.0,
+      "tronco": "profesional",
+      "opt": false,
+      "ruta": "#/uea/mec/1150049"
+     },
+     {
+      "nombre": "Educación Ambiental y Cambio Climático",
+      "clave": "1130074",
+      "creditos": 3.0,
+      "tronco": "profesional",
+      "opt": false,
+      "ruta": "#/uea/mec/1130074"
+     }
+    ]
+   },
+   {
+    "trimestre": 6,
+    "creditos": 45.0,
+    "ueas": [
+     {
+      "nombre": "Probabilidad y Estadística Descriptiva",
+      "clave": "1150040",
+      "creditos": 9.0,
+      "tronco": "profesional",
+      "opt": false,
+      "ruta": "#/uea/mec/1150040"
+     },
+     {
+      "nombre": "Procesos de Maquinado Industrial",
+      "clave": "1130065",
+      "creditos": 9.0,
+      "tronco": "profesional",
+      "opt": false,
+      "ruta": "#/uea/mec/1130065"
+     },
+     {
+      "nombre": "Mecánica de Fluidos",
+      "clave": "1130061",
+      "creditos": 9.0,
+      "tronco": "profesional",
+      "opt": false,
+      "ruta": "#/uea/mec/1130061"
+     },
+     {
+      "nombre": "Microelectrónica",
+      "clave": "1125013",
+      "creditos": 9.0,
+      "tronco": "profesional",
+      "opt": false,
+      "ruta": "#/uea/mec/1125013"
+     },
+     {
+      "nombre": "Inteligencia Artificial",
+      "clave": "1100213",
+      "creditos": 3.0,
+      "tronco": "profesional",
+      "opt": false,
+      "ruta": "#/uea/mec/1100213"
+     },
+     {
+      "nombre": "Taller de Diseño Sostenible en la Industria Mecánica",
+      "clave": "1130067",
+      "creditos": 6.0,
+      "tronco": "profesional",
+      "opt": false,
+      "ruta": "#/uea/mec/1130067"
+     }
+    ]
+   },
+   {
+    "trimestre": 7,
+    "creditos": 44.0,
+    "ueas": [
+     {
+      "nombre": "Taller de Procesos de Maquinado Industrial",
+      "clave": "1130068",
+      "creditos": 3.0,
+      "tronco": "profesional",
+      "opt": false,
+      "ruta": "#/uea/mec/1130068"
+     },
+     {
+      "nombre": "Diseño de Sistemas Energéticos",
+      "clave": "1130056",
+      "creditos": 9.0,
+      "tronco": "profesional",
+      "opt": false,
+      "ruta": "#/uea/mec/1130056"
+     },
+     {
+      "nombre": "Laboratorio Integral de Termofluidos",
+      "clave": "1130060",
+      "creditos": 6.0,
+      "tronco": "profesional",
+      "opt": false,
+      "ruta": "#/uea/mec/1130060"
+     },
+     {
+      "nombre": "Automatización de Procesos Industriales",
+      "clave": "1125008",
+      "creditos": 8.0,
+      "tronco": "profesional",
+      "opt": false,
+      "ruta": "#/uea/mec/1125008"
+     },
+     {
+      "nombre": "Mecanismos",
+      "clave": "1130062",
+      "creditos": 9.0,
+      "tronco": "profesional",
+      "opt": false,
+      "ruta": "#/uea/mec/1130062"
+     },
+     {
+      "nombre": "Dinámica y Vibraciones",
+      "clave": "1130054",
+      "creditos": 9.0,
+      "tronco": "profesional",
+      "opt": false,
+      "ruta": "#/uea/mec/1130054"
+     }
+    ]
+   },
+   {
+    "trimestre": 8,
+    "creditos": 42.0,
+    "ueas": [
+     {
+      "nombre": "Análisis de Costos para la Toma de Decisiones",
+      "clave": "1150021",
+      "creditos": 6.0,
+      "tronco": "profesional",
+      "opt": false,
+      "ruta": "#/uea/mec/1150021"
+     },
+     {
+      "nombre": "Programación Aplicada a la Ingeniería",
+      "clave": "1150041",
+      "creditos": 6.0,
+      "tronco": "profesional",
+      "opt": false,
+      "ruta": "#/uea/mec/1150041"
+     },
+     {
+      "nombre": "Energía Solar Aplicada",
+      "clave": "1130851",
+      "creditos": 9.0,
+      "tronco": "profesional",
+      "opt": false,
+      "ruta": "#/uea/mec/1130851"
+     },
+     {
+      "nombre": "Taller de Termofluidos",
+      "clave": "1130070",
+      "creditos": 6.0,
+      "tronco": "profesional",
+      "opt": false,
+      "ruta": "#/uea/mec/1130070"
+     },
+     {
+      "nombre": "Controladores Lógicos Programables Aplicados a los Sistemas Productivos",
+      "clave": "1125009",
+      "creditos": 9.0,
+      "tronco": "profesional",
+      "opt": false,
+      "ruta": "#/uea/mec/1125009"
+     },
+     {
+      "nombre": "Laboratorio de Mecanismos",
+      "clave": "1130058",
+      "creditos": 3.0,
+      "tronco": "profesional",
+      "opt": false,
+      "ruta": "#/uea/mec/1130058"
+     },
+     {
+      "nombre": "Laboratorio de Dinámica y Vibraciones",
+      "clave": "1130057",
+      "creditos": 3.0,
+      "tronco": "profesional",
+      "opt": false,
+      "ruta": "#/uea/mec/1130057"
+     }
+    ]
+   },
+   {
+    "trimestre": 9,
+    "creditos": 39.0,
+    "ueas": [
+     {
+      "nombre": "Ingeniería Económica",
+      "clave": "1150034",
+      "creditos": 6.0,
+      "tronco": "profesional",
+      "opt": false,
+      "ruta": "#/uea/mec/1150034"
+     },
+     {
+      "nombre": "Simulación Aplicada a Ingeniería Mecánica",
+      "clave": "1130066",
+      "creditos": 12.0,
+      "tronco": "profesional",
+      "opt": false,
+      "ruta": "#/uea/mec/1130066"
+     },
+     {
+      "nombre": "Optativa del Tronco de Integración",
+      "clave": null,
+      "creditos": 6.0,
+      "tronco": "integracion",
+      "opt": true,
+      "ruta": null
+     },
+     {
+      "nombre": "Optativa del Tronco de Integración",
+      "clave": null,
+      "creditos": 6.0,
+      "tronco": "integracion",
+      "opt": true,
+      "ruta": null
+     },
+     {
+      "nombre": "Optativa del Tronco de Integración",
+      "clave": null,
+      "creditos": 9.0,
+      "tronco": "integracion",
+      "opt": true,
+      "ruta": null
+     }
+    ]
+   },
+   {
+    "trimestre": 10,
+    "creditos": 33.0,
+    "ueas": [
+     {
+      "nombre": "Evaluación de Proyectos en Ingeniería",
+      "clave": "1150031",
+      "creditos": 6.0,
+      "tronco": "profesional",
+      "opt": false,
+      "ruta": "#/uea/mec/1150031"
+     },
+     {
+      "nombre": "Seminario de Integración en Ingeniería Mecánica",
+      "clave": "1100207",
+      "creditos": 3.0,
+      "tronco": "integracion",
+      "opt": false,
+      "ruta": "#/uea/mec/1100207"
+     },
+     {
+      "nombre": "Optativa del Tronco de Integración",
+      "clave": null,
+      "creditos": 6.0,
+      "tronco": "integracion",
+      "opt": true,
+      "ruta": null
+     },
+     {
+      "nombre": "Optativa del Tronco de Integración",
+      "clave": null,
+      "creditos": 9.0,
+      "tronco": "integracion",
+      "opt": true,
+      "ruta": null
+     },
+     {
+      "nombre": "Optativa del Tronco de Integración",
+      "clave": null,
+      "creditos": 9.0,
+      "tronco": "integracion",
+      "opt": true,
+      "ruta": null
+     }
+    ]
+   },
+   {
+    "trimestre": 11,
+    "creditos": 39.0,
+    "ueas": [
+     {
+      "nombre": "Proyecto de Integración en Ingeniería Mecánica",
+      "clave": "1100205",
+      "creditos": 18.0,
+      "tronco": "integracion",
+      "opt": false,
+      "ruta": "#/uea/mec/1100205"
+     },
+     {
+      "nombre": "Optativa del Tronco de Integración",
+      "clave": null,
+      "creditos": 6.0,
+      "tronco": "integracion",
+      "opt": true,
+      "ruta": null
+     },
+     {
+      "nombre": "Optativa del Tronco de Integración",
+      "clave": null,
+      "creditos": 9.0,
+      "tronco": "integracion",
+      "opt": true,
+      "ruta": null
+     },
+     {
+      "nombre": "Optativa del Tronco de Integración",
+      "clave": null,
+      "creditos": 6.0,
+      "tronco": "integracion",
+      "opt": true,
+      "ruta": null
+     }
+    ]
+   }
+  ]
+ },
+ "met": {
+  "clave": "met",
+  "nombre": "Ingeniería en Metalurgia y Materiales",
+  "creditos_plan": {
+   "general": 57,
+   "profesional": 417,
+   "total": 462
+  },
+  "trimestres": [
+   {
+    "trimestre": 1,
+    "creditos": 30.0,
+    "ueas": [
+     {
+      "nombre": "Química General para Ingeniería",
+      "clave": "1114055",
+      "creditos": 6.0,
+      "tronco": "general",
+      "opt": false,
+      "ruta": "#/uea/met/1114055"
+     },
+     {
+      "nombre": "Cultura de Paz y Género",
+      "clave": "1100212",
+      "creditos": 3.0,
+      "tronco": "general",
+      "opt": false,
+      "ruta": "#/uea/met/1100212"
+     },
+     {
+      "nombre": "Matemáticas Básicas para Ingeniería",
+      "clave": "1114054",
+      "creditos": 6.0,
+      "tronco": "general",
+      "opt": false,
+      "ruta": "#/uea/met/1114054"
+     },
+     {
+      "nombre": "Sistemas de Ecuaciones Lineales y Matrices",
+      "clave": "1114056",
+      "creditos": 6.0,
+      "tronco": "general",
+      "opt": false,
+      "ruta": "#/uea/met/1114056"
+     },
+     {
+      "nombre": "Fundamentos de Física y Aplicaciones I",
+      "clave": "1114052",
+      "creditos": 6.0,
+      "tronco": "general",
+      "opt": false,
+      "ruta": "#/uea/met/1114052"
+     },
+     {
+      "nombre": "Vida Universitaria",
+      "clave": "1100215",
+      "creditos": 3.0,
+      "tronco": "general",
+      "opt": false,
+      "ruta": "#/uea/met/1100215"
+     }
+    ]
+   },
+   {
+    "trimestre": 2,
+    "creditos": 36.0,
+    "ueas": [
+     {
+      "nombre": "Ingeniería de los Materiales",
+      "clave": "1140058",
+      "creditos": 9.0,
+      "tronco": "profesional",
+      "opt": false,
+      "ruta": "#/uea/met/1140058"
+     },
+     {
+      "nombre": "Laboratorio de Ingeniería de los Materiales",
+      "clave": "1140059",
+      "creditos": 3.0,
+      "tronco": "profesional",
+      "opt": false,
+      "ruta": "#/uea/met/1140059"
+     },
+     {
+      "nombre": "Cálculo Diferencial",
+      "clave": "1114048",
+      "creditos": 9.0,
+      "tronco": "general",
+      "opt": false,
+      "ruta": "#/uea/met/1114048"
+     },
+     {
+      "nombre": "Estadística y Diseño Experimental",
+      "clave": "1114051",
+      "creditos": 6.0,
+      "tronco": "profesional",
+      "opt": false,
+      "ruta": "#/uea/met/1114051"
+     },
+     {
+      "nombre": "Fundamentos de Física y Aplicaciones II",
+      "clave": "1114053",
+      "creditos": 6.0,
+      "tronco": "general",
+      "opt": false,
+      "ruta": "#/uea/met/1114053"
+     },
+     {
+      "nombre": "Inteligencia Artificial",
+      "clave": "1150075",
+      "creditos": 3.0,
+      "tronco": "profesional",
+      "opt": false,
+      "ruta": "#/uea/met/1100213"
+     }
+    ]
+   },
+   {
+    "trimestre": 3,
+    "creditos": 45.0,
+    "ueas": [
+     {
+      "nombre": "Dibujo Mecánico Asistido por Computadora",
+      "clave": "1130053",
+      "creditos": 9.0,
+      "tronco": "profesional",
+      "opt": false,
+      "ruta": "#/uea/met/1130053"
+     },
+     {
+      "nombre": "Programación Aplicada a la Ingeniería",
+      "clave": "1150041",
+      "creditos": 6.0,
+      "tronco": "profesional",
+      "opt": false,
+      "ruta": "#/uea/met/1150041"
+     },
+     {
+      "nombre": "Cálculo Integral",
+      "clave": "1114049",
+      "creditos": 9.0,
+      "tronco": "general",
+      "opt": false,
+      "ruta": "#/uea/met/1114049"
+     },
+     {
+      "nombre": "Termodinámica en Procesos Metalúrgicos",
+      "clave": "1140077",
+      "creditos": 9.0,
+      "tronco": "profesional",
+      "opt": false,
+      "ruta": "#/uea/met/1140077"
+     },
+     {
+      "nombre": "Balance de Materia y Energía en Procesos Metalúrgicos",
+      "clave": "1140046",
+      "creditos": 6.0,
+      "tronco": "profesional",
+      "opt": false,
+      "ruta": "#/uea/met/1140046"
+     },
+     {
+      "nombre": "Mecánica Vectorial",
+      "clave": "114XXXX",
+      "creditos": 6.0,
+      "tronco": "profesional",
+      "opt": false,
+      "ruta": "#/uea/met/~mecanicavectorial"
+     }
+    ]
+   },
+   {
+    "trimestre": 4,
+    "creditos": 45.0,
+    "ueas": [
+     {
+      "nombre": "Caracterización de Materiales",
+      "clave": "1140047",
+      "creditos": 9.0,
+      "tronco": "profesional",
+      "opt": false,
+      "ruta": "#/uea/met/1140047"
+     },
+     {
+      "nombre": "Métodos Numéricos en Ingeniería",
+      "clave": "1150017",
+      "creditos": 7.0,
+      "tronco": "profesional",
+      "opt": false,
+      "ruta": "#/uea/met/1150017"
+     },
+     {
+      "nombre": "Ecuaciones Diferenciales Ordinarias",
+      "clave": "1114002",
+      "creditos": 9.0,
+      "tronco": "profesional",
+      "opt": false,
+      "ruta": "#/uea/met/1114002"
+     },
+     {
+      "nombre": "Cinética de Procesos Metalúrgicos",
+      "clave": "1140052",
+      "creditos": 6.0,
+      "tronco": "profesional",
+      "opt": false,
+      "ruta": "#/uea/met/1140052"
+     },
+     {
+      "nombre": "Metalografía",
+      "clave": "1140066",
+      "creditos": 5.0,
+      "tronco": "profesional",
+      "opt": false,
+      "ruta": "#/uea/met/1140066"
+     },
+     {
+      "nombre": "Mecánica de Materiales",
+      "clave": "1140030",
+      "creditos": 9.0,
+      "tronco": "profesional",
+      "opt": false,
+      "ruta": "#/uea/met/1140030"
+     }
+    ]
+   },
+   {
+    "trimestre": 5,
+    "creditos": 42.0,
+    "ueas": [
+     {
+      "nombre": "Ciencia e Ingeniería de Polímeros",
+      "clave": "1140050",
+      "creditos": 6.0,
+      "tronco": "profesional",
+      "opt": false,
+      "ruta": "#/uea/met/1140050"
+     },
+     {
+      "nombre": "Transferencia de Calor en Procesos Metalúrgicos",
+      "clave": "1140079",
+      "creditos": 6.0,
+      "tronco": "profesional",
+      "opt": false,
+      "ruta": "#/uea/met/1140079"
+     },
+     {
+      "nombre": "Transformaciones de Fases en Metalurgia y Materiales",
+      "clave": "1140080",
+      "creditos": 9.0,
+      "tronco": "profesional",
+      "opt": false,
+      "ruta": "#/uea/met/1140080"
+     },
+     {
+      "nombre": "Siderurgia",
+      "clave": "1140075",
+      "creditos": 9.0,
+      "tronco": "profesional",
+      "opt": false,
+      "ruta": "#/uea/met/1140075"
+     },
+     {
+      "nombre": "Educación Ambiental y Cambio Climático",
+      "clave": "1130074",
+      "creditos": 3.0,
+      "tronco": "profesional",
+      "opt": false,
+      "ruta": "#/uea/met/1130074"
+     },
+     {
+      "nombre": "Estructura y Comportamiento Mecánico de los Materiales",
+      "clave": "1140053",
+      "creditos": 9.0,
+      "tronco": "profesional",
+      "opt": false,
+      "ruta": "#/uea/met/1140053"
+     }
+    ]
+   },
+   {
+    "trimestre": 6,
+    "creditos": 42.0,
+    "ueas": [
+     {
+      "nombre": "Ciencia e Ingeniería de Cerámicos",
+      "clave": "1140048",
+      "creditos": 6.0,
+      "tronco": "profesional",
+      "opt": false,
+      "ruta": "#/uea/met/1140048"
+     },
+     {
+      "nombre": "Manufactura Aditiva de Materiales Avanzados",
+      "clave": "1140065",
+      "creditos": 6.0,
+      "tronco": "profesional",
+      "opt": false,
+      "ruta": "#/uea/met/1140065"
+     },
+     {
+      "nombre": "Moldeo y Fundición",
+      "clave": "1140069",
+      "creditos": 9.0,
+      "tronco": "profesional",
+      "opt": false,
+      "ruta": "#/uea/met/1140069"
+     },
+     {
+      "nombre": "Aleaciones no Ferrosas",
+      "clave": "1140044",
+      "creditos": 9.0,
+      "tronco": "profesional",
+      "opt": false,
+      "ruta": "#/uea/met/1140044"
+     },
+     {
+      "nombre": "Termomecánica de los Materiales",
+      "clave": "1140078",
+      "creditos": 9.0,
+      "tronco": "profesional",
+      "opt": false,
+      "ruta": "#/uea/met/1140078"
+     },
+     {
+      "nombre": "Laboratorio de Termomecánica de los Materiales",
+      "clave": "1140062",
+      "creditos": 3.0,
+      "tronco": "profesional",
+      "opt": false,
+      "ruta": "#/uea/met/1140062"
+     }
+    ]
+   },
+   {
+    "trimestre": 7,
+    "creditos": 36.0,
+    "ueas": [
+     {
+      "nombre": "Ciencia e Ingeniería de Materiales Compuestos",
+      "clave": "1140049",
+      "creditos": 6.0,
+      "tronco": "profesional",
+      "opt": false,
+      "ruta": "#/uea/met/1140049"
+     },
+     {
+      "nombre": "Optimización Computacional en Procesos Metalúrgicos",
+      "clave": "1140070",
+      "creditos": 3.0,
+      "tronco": "profesional",
+      "opt": false,
+      "ruta": "#/uea/met/1140070"
+     },
+     {
+      "nombre": "Soldadura",
+      "clave": "1140076",
+      "creditos": 9.0,
+      "tronco": "profesional",
+      "opt": false,
+      "ruta": "#/uea/met/1140076"
+     },
+     {
+      "nombre": "Comunicación Asertiva",
+      "clave": "1100211",
+      "creditos": 3.0,
+      "tronco": "general",
+      "opt": false,
+      "ruta": "#/uea/met/1100211"
+     },
+     {
+      "nombre": "Metalurgia Mecánica",
+      "clave": "1140067",
+      "creditos": 6.0,
+      "tronco": "profesional",
+      "opt": false,
+      "ruta": "#/uea/met/1140067"
+     },
+     {
+      "nombre": "Tratamientos Térmicos de los Materiales Metálicos",
+      "clave": "1140081",
+      "creditos": 9.0,
+      "tronco": "profesional",
+      "opt": false,
+      "ruta": "#/uea/met/1140081"
+     }
+    ]
+   },
+   {
+    "trimestre": 8,
+    "creditos": 41.0,
+    "ueas": [
+     {
+      "nombre": "Ciencia y Tecnología de los Nanomateriales",
+      "clave": "1140051",
+      "creditos": 6.0,
+      "tronco": "profesional",
+      "opt": false,
+      "ruta": "#/uea/met/1140051"
+     },
+     {
+      "nombre": "Modelado y Simulación Numérica en Metalurgia",
+      "clave": "1140068",
+      "creditos": 9.0,
+      "tronco": "profesional",
+      "opt": false,
+      "ruta": "#/uea/met/1140068"
+     },
+     {
+      "nombre": "Ensayos no Destructivos",
+      "clave": "1140057",
+      "creditos": 9.0,
+      "tronco": "profesional",
+      "opt": false,
+      "ruta": "#/uea/met/1140057"
+     },
+     {
+      "nombre": "Liderazgo y Gestión de Equipos en Ingeniería",
+      "clave": "1140064",
+      "creditos": 6.0,
+      "tronco": "profesional",
+      "opt": false,
+      "ruta": "#/uea/met/1140064"
+     },
+     {
+      "nombre": "Tribología e Ingeniería de Superficies",
+      "clave": "1140846",
+      "creditos": 6.0,
+      "tronco": "profesional",
+      "opt": false,
+      "ruta": "#/uea/met/1140846"
+     },
+     {
+      "nombre": "Laboratorio de Tratamientos Térmicos de los Materiales Metálicos",
+      "clave": "1140063",
+      "creditos": 5.0,
+      "tronco": "profesional",
+      "opt": false,
+      "ruta": "#/uea/met/1140063"
+     }
+    ]
+   },
+   {
+    "trimestre": 9,
+    "creditos": 45.0,
+    "ueas": [
+     {
+      "nombre": "Oxidación, Corrosión y Protección de los Materiales Metálicos",
+      "clave": "1140071",
+      "creditos": 9.0,
+      "tronco": "profesional",
+      "opt": false,
+      "ruta": "#/uea/met/1140071"
+     },
+     {
+      "nombre": "Laboratorio de Oxidación, Corrosión y Protección de los Materiales Metálicos",
+      "clave": "1140060",
+      "creditos": 3.0,
+      "tronco": "profesional",
+      "opt": false,
+      "ruta": "#/uea/met/1140060"
+     },
+     {
+      "nombre": "Emprendimiento Tecnológico e Innovación",
+      "clave": "1140056",
+      "creditos": 6.0,
+      "tronco": "profesional",
+      "opt": false,
+      "ruta": "#/uea/met/1140056"
+     },
+     {
+      "nombre": "Procesos de Formado de Materiales",
+      "clave": "1140072",
+      "creditos": 9.0,
+      "tronco": "profesional",
+      "opt": false,
+      "ruta": "#/uea/met/1140072"
+     },
+     {
+      "nombre": "Optativa del Tronco de Integración",
+      "clave": null,
+      "creditos": 9.0,
+      "tronco": "integracion",
+      "opt": true,
+      "ruta": null
+     },
+     {
+      "nombre": "Optativa del Tronco de Integración",
+      "clave": null,
+      "creditos": 9.0,
+      "tronco": "integracion",
+      "opt": true,
+      "ruta": null
+     }
+    ]
+   },
+   {
+    "trimestre": 10,
+    "creditos": 39.0,
+    "ueas": [
+     {
+      "nombre": "Seminario de Integración en Ingeniería en Metalurgia y Materiales",
+      "clave": "1140074",
+      "creditos": 3.0,
+      "tronco": "integracion",
+      "opt": false,
+      "ruta": "#/uea/met/1140074"
+     },
+     {
+      "nombre": "Diseño y Selección de Materiales",
+      "clave": "1140055",
+      "creditos": 3.0,
+      "tronco": "profesional",
+      "opt": false,
+      "ruta": "#/uea/met/1140055"
+     },
+     {
+      "nombre": "Análisis de Fallas",
+      "clave": "1140045",
+      "creditos": 6.0,
+      "tronco": "profesional",
+      "opt": false,
+      "ruta": "#/uea/met/1140045"
+     },
+     {
+      "nombre": "Control de Calidad",
+      "clave": "1140054",
+      "creditos": 6.0,
+      "tronco": "profesional",
+      "opt": false,
+      "ruta": "#/uea/met/1140054"
+     },
+     {
+      "nombre": "Laboratorio de Procesos de Formado de Materiales",
+      "clave": "1140061",
+      "creditos": 3.0,
+      "tronco": "profesional",
+      "opt": false,
+      "ruta": "#/uea/met/1140061"
+     },
+     {
+      "nombre": "Optativa del Tronco de Integración",
+      "clave": null,
+      "creditos": 9.0,
+      "tronco": "integracion",
+      "opt": true,
+      "ruta": null
+     },
+     {
+      "nombre": "Optativa del Tronco de Integración",
+      "clave": null,
+      "creditos": 9.0,
+      "tronco": "integracion",
+      "opt": true,
+      "ruta": null
+     }
+    ]
+   },
+   {
+    "trimestre": 11,
+    "creditos": 18.0,
+    "ueas": [
+     {
+      "nombre": "Proyecto de Integración en Ingeniería en Metalurgia y Materiales",
+      "clave": "1140073",
+      "creditos": 18.0,
+      "tronco": "integracion",
+      "opt": false,
+      "ruta": "#/uea/met/1140073"
+     }
+    ]
+   },
+   {
+    "trimestre": 12,
+    "creditos": 40.0,
+    "ueas": [
+     {
+      "nombre": "Prácticas profesionales en Ingeniería en Metalurgia y Materiales",
+      "clave": "1100214",
+      "creditos": 40.0,
+      "tronco": "profesional",
+      "opt": false,
+      "ruta": "#/uea/met/1100214"
+     }
+    ]
+   }
+  ]
+ },
+ "qui": {
+  "clave": "qui",
+  "nombre": "Ingeniería Química",
+  "creditos_plan": {
+   "general": 57,
+   "profesional": 381,
+   "total": 471
+  },
+  "trimestres": [
+   {
+    "trimestre": 1,
+    "creditos": 39.0,
+    "ueas": [
+     {
+      "nombre": "Principios y Estructura Atómica y Enlace Químico",
+      "clave": null,
+      "creditos": 9.0,
+      "tronco": "profesional",
+      "opt": false,
+      "ruta": "#/uea/qui/1114066"
+     },
+     {
+      "nombre": "Química General para Ingeniería",
+      "clave": "1114055",
+      "creditos": 6.0,
+      "tronco": "general",
+      "opt": false,
+      "ruta": "#/uea/qui/1114055"
+     },
+     {
+      "nombre": "Fundamentos de Física y Aplicaciones I",
+      "clave": "1114052",
+      "creditos": 6.0,
+      "tronco": "general",
+      "opt": false,
+      "ruta": "#/uea/qui/1114052"
+     },
+     {
+      "nombre": "Matemáticas Básicas para Ingeniería",
+      "clave": "1114054",
+      "creditos": 6.0,
+      "tronco": "general",
+      "opt": false,
+      "ruta": "#/uea/qui/1114054"
+     },
+     {
+      "nombre": "Introducción a la Ingeniería Química",
+      "clave": null,
+      "creditos": 6.0,
+      "tronco": "profesional",
+      "opt": false,
+      "ruta": "#/uea/qui/1130086"
+     },
+     {
+      "nombre": "Comunicación Asertiva",
+      "clave": "1100211",
+      "creditos": 3.0,
+      "tronco": "general",
+      "opt": false,
+      "ruta": "#/uea/qui/1100211"
+     },
+     {
+      "nombre": "Vida Universitaria",
+      "clave": "1100215",
+      "creditos": 3.0,
+      "tronco": "general",
+      "opt": false,
+      "ruta": "#/uea/qui/1100215"
+     }
+    ]
+   },
+   {
+    "trimestre": 2,
+    "creditos": 45.0,
+    "ueas": [
+     {
+      "nombre": "Reactividad Química",
+      "clave": null,
+      "creditos": 9.0,
+      "tronco": "profesional",
+      "opt": false,
+      "ruta": "#/uea/qui/1114071"
+     },
+     {
+      "nombre": "Laboratorio de Reactividad Química",
+      "clave": null,
+      "creditos": 3.0,
+      "tronco": "profesional",
+      "opt": false,
+      "ruta": "#/uea/qui/1114065"
+     },
+     {
+      "nombre": "Fundamentos de Física y Aplicaciones I",
+      "clave": "1114052",
+      "creditos": 6.0,
+      "tronco": "general",
+      "opt": false,
+      "ruta": "#/uea/qui/1114052"
+     },
+     {
+      "nombre": "Sistemas de Ecuaciones Lineales y Matrices",
+      "clave": "1114056",
+      "creditos": 6.0,
+      "tronco": "general",
+      "opt": false,
+      "ruta": "#/uea/qui/1114056"
+     },
+     {
+      "nombre": "Cálculo Diferencial",
+      "clave": "1114048",
+      "creditos": 9.0,
+      "tronco": "general",
+      "opt": false,
+      "ruta": "#/uea/qui/1114048"
+     },
+     {
+      "nombre": "Educación Ambiental y Cambio Climático",
+      "clave": null,
+      "creditos": 3.0,
+      "tronco": "profesional",
+      "opt": false,
+      "ruta": "#/uea/qui/1130074"
+     },
+     {
+      "nombre": "Herramientas Digitales en Ingeniería",
+      "clave": null,
+      "creditos": 6.0,
+      "tronco": "profesional",
+      "opt": false,
+      "ruta": "#/uea/qui/1100202"
+     },
+     {
+      "nombre": "Cultura de Paz y Género",
+      "clave": "1100212",
+      "creditos": 3.0,
+      "tronco": "general",
+      "opt": false,
+      "ruta": "#/uea/qui/1100212"
+     }
+    ]
+   },
+   {
+    "trimestre": 3,
+    "creditos": 45.0,
+    "ueas": [
+     {
+      "nombre": "Química Inorgánica",
+      "clave": null,
+      "creditos": 9.0,
+      "tronco": "profesional",
+      "opt": false,
+      "ruta": "#/uea/qui/1114068"
+     },
+     {
+      "nombre": "Laboratorio de Química Inorgánica",
+      "clave": null,
+      "creditos": 3.0,
+      "tronco": "profesional",
+      "opt": false,
+      "ruta": "#/uea/qui/1114062"
+     },
+     {
+      "nombre": "Estructura y Propiedades de los Materiales en Ingeniería",
+      "clave": null,
+      "creditos": 6.0,
+      "tronco": "profesional",
+      "opt": false,
+      "ruta": "#/uea/qui/1114058"
+     },
+     {
+      "nombre": "Laboratorio de Estructura y Propiedades de los Materiales",
+      "clave": null,
+      "creditos": 3.0,
+      "tronco": "profesional",
+      "opt": false,
+      "ruta": "#/uea/qui/1114060"
+     },
+     {
+      "nombre": "Cálculo Integral",
+      "clave": "1114049",
+      "creditos": 9.0,
+      "tronco": "general",
+      "opt": false,
+      "ruta": "#/uea/qui/1114049"
+     },
+     {
+      "nombre": "Termodinámica Aplicada",
+      "clave": null,
+      "creditos": 9.0,
+      "tronco": "profesional",
+      "opt": false,
+      "ruta": "#/uea/qui/1130837"
+     },
+     {
+      "nombre": "Programación Aplicada a la Ingeniería",
+      "clave": null,
+      "creditos": 6.0,
+      "tronco": "profesional",
+      "opt": false,
+      "ruta": "#/uea/qui/1150041"
+     }
+    ]
+   },
+   {
+    "trimestre": 4,
+    "creditos": 45.0,
+    "ueas": [
+     {
+      "nombre": "Química Orgánica I",
+      "clave": null,
+      "creditos": 9.0,
+      "tronco": "profesional",
+      "opt": false,
+      "ruta": "#/uea/qui/1114069"
+     },
+     {
+      "nombre": "Laboratorio de Química Orgánica I",
+      "clave": null,
+      "creditos": 3.0,
+      "tronco": "profesional",
+      "opt": false,
+      "ruta": "#/uea/qui/1114063"
+     },
+     {
+      "nombre": "Métodos Numéricos en Ingeniería",
+      "clave": null,
+      "creditos": 7.0,
+      "tronco": "profesional",
+      "opt": false,
+      "ruta": "#/uea/qui/1150017"
+     },
+     {
+      "nombre": "Ecuaciones Diferenciales Ordinarias",
+      "clave": null,
+      "creditos": 9.0,
+      "tronco": "profesional",
+      "opt": false,
+      "ruta": "#/uea/qui/1114002"
+     },
+     {
+      "nombre": "Propiedades Termodinámicas",
+      "clave": null,
+      "creditos": 7.0,
+      "tronco": "profesional",
+      "opt": false,
+      "ruta": "#/uea/qui/1130092"
+     },
+     {
+      "nombre": "Laboratorio de Propiedades Termodinámicas",
+      "clave": null,
+      "creditos": 3.0,
+      "tronco": "profesional",
+      "opt": false,
+      "ruta": "#/uea/qui/1130089"
+     },
+     {
+      "nombre": "Balance de Materia y Energía I",
+      "clave": null,
+      "creditos": 7.0,
+      "tronco": "profesional",
+      "opt": false,
+      "ruta": "#/uea/qui/1130077"
+     }
+    ]
+   },
+   {
+    "trimestre": 5,
+    "creditos": 44.0,
+    "ueas": [
+     {
+      "nombre": "Química Orgánica II",
+      "clave": null,
+      "creditos": 9.0,
+      "tronco": "profesional",
+      "opt": false,
+      "ruta": "#/uea/qui/1114070"
+     },
+     {
+      "nombre": "Laboratorio de Química Orgánica II",
+      "clave": null,
+      "creditos": 3.0,
+      "tronco": "profesional",
+      "opt": false,
+      "ruta": "#/uea/qui/1114064"
+     },
+     {
+      "nombre": "Transferencia de Momentum",
+      "clave": null,
+      "creditos": 9.0,
+      "tronco": "profesional",
+      "opt": false,
+      "ruta": "#/uea/qui/1130099"
+     },
+     {
+      "nombre": "Taller de Matemáticas Aplicadas para Ingeniería Química",
+      "clave": null,
+      "creditos": 7.0,
+      "tronco": "profesional",
+      "opt": false,
+      "ruta": "#/uea/qui/1130097"
+     },
+     {
+      "nombre": "Equilibrio Físico",
+      "clave": null,
+      "creditos": 9.0,
+      "tronco": "profesional",
+      "opt": false,
+      "ruta": "#/uea/qui/1130081"
+     },
+     {
+      "nombre": "Balance de Materia y Energía II",
+      "clave": null,
+      "creditos": 7.0,
+      "tronco": "profesional",
+      "opt": false,
+      "ruta": "#/uea/qui/1130078"
+     }
+    ]
+   },
+   {
+    "trimestre": 6,
+    "creditos": 42.0,
+    "ueas": [
+     {
+      "nombre": "Química Analítica e Instrumental",
+      "clave": null,
+      "creditos": 9.0,
+      "tronco": "profesional",
+      "opt": false,
+      "ruta": "#/uea/qui/1114014"
+     },
+     {
+      "nombre": "Laboratorio de Química Analítica e Instrumental",
+      "clave": null,
+      "creditos": 3.0,
+      "tronco": "profesional",
+      "opt": false,
+      "ruta": "#/uea/qui/1114008"
+     },
+     {
+      "nombre": "Inteligencia Artificial",
+      "clave": null,
+      "creditos": 3.0,
+      "tronco": "profesional",
+      "opt": false,
+      "ruta": "#/uea/qui/1100213"
+     },
+     {
+      "nombre": "Transferencia de Calor",
+      "clave": null,
+      "creditos": 9.0,
+      "tronco": "profesional",
+      "opt": false,
+      "ruta": "#/uea/qui/1130072"
+     },
+     {
+      "nombre": "Control de Calidad",
+      "clave": null,
+      "creditos": 6.0,
+      "tronco": "profesional",
+      "opt": false,
+      "ruta": "#/uea/qui/1150052"
+     },
+     {
+      "nombre": "Equilibrio Químico",
+      "clave": null,
+      "creditos": 9.0,
+      "tronco": "profesional",
+      "opt": false,
+      "ruta": "#/uea/qui/1130082"
+     },
+     {
+      "nombre": "Introducción a la Administración",
+      "clave": null,
+      "creditos": 3.0,
+      "tronco": "profesional",
+      "opt": false,
+      "ruta": "#/uea/qui/1100217"
+     }
+    ]
+   },
+   {
+    "trimestre": 7,
+    "creditos": 39.0,
+    "ueas": [
+     {
+      "nombre": "Instrumentación Industrial",
+      "clave": null,
+      "creditos": 3.0,
+      "tronco": "profesional",
+      "opt": false,
+      "ruta": "#/uea/qui/1130085"
+     },
+     {
+      "nombre": "Transferencia de Masa",
+      "clave": null,
+      "creditos": 9.0,
+      "tronco": "profesional",
+      "opt": false,
+      "ruta": "#/uea/qui/1130098"
+     },
+     {
+      "nombre": "Mecánica de Fluidos",
+      "clave": null,
+      "creditos": 9.0,
+      "tronco": "profesional",
+      "opt": false,
+      "ruta": "#/uea/qui/1137007"
+     },
+     {
+      "nombre": "Cinética y Catálisis",
+      "clave": null,
+      "creditos": 9.0,
+      "tronco": "profesional",
+      "opt": false,
+      "ruta": "#/uea/qui/1114057"
+     },
+     {
+      "nombre": "Laboratorio de Cinética y Catálisis",
+      "clave": null,
+      "creditos": 3.0,
+      "tronco": "profesional",
+      "opt": false,
+      "ruta": "#/uea/qui/1114059"
+     },
+     {
+      "nombre": "Educación Financiera",
+      "clave": null,
+      "creditos": 6.0,
+      "tronco": "profesional",
+      "opt": false,
+      "ruta": "#/uea/qui/1150054"
+     }
+    ]
+   },
+   {
+    "trimestre": 8,
+    "creditos": 45.0,
+    "ueas": [
+     {
+      "nombre": "Legislación y Gestión Ambiental",
+      "clave": null,
+      "creditos": 9.0,
+      "tronco": "profesional",
+      "opt": false,
+      "ruta": "#/uea/qui/1130014"
+     },
+     {
+      "nombre": "Laboratorio de Operaciones Unitarias",
+      "clave": null,
+      "creditos": 6.0,
+      "tronco": "profesional",
+      "opt": false,
+      "ruta": "#/uea/qui/1130087"
+     },
+     {
+      "nombre": "Procesos de Separación I",
+      "clave": null,
+      "creditos": 9.0,
+      "tronco": "profesional",
+      "opt": false,
+      "ruta": "#/uea/qui/1130090"
+     },
+     {
+      "nombre": "Reactores Homogéneos",
+      "clave": null,
+      "creditos": 9.0,
+      "tronco": "profesional",
+      "opt": false,
+      "ruta": "#/uea/qui/1130094"
+     },
+     {
+      "nombre": "Diseño de Empresa de Base Tecnológica y Gestión de Tecnología Química",
+      "clave": null,
+      "creditos": 6.0,
+      "tronco": "profesional",
+      "opt": false,
+      "ruta": "#/uea/qui/1150053"
+     },
+     {
+      "nombre": "Taller de Seguridad e Higiene Industrial",
+      "clave": null,
+      "creditos": 6.0,
+      "tronco": "profesional",
+      "opt": false,
+      "ruta": "#/uea/qui/1150057"
+     }
+    ]
+   },
+   {
+    "trimestre": 9,
+    "creditos": 39.0,
+    "ueas": [
+     {
+      "nombre": "Laboratorio de Procesos",
+      "clave": null,
+      "creditos": 6.0,
+      "tronco": "profesional",
+      "opt": false,
+      "ruta": "#/uea/qui/1130088"
+     },
+     {
+      "nombre": "Simulación y Optimización de Procesos",
+      "clave": null,
+      "creditos": 9.0,
+      "tronco": "profesional",
+      "opt": false,
+      "ruta": "#/uea/qui/1130096"
+     },
+     {
+      "nombre": "Procesos de Separación II",
+      "clave": null,
+      "creditos": 9.0,
+      "tronco": "profesional",
+      "opt": false,
+      "ruta": "#/uea/qui/1130091"
+     },
+     {
+      "nombre": "Reactores Heterogéneos",
+      "clave": null,
+      "creditos": 9.0,
+      "tronco": "profesional",
+      "opt": false,
+      "ruta": "#/uea/qui/1130093"
+     },
+     {
+      "nombre": "Ingeniería Económica",
+      "clave": null,
+      "creditos": 6.0,
+      "tronco": "profesional",
+      "opt": false,
+      "ruta": "#/uea/qui/1150034"
+     }
+    ]
+   },
+   {
+    "trimestre": 10,
+    "creditos": 45.0,
+    "ueas": [
+     {
+      "nombre": "Manejo y Tratamiento de Residuos Industriales y Peligrosos",
+      "clave": null,
+      "creditos": 9.0,
+      "tronco": "profesional",
+      "opt": false,
+      "ruta": "#/uea/qui/1130015"
+     },
+     {
+      "nombre": "Seminario de Integración en Ing. Química",
+      "clave": null,
+      "creditos": 3.0,
+      "tronco": "integracion",
+      "opt": false,
+      "ruta": "#/uea/qui/1100043"
+     },
+     {
+      "nombre": "Control de Procesos",
+      "clave": null,
+      "creditos": 9.0,
+      "tronco": "profesional",
+      "opt": false,
+      "ruta": "#/uea/qui/1130080"
+     },
+     {
+      "nombre": "Ingeniería de Procesos",
+      "clave": null,
+      "creditos": 9.0,
+      "tronco": "profesional",
+      "opt": false,
+      "ruta": "#/uea/qui/1130083"
+     },
+     {
+      "nombre": "Optativa del Tronco de Integración",
+      "clave": null,
+      "creditos": 6.0,
+      "tronco": "integracion",
+      "opt": true,
+      "ruta": null
+     },
+     {
+      "nombre": "Optativa del Tronco de Integración",
+      "clave": null,
+      "creditos": 9.0,
+      "tronco": "integracion",
+      "opt": true,
+      "ruta": null
+     }
+    ]
+   },
+   {
+    "trimestre": 11,
+    "creditos": 27.0,
+    "ueas": [
+     {
+      "nombre": "Ingeniería de Proyectos",
+      "clave": null,
+      "creditos": 9.0,
+      "tronco": "profesional",
+      "opt": false,
+      "ruta": "#/uea/qui/1130084"
+     },
+     {
+      "nombre": "Optativa del Tronco de Integración",
+      "clave": null,
+      "creditos": 9.0,
+      "tronco": "integracion",
+      "opt": true,
+      "ruta": null
+     },
+     {
+      "nombre": "Optativa del Tronco de Integración",
+      "clave": null,
+      "creditos": 9.0,
+      "tronco": "integracion",
+      "opt": true,
+      "ruta": null
+     }
+    ]
+   },
+   {
+    "trimestre": 12,
+    "creditos": 18.0,
+    "ueas": [
+     {
+      "nombre": "Proyecto de Integración en Ingeniería Química",
+      "clave": null,
+      "creditos": 18.0,
+      "tronco": "integracion",
+      "opt": false,
+      "ruta": "#/uea/qui/1100044"
+     }
+    ]
+   }
+  ]
+ }
+}

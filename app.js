@@ -47,6 +47,18 @@ const norm = (s) =>
 
 const lic = (clave) => DATOS.licenciaturas.find((l) => l.clave === clave);
 
+/* Identidad de una UEA en la dirección. La clave sirve cuando es única en la
+   licenciatura; «sin clave», «1130XXX» y las claves tentativas repetidas se
+   resuelven por el nombre normalizado, con el prefijo «~». Es la misma regla
+   que usa mallas/extraer_mallas.py para enlazar cada recuadro de la malla. */
+const slug = (s) => norm(String(s ?? "").replace(/^x+\s+/i, "")).replace(/[^a-z0-9]/g, "");
+const refUEA = (l, u) =>
+  /^\d{6,7}$/.test(u.clave) && l.ueas.filter((x) => x.clave === u.clave).length === 1
+    ? u.clave : "~" + slug(u.nombre);
+const buscaUEA = (l, k) => k?.startsWith("~")
+  ? l?.ueas.find((x) => slug(x.nombre) === k.slice(1))
+  : l?.ueas.find((x) => x.clave === k);
+
 /* Secciones plegables de contexto. En pantalla ancha nacen abiertas y sin
    resumen visible, de modo que el escritorio se ve exactamente igual que
    antes; en el teléfono nacen plegadas, para que lo que se busca —la lista de
@@ -136,7 +148,7 @@ function panorama() {
 }
 
 /* -------------------------------------------------------- licenciatura */
-function licenciatura(clave, q = "") {
+function licenciatura(clave, q = "", sub = "") {
   const l = lic(clave);
   if (!l) return panorama();
   const cv = l.creditos.vigente || {}, cp = l.creditos.propuesto || {};
@@ -161,7 +173,10 @@ function licenciatura(clave, q = "") {
   const filtroP = $("#f-prog")?.value || "";
   const nq = norm(q);
 
+  // `#/lic/<clave>/optativas` llega desde una casilla de optativa de la malla
+  const soloOpt = sub === "optativas";
   const lista = l.ueas.filter((u) =>
+    (!soloOpt || u.tipo === "OPT") &&
     (!filtroT || u.tronco === filtroT) &&
     (!filtroC || u.continuidad === filtroC) &&
     (!filtroP || (filtroP === "si") === !!u.programa) &&
@@ -169,7 +184,7 @@ function licenciatura(clave, q = "") {
 
   const filas = lista.map((u) => {
     const [txt, cls] = CONTINUIDAD[u.continuidad] || ["—", "eti hueca"];
-    return `<tr onclick="location.hash='#/uea/${clave}/${u.clave}'">
+    return `<tr onclick="location.hash='#/uea/${clave}/${refUEA(l, u)}'">
       <td class="clave" data-r="Clave">${esc(u.clave)}${u.clave_por_asignar
         ? ' <span class="eti hueca" title="La clave definitiva se asigna más adelante en el proceso">por asignar</span>' : ""}</td>
       <td><strong>${esc(u.nombre)}</strong>${u.fuera_de_tabla
@@ -206,8 +221,9 @@ function licenciatura(clave, q = "") {
     </div>
     </div>
 
-    ${(l.plan_texto || l.plan_pdf) ? `<p class="acciones"><a class="boton" href="#/plan/${l.clave}">
-      Ver el texto del plan de estudios</a></p>` : ""}
+    <p class="acciones">${(l.plan_texto || l.plan_pdf) ? `<a class="boton" href="#/plan/${l.clave}">
+      Ver el texto del plan de estudios</a>` : ""}
+      <a class="boton" href="#/malla/${l.clave}">Ver la malla curricular</a></p>
 
     ${pliegoIni("ctx-creditos", "Créditos y cadenas de seriación")}
     <h2>Distribución de créditos</h2>
@@ -238,6 +254,9 @@ function licenciatura(clave, q = "") {
       <span class="conteo">${lista.length} de ${l.ueas.length} UEA</span>
     </div>
     ${pliegoFin()}
+    ${soloOpt ? `<div class="aviso"><strong>Sólo las optativas.</strong>
+      Llegaste desde una casilla de optativa de la malla curricular.
+      <a href="#/lic/${clave}">Ver todas las UEA</a></div>` : ""}
 
     <table class="apilada por-nombre">
       <thead><tr><th>Clave</th><th>Unidad de Enseñanza Aprendizaje</th><th>Tronco</th>
@@ -256,7 +275,7 @@ function licenciatura(clave, q = "") {
       programa falta o si está entregado bajo otro nombre.</p>
       <table class="apilada por-nombre"><thead><tr><th>Clave en el plan</th><th>Unidad de Enseñanza Aprendizaje</th>
         <th>Tronco</th><th>Lo más parecido en el expediente</th></tr></thead><tbody>
-      ${sp.map((u) => `<tr onclick="location.hash='#/uea/${l.clave}/${u.clave}'">
+      ${sp.map((u) => `<tr onclick="location.hash='#/uea/${l.clave}/${refUEA(l, u)}'">
         <td class="clave" data-r="Clave">${esc(u.clave)}</td><td><strong>${esc(u.nombre)}</strong></td>
         <td data-r="Tronco">${esc(TRONCO[u.tronco] || u.tronco || "")}</td>
         <td data-r="Lo más parecido">${u.candidato ? `${esc(u.candidato.nombre)}
@@ -415,6 +434,31 @@ function detalleUEA2020(claveLic, claveUEA) {
     incluye programas de las UEA que sólo existen en él.</div>`;
 }
 
+/* ------------------------------------------------- malla curricular */
+/* El deck de la malla vive en mallas/<clave>.html, generado por
+   mallas/construir_mallas.py. Sus recuadros abren la ficha de cada UEA en
+   esta misma ventana (target="_top"), así que el visor es un iframe. */
+function malla(claveLic) {
+  const l = lic(claveLic);
+  if (!l) return panorama();
+  const nombre = esc(l.nombre_propuesto || l.nombre);
+  const html = `mallas/${claveLic}.html`, pdf = `mallas/${claveLic}.pdf`;
+  vista.innerHTML = `
+    <div class="migaja"><a href="#/">Panorama</a> ›
+      <a href="#/lic/${claveLic}">${nombre}</a> › malla curricular</div>
+    <p class="kicker">Malla curricular del plan propuesto</p>
+    <h1>${nombre}</h1>
+    <p class="sub">Cada recuadro abre el programa de su UEA. Las casillas de optativa
+      llevan a la lista de optativas de la licenciatura.</p>
+    <p class="acciones">
+      <a class="boton" href="${html}" target="_blank" rel="noopener">Abrir aparte</a>
+      <a class="boton hueco" href="${pdf}" target="_blank" rel="noopener">PDF</a>
+      <a class="boton hueco" href="${pdf}" download="malla-${claveLic}.pdf">Descargar</a></p>
+    <div class="visor visor-malla"><iframe src="${html}"
+      title="Malla curricular de ${nombre}"></iframe></div>
+    <p class="acciones"><a class="boton hueco" href="#/lic/${claveLic}">Volver a ${nombre}</a></p>`;
+}
+
 /* --------------------------------------------- texto del plan de estudios */
 function planDeEstudios(claveLic) {
   const l = lic(claveLic);
@@ -457,7 +501,7 @@ function planDeEstudios(claveLic) {
 /* ------------------------------------------------------------- una UEA */
 function detalleUEA(claveLic, claveUEA) {
   const l = lic(claveLic);
-  const u = l?.ueas.find((x) => x.clave === claveUEA);
+  const u = buscaUEA(l, claveUEA);
   if (!u) return licenciatura(claveLic);
   const [txt, cls] = CONTINUIDAD[u.continuidad] || ["—", "eti hueca"];
   const campos = CAMPOS.filter(([k]) => u.campos && u.campos[k]);
@@ -557,7 +601,7 @@ function buscar(q) {
     <p class="sub">${res.length} UEA en los diez planes propuestos.</p>
     <table class="apilada por-nombre"><thead><tr><th>Clave</th><th>Unidad de Enseñanza Aprendizaje</th>
       <th>Licenciatura</th><th>Tronco</th><th>Programa</th></tr></thead><tbody>
-    ${res.slice(0, 300).map(([l, u]) => `<tr onclick="location.hash='#/uea/${l.clave}/${u.clave}'">
+    ${res.slice(0, 300).map(([l, u]) => `<tr onclick="location.hash='#/uea/${l.clave}/${refUEA(l, u)}'">
       <td class="clave" data-r="Clave">${esc(u.clave)}</td><td><strong>${esc(u.nombre)}</strong></td>
       <td data-r="Licenciatura">${esc(l.nombre_propuesto || l.nombre)}</td><td data-r="Tronco">${esc(TRONCO[u.tronco] || u.tronco)}</td>
       <td data-r="Programa">${u.programa ? '<span class="eti verde">programa</span>' : '<span class="eti hueca">sin programa</span>'}</td>
@@ -611,10 +655,11 @@ function nivelDe(p) {
     const l = lic(p[1]);
     if (!l) return "panorama";
     const hay = p[0] === "uea"
-      ? l.ueas?.some((x) => x.clave === p[2])
+      ? !!buscaUEA(l, p[2])
       : l.vigentes?.some((x) => x.clave === p[2]);
     return hay ? "uea" : "lic";   // una clave que no existe cae a su licenciatura
   }
+  if (p[0] === "malla") return lic(p[1]) ? "plan" : "panorama";
   if (p[0] === "lic") return lic(p[1]) ? "lic" : "panorama";
   return "panorama";
 }
@@ -701,14 +746,16 @@ function contadores() {
 function pintar(p, q) {
   if (p[0] === "buscar") { buscar(decodeURIComponent(p[1] || "")); }
   else if (p[0] === "plan" && p[1]) { planDeEstudios(p[1]); }
+  else if (p[0] === "malla" && p[1]) { malla(p[1]); }
   else if (p[0] === "uea2020" && p[1] && p[2]) { detalleUEA2020(p[1], p[2]); }
   else if (p[0] === "uea" && p[1] && p[2]) { detalleUEA(p[1], p[2]); }
-  else if (p[0] === "lic" && p[1]) { licenciatura(p[1], q); }
+  else if (p[0] === "lic" && p[1]) { licenciatura(p[1], q, p[2]); }
   else { panorama(); }
 
   document.querySelectorAll("header nav a").forEach((a) =>
     a.classList.toggle("activo", a.getAttribute("href") === "#/" + (p[0] || "")));
   window.scrollTo(0, 0);
+  if (p[0] === "lic" && p[2] === "optativas") $("#panel-uea")?.scrollIntoView();
 }
 
 function anima(clase) {
