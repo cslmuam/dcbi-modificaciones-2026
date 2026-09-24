@@ -35,22 +35,39 @@ python3 verificar_mallas.py    # recortes, enlaces y PDF
   <https://cslmuam.github.io/dcbi-modificaciones-2026/>, así que el PDF
   descargado sigue llevando a cada programa.
 
-**En teléfono**, a 720 px o menos, las láminas se sustituyen por una lista
-por trimestre. Cada UEA es una tarjeta con su nombre completo y sus créditos,
-en la masa de color de su tronco y con el mismo enlace. Reducida a un teléfono,
-la lámina de 1280 px dejaba la letra en tres o cuatro píxeles. Esa versión
-usa Verdana, la tipografía para medios electrónicos del manual (numeral 4.1),
-que es la del tablero donde se lee. Entre 480 y 720 px las tarjetas van en
-dos columnas. La impresión nunca usa esta versión, así que el PDF sigue siendo
-el deck.
+**En teléfono**, a 720 px o menos, la malla se redistribuye para leerse en
+la pantalla. No es la lámina reacomodada. Arriba va el total de créditos con
+una sola barra dividida por tronco y su leyenda. Debajo, un selector de
+trimestres (I a XII) que se queda fijo al desplazarse y marca el trimestre a la
+vista. Después, cada trimestre es una lista con una fila por UEA sobre papel,
+con una marca circular en el color de su tronco, el nombre completo y, debajo,
+el tronco y los créditos escritos, de modo que el tronco no depende sólo del
+color. Filas de 64 px, dentro de la medida táctil. Verdana, la tipografía para
+medios electrónicos del manual (numeral 4.1), igual que el tablero. La
+impresión nunca usa esta versión, así que el PDF sigue siendo el deck.
 
-**Dentro del tablero** la malla avisa su alto a la página por `postMessage`, y
-el visor crece con ella. Así la única barra de desplazamiento es la de la
-página, en escritorio y en teléfono. Incrustada, la malla oculta su propio
-título, que el tablero ya muestra encima del visor.
+El marcado de teléfono sale de una sola función, `movil()` en
+`construir_mallas.py`, con dos destinos.
 
-La lectura en teléfono se comprobó con emulación de dispositivo (Playwright,
-390 y 600 px de ancho, sin desplazamiento horizontal). Chrome sin ventana con
+- La página suelta (`<clave>.html`) lo lleva dentro y lo muestra en pantalla
+  estrecha.
+- El tablero lo carga de `fragmentos.js`, generado con enlaces a su propia
+  página, y en teléfono lo dibuja directamente, sin iframe, para que el
+  selector de trimestres pueda quedarse fijo bajo su encabezado. Al cruzar los
+  720 px la vista se vuelve a dibujar.
+
+El estilo (`recursos/movil.css`) y el comportamiento del selector
+(`recursos/movil.js`) son los mismos en los dos destinos. La hoja lleva sus
+propios tokens bajo `.mm`, para no depender de los nombres de variable de
+ninguna de las dos páginas.
+
+**En pantalla ancha, dentro del tablero**, la malla va en un iframe que avisa
+su alto por `postMessage`, y el visor crece con ella. Así la única barra de
+desplazamiento es la de la página.
+
+La lectura en teléfono se comprobó con emulación de dispositivo (Playwright).
+En las diez licenciaturas, a 360 y 600 px, ninguna vista pide desplazamiento
+horizontal, y el selector lleva al trimestre elegido y lo marca. Chrome sin ventana con
 `--window-size` no sirve para esto, porque no baja de cierto ancho mínimo y
 la captura sale recortada por la derecha.
 

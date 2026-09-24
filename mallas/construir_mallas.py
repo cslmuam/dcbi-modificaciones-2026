@@ -26,6 +26,7 @@ Lee `mallas.json`, que produce `extraer_mallas.py`. Uso:
 
 import json
 import os
+import re
 import subprocess
 import sys
 import tempfile
@@ -72,6 +73,12 @@ ENTIDAD = {"á": "&aacute;", "é": "&eacute;", "í": "&iacute;", "ó": "&oacute;
 
 def ent(texto):
     return "".join(ENTIDAD.get(c, c) for c in str(texto))
+
+
+def nombre_html(nombre):
+    """El numeral romano final no se queda solo en un renglón («Aplicaciones
+    I»): lo une a la palabra anterior un espacio que no se parte."""
+    return re.sub(r" ([IVX]{1,4})$", r"&nbsp;\1", ent(nombre))
 
 
 def _cr(n):
@@ -122,7 +129,7 @@ def celda(u, tipo, base, lic):
               f'display:flex; flex-direction:column; justify-content:space-between; '
               f'min-height:0; overflow:hidden; text-decoration:none;')
     cuerpo = (f'<span style="font-size:{nom_px}px; line-height:{nom_lh}px; font-weight:700;">'
-              f'{ent(u["nombre"])}</span>'
+              f'{nombre_html(u["nombre"])}</span>'
               f'<span style="font-size:{cr_px}px; color:{tinta_cr}; margin-top:5px;">'
               f'{_cr(u["creditos"])} cr&eacute;ditos</span>')
     if not href:
@@ -172,51 +179,65 @@ def matriz(filas, glosa, base, lic):
 
 
 # ── lectura en teléfono ──────────────────────────────────────────────────────
-def tarjeta(u, base, lic):
-    """El mismo recuadro de la lámina, a la medida de la pantalla estrecha:
-    masa de color por tronco, nombre completo y créditos, y el mismo enlace."""
+NOMBRE_TRONCO = {"general": "Tronco General", "profesional": "Tronco Profesional",
+                 "integracion": "Tronco de Integraci&oacute;n"}
+
+
+def fila(u, base, lic):
+    """Una UEA en la lista de teléfono: marca de masa en el color del tronco,
+    nombre completo, y debajo el tronco y los créditos en texto, para que el
+    tronco no dependa sólo del color."""
     if u["opt"]:
         href = f"{base}#/lic/{lic}/optativas"
     elif u["ruta"]:
         href = base + u["ruta"]
     else:
         href = None
-    cuerpo = (f'<span class="m-nombre">{ent(u["nombre"])}</span>'
-              f'<span class="m-cr">{_cr(u["creditos"])} cr&eacute;d.</span>')
-    clase = f'm-uea t-{u["tronco"]}'
+    cuerpo = (f'<span class="mm-marca t-{u["tronco"]}"></span>'
+              f'<span class="mm-txt"><span class="mm-nombre">{nombre_html(u["nombre"])}</span>'
+              f'<span class="mm-meta">{NOMBRE_TRONCO[u["tronco"]]} &middot; '
+              f'{_cr(u["creditos"])} cr&eacute;ditos</span></span>')
     if not href:
-        return f'<div class="{clase}">{cuerpo}</div>'
-    return f'<a class="{clase}" href="{ent(href)}" target="_top">{cuerpo}</a>'
+        return f'<li><div class="mm-uea">{cuerpo}</div></li>'
+    return (f'<li><a class="mm-uea" href="{ent(href)}" target="_top">{cuerpo}'
+            f'<span class="mm-ir" aria-hidden="true">&rsaquo;</span></a></li>')
 
 
 def movil(m, base, cr, total, nota):
-    """Versión de lectura para pantallas de 720 px o menos. La lámina de
-    1280 px reducida a un teléfono deja la letra en tres o cuatro píxeles, así
-    que en pantalla estrecha se sustituye por una lista por trimestre. La
-    impresión nunca la usa: el PDF es siempre el deck."""
+    """Malla para pantallas de 720 px o menos, redistribuida para leerse en un
+    teléfono y no como una lámina reacomodada. Un resumen con la barra de
+    créditos por tronco, un selector fijo de trimestres y una lista por
+    trimestre. El tablero inserta este mismo fragmento en su propia página
+    (fragmentos.js); la página suelta lo lleva dentro. La impresión nunca lo
+    usa: el PDF es siempre el deck."""
     lic = m["clave"]
-    cedulas = "".join(
-        f'<div class="m-dato t-{t}"><span class="m-n">{v:g}</span>'
-        f'<span class="m-r">{r}</span></div>'
-        for t, v, r in (("general", cr["general"], "Tronco General"),
-                        ("profesional", cr["profesional"], "Tronco Profesional"),
-                        ("integracion", cr["integracion"], "Tronco de Integraci&oacute;n")))
-    trims = "".join(
-        f'<section class="m-trim"><h2><span>Trimestre {ROMANO[t["trimestre"]]}</span>'
-        f'<span class="m-trim-cr">{t["creditos"]:g} cr&eacute;ditos</span></h2>'
-        f'<div class="m-lista">{"".join(tarjeta(u, base, lic) for u in t["ueas"])}</div></section>'
+    seg = "".join(
+        f'<span class="mm-seg t-{t}" style="flex:{cr[t]:g}"></span>'
+        for t in ("general", "profesional", "integracion") if cr[t])
+    ley = "".join(
+        f'<li><span class="mm-marca t-{t}"></span><span>{NOMBRE_TRONCO[t]}</span>'
+        f'<span class="mm-num">{cr[t]:g}</span></li>'
+        for t in ("general", "profesional", "integracion"))
+    nav = "".join(
+        f'<button type="button" data-t="{t["trimestre"]}" '
+        f'aria-label="Trimestre {ROMANO[t["trimestre"]]}">{ROMANO[t["trimestre"]]}</button>'
         for t in m["trimestres"])
-    nota_html = (f'<p class="m-nota"><strong>Nota.</strong> {nota}</p>' if nota else "")
-    return (f'<div class="movil">'
-            f'<header class="m-cab"><p class="m-kicker">Malla curricular &middot; plan propuesto</p>'
-            f'<h1>{ent(m["nombre"])}</h1></header>'
-            f'<p class="m-ayuda">Toca una UEA para abrir su programa. Las casillas de '
-            f'optativa llevan a la lista de optativas.</p>'
-            f'<div class="m-datos">{cedulas}'
-            f'<div class="m-dato m-total"><span class="m-n">{total:g}</span>'
-            f'<span class="m-r">Cr&eacute;ditos de la malla</span></div></div>'
+    trims = "".join(
+        f'<section class="mm-trim" id="mm-{lic}-t{t["trimestre"]}" data-t="{t["trimestre"]}">'
+        f'<h2><span class="mm-chip">{ROMANO[t["trimestre"]]}</span>'
+        f'<span class="mm-trim-tit">Trimestre {ROMANO[t["trimestre"]]}</span>'
+        f'<span class="mm-trim-cr">{t["creditos"]:g} cr&eacute;ditos</span></h2>'
+        f'<ol class="mm-lista">{"".join(fila(u, base, lic) for u in t["ueas"])}</ol></section>'
+        for t in m["trimestres"])
+    nota_html = f'<p class="mm-nota"><strong>Nota.</strong> {nota}</p>' if nota else ""
+    return (f'<div class="mm" data-lic="{lic}">'
+            f'<div class="mm-resumen"><p class="mm-total"><span>{total:g}</span> '
+            f'cr&eacute;ditos en {len(m["trimestres"])} trimestres</p>'
+            f'<div class="mm-barra" aria-hidden="true">{seg}</div>'
+            f'<ul class="mm-leyenda">{ley}</ul></div>'
+            f'<nav class="mm-nav" aria-label="Trimestres">{nav}</nav>'
             f'{trims}{nota_html}'
-            f'<p class="m-fuente">Fuente &middot; {ent(FUENTE[lic])}</p></div>')
+            f'<p class="mm-fuente">Fuente &middot; {ent(FUENTE[lic])}</p></div>')
 
 
 # ── deck ─────────────────────────────────────────────────────────────────────
@@ -308,8 +329,16 @@ def construir(m, base):
             f'<title>Mapa curricular &middot; {nombre}</title>\n'
             '<link rel="stylesheet" href="recursos/style.css">\n'
             '<link rel="stylesheet" href="recursos/malla.css">\n'
-            '</head>\n<body>\n' + movil(m, base, cr, total, nota) + "\n" +
+            '<link rel="stylesheet" href="recursos/movil.css">\n'
+            '</head>\n<body>\n'
+            f'<div class="mm-pagina"><p class="mm-kicker">Malla curricular &middot; '
+            f'plan propuesto</p><h1>{nombre}</h1>'
+            f'<p class="mm-ayuda">Toca una UEA para abrir su programa. Las casillas '
+            f'de optativa llevan a la lista de optativas.</p>'
+            f'<p class="mm-pdf"><a href="{lic}.pdf">Versi&oacute;n en PDF</a></p>'
+            + movil(m, base, cr, total, nota) + '</div>\n' +
             "\n".join(partes) +
+            '\n<script src="recursos/movil.js"></script>'
             '\n<script src="recursos/malla.js"></script>\n</body>\n</html>')
 
 
@@ -328,8 +357,24 @@ def render(html, pdf):
         os.remove(tmp)
 
 
+def fragmentos(mallas):
+    """La malla de teléfono de las diez licenciaturas, con enlaces relativos a
+    la propia página del tablero, para que app.js la dibuje sin iframe."""
+    out = {}
+    for lic, m in mallas.items():
+        cr = Counter()
+        for t in m["trimestres"]:
+            for u in t["ueas"]:
+                cr[u["tronco"]] += u["creditos"] or 0
+        out[lic] = movil(m, "", cr, sum(cr.values()), NOTA.get(lic, ""))
+    with open(os.path.join(AQUI, "fragmentos.js"), "w", encoding="utf-8") as f:
+        f.write("/* Generado por construir_mallas.py. No se edita a mano. */\n"
+                "window.MALLAS_MOVIL = " + json.dumps(out, ensure_ascii=False) + ";\n")
+
+
 def main(claves):
     mallas = json.load(open(os.path.join(AQUI, "mallas.json"), encoding="utf-8"))
+    fragmentos(mallas)
     for lic in claves or list(mallas):
         m = mallas[lic]
         with open(os.path.join(AQUI, f"{lic}.html"), "w", encoding="utf-8") as f:

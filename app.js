@@ -443,6 +443,23 @@ function malla(claveLic) {
   if (!l) return panorama();
   const nombre = esc(l.nombre_propuesto || l.nombre);
   const html = `mallas/${claveLic}.html`, pdf = `mallas/${claveLic}.pdf`;
+  const frag = window.MALLAS_MOVIL?.[claveLic];
+  // En teléfono la malla se dibuja en la propia página, sin iframe, para que
+  // su selector de trimestres pueda quedarse fijo bajo el encabezado.
+  if (estrecho() && frag) {
+    vista.innerHTML = `
+    <div class="migaja"><a href="#/">Panorama</a> ›
+      <a href="#/lic/${claveLic}">${nombre}</a> › malla curricular</div>
+    <p class="kicker">Malla curricular del plan propuesto</p>
+    <h1>${nombre}</h1>
+    <p class="sub">Toca una UEA para abrir su programa.</p>
+    ${frag}
+    <p class="acciones">
+      <a class="boton hueco" href="${pdf}" target="_blank" rel="noopener">Ver en PDF</a>
+      <a class="boton hueco" href="#/lic/${claveLic}">Volver a ${nombre}</a></p>`;
+    window.mallaMovil?.(vista, $("header")?.getBoundingClientRect().height || 0);
+    return;
+  }
   vista.innerHTML = `
     <div class="migaja"><a href="#/">Panorama</a> ›
       <a href="#/lic/${claveLic}">${nombre}</a> › malla curricular</div>
@@ -809,6 +826,11 @@ window.addEventListener("message", (e) => {
 });
 
 window.addEventListener("hashchange", () => render());
+// La malla tiene una forma para pantalla ancha y otra para teléfono: al
+// cruzar el umbral se vuelve a dibujar.
+window.matchMedia("(max-width: 720px)").addEventListener("change", () => {
+  if (location.hash.startsWith("#/malla/")) render({ forzar: true });
+});
 window.addEventListener("DOMContentLoaded", () => {
   // La portada sólo recibe a quien llega sin destino. Un enlace profundo
   // —#/lic/civ, #/uea/…— entra directo a lo que pidió.

@@ -1,0 +1,93 @@
+/* Malla curricular en teléfono. La usan la página suelta de cada malla
+   (mallas/<clave>.html, a 720 px o menos) y el tablero, que inserta el mismo
+   fragmento en su página en pantalla estrecha. Todo va bajo .mm, con sus
+   propios tokens, para no depender de los nombres de variable de ninguna de
+   las dos hojas.
+
+   La lámina de 1280 px no se reacomoda: se redistribuye. Un resumen con la
+   barra de créditos por tronco, un selector de trimestres que se queda fijo
+   al desplazarse, y una lista por trimestre con una fila por UEA. El tronco
+   va dos veces, como marca de masa en su color y escrito bajo el nombre, de
+   modo que no depende sólo del color. Verdana, la tipografía para medios
+   electrónicos del manual (numeral 4.1). */
+.mm {
+  --mm-rojo: #CD032E; --mm-tinta: #1C1C1C; --mm-gris: #646464;
+  --mm-gris-claro: #F4F4F4; --mm-filete: #DEDEDE; --mm-papel: #FFFFFF;
+  --mm-tope: 0px;              /* alto del encabezado fijo de la página */
+  font-family: Verdana, Arial, Tahoma, sans-serif; color: var(--mm-tinta);
+}
+.mm *, .mm *::before { box-sizing: border-box; }
+.mm p, .mm h2, .mm ol, .mm ul { margin: 0; padding: 0; }
+.mm ol, .mm ul { list-style: none; }
+
+/* resumen */
+.mm-resumen { padding: 4px 0 18px; }
+.mm-total { font-size: 14px; color: var(--mm-gris); }
+.mm-total span { font-size: 34px; font-weight: bold; color: var(--mm-rojo);
+                 letter-spacing: -0.01em; margin-right: 4px; }
+.mm-barra { display: flex; height: 12px; gap: 2px; margin: 12px 0 12px; }
+.mm-seg.t-general { background: var(--mm-gris-claro); box-shadow: inset 0 0 0 1px var(--mm-filete); }
+.mm-seg.t-profesional { background: var(--mm-rojo); }
+.mm-seg.t-integracion { background: var(--mm-tinta); }
+.mm-leyenda li { display: flex; align-items: center; gap: 10px; padding: 5px 0;
+                 font-size: 14px; }
+.mm-leyenda .mm-num { margin-left: auto; font-weight: bold; font-variant-numeric: tabular-nums; }
+
+/* marca de tronco: masa sólida, nunca filete */
+.mm-marca { flex: none; width: 12px; height: 12px; border-radius: 50%; }
+.mm-marca.t-general { background: var(--mm-gris-claro); box-shadow: inset 0 0 0 1.5px #BDBDBD; }
+.mm-marca.t-profesional { background: var(--mm-rojo); }
+.mm-marca.t-integracion { background: var(--mm-tinta); }
+
+/* selector de trimestres */
+.mm-nav {
+  position: sticky; top: var(--mm-tope); z-index: 5;
+  display: flex; gap: 8px; overflow-x: auto; scrollbar-width: none;
+  margin: 0 -16px; padding: 10px 16px;
+  background: var(--mm-papel); border-bottom: 1px solid var(--mm-filete);
+  -webkit-overflow-scrolling: touch;
+}
+.mm-nav::-webkit-scrollbar { display: none; }
+.mm-nav button {
+  flex: none; min-width: 44px; height: 44px; padding: 0 8px; border-radius: 22px;
+  border: 1px solid var(--mm-filete); background: var(--mm-papel); color: var(--mm-tinta);
+  font: bold 13px/1 Verdana, Arial, sans-serif; letter-spacing: .02em; cursor: pointer;
+}
+.mm-nav button.activo { background: var(--mm-rojo); border-color: var(--mm-rojo); color: #FFFFFF; }
+.mm-nav button:focus-visible { outline: 2px solid var(--mm-tinta); outline-offset: 2px; }
+
+/* trimestres */
+.mm-trim { padding-top: 26px; scroll-margin-top: calc(var(--mm-tope) + 66px); }
+.mm-trim h2 { display: flex; align-items: center; gap: 12px; padding-bottom: 10px;
+              border-bottom: 2px solid var(--mm-tinta); }
+.mm-chip { flex: none; display: inline-flex; align-items: center; justify-content: center;
+           min-width: 36px; height: 36px; padding: 0 6px; border-radius: 18px;
+           background: var(--mm-rojo); color: #FFFFFF; font-size: 13px; font-weight: bold; }
+.mm-trim-tit { font-size: 18px; font-weight: bold; }
+.mm-trim-cr { margin-left: auto; font-size: 13px; font-weight: normal; color: var(--mm-gris);
+              white-space: nowrap; }
+
+.mm-lista li { border-bottom: 1px solid var(--mm-filete); }
+.mm-uea { display: flex; align-items: center; gap: 14px; min-height: 64px; padding: 12px 2px;
+          color: var(--mm-tinta); text-decoration: none; }
+.mm-txt { display: flex; flex-direction: column; gap: 4px; min-width: 0; flex: 1; }
+.mm-nombre { font-size: 15.5px; line-height: 1.4; }
+.mm-meta { font-size: 12.5px; line-height: 1.4; color: var(--mm-gris); }
+.mm-ir { flex: none; font-size: 24px; line-height: 1; color: #B0B0B0; }
+a.mm-uea:active { background: var(--mm-gris-claro); }
+a.mm-uea:focus-visible { outline: 2px solid var(--mm-tinta); outline-offset: -2px; }
+
+.mm-nota { font-size: 13.5px; line-height: 1.6; margin-top: 28px; }
+.mm-nota strong { color: var(--mm-rojo); }
+.mm-fuente { font-family: "Courier New", monospace; font-size: 11.5px; line-height: 1.5;
+             color: var(--mm-gris); margin-top: 14px; overflow-wrap: anywhere; }
+
+/* página suelta de la malla (fuera del tablero) */
+.mm-pagina { padding: 22px 16px 36px; font-family: Verdana, Arial, Tahoma, sans-serif;
+             color: #1C1C1C; }
+.mm-pagina .mm-kicker { margin: 0 0 8px; font-size: 11px; font-weight: bold; letter-spacing: .12em;
+                        text-transform: uppercase; color: #CD032E; }
+.mm-pagina h1 { margin: 0 0 10px; font-size: 25px; line-height: 1.2; }
+.mm-pagina .mm-ayuda { margin: 0 0 6px; font-size: 13.5px; line-height: 1.55; color: #646464; }
+.mm-pagina .mm-pdf { margin: 0 0 18px; font-size: 13.5px; }
+.mm-pagina .mm-pdf a { color: #CD032E; }
