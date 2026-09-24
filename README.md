@@ -130,6 +130,7 @@ con el prefijo `~`.
 | `construir_datos.py` | Genera `datos.js` desde las fuentes. |
 | `assets/` | Emblema institucional, en positivo y en negativo. |
 | `mallas/` | Malla curricular de cada licenciatura en HTML y PDF, con sus generadores. |
+| `versionar.py` | Marca cada hoja de estilo y script con la huella de su contenido (`app.js?v=…`), para que un cambio publicado se vea sin esperar a que caduque la caché. Se corre antes de cada publicación. |
 
 Para regenerar los datos, por ejemplo tras una entrega nueva de las
 coordinaciones:

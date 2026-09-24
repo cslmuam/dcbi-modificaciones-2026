@@ -39,7 +39,7 @@ for lic, m in mallas.items():
     html = open(os.path.join(AQUI, f"{lic}.html"), encoding="utf-8").read()
     tmp = os.path.join(AQUI, "_sonda.html")
     open(tmp, "w", encoding="utf-8").write(
-        html.replace('<script src="recursos/malla.js"></script>', SONDA))
+        re.sub(r'<script src="recursos/malla\.js(\?v=[0-9a-f]+)?"></script>', SONDA, html))
     dom = subprocess.run([CHROME, "--headless", "--disable-gpu", "--window-size=1280,800",
                           "--virtual-time-budget=3000", "--dump-dom", "file://" + tmp],
                          capture_output=True, text=True).stdout

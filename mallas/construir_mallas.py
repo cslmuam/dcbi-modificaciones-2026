@@ -22,6 +22,7 @@ Dos salidas por licenciatura, del mismo marcado:
 Lee `mallas.json`, que produce `extraer_mallas.py`. Uso:
 
     python3 extraer_mallas.py && python3 construir_mallas.py [clave …]
+    python3 ../versionar.py      # marca la versión de hojas y scripts
 """
 
 import json
@@ -335,7 +336,8 @@ def construir(m, base):
             f'plan propuesto</p><h1>{nombre}</h1>'
             f'<p class="mm-ayuda">Toca una UEA para abrir su programa. Las casillas '
             f'de optativa llevan a la lista de optativas.</p>'
-            f'<p class="mm-pdf"><a href="{lic}.pdf">Versi&oacute;n en PDF</a></p>'
+            f'<p class="mm-pdf"><a href="{lic}.pdf" download="malla-{lic}.pdf">'
+            f'Descargar PDF</a></p>'
             + movil(m, base, cr, total, nota) + '</div>\n' +
             "\n".join(partes) +
             '\n<script src="recursos/movil.js"></script>'

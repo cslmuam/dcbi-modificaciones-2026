@@ -19,6 +19,7 @@ licenciatura (`#/lic/<clave>/optativas`).
 ```bash
 python3 extraer_mallas.py      # expediente → mallas.json
 python3 construir_mallas.py    # mallas.json → <clave>.html y <clave>.pdf
+python3 ../versionar.py        # huella de contenido en cada hoja y script
 python3 verificar_mallas.py    # recortes, enlaces y PDF
 ```
 
